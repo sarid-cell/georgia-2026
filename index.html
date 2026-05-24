@@ -153,6 +153,7 @@
     </div>
     <nav class="nav-links" aria-label="ניווט ראשי">
       <a href="#overview">תמונת על</a>
+      <a href="#visual-gallery">כרטיסיות ויזואליות</a>
       <a href="#days">לו"ז יומי</a>
       <a href="#hotels">מלונות</a>
       <a href="#budget">תקציב</a>
@@ -234,6 +235,30 @@
       </aside>
     </div>
   </section>
+
+  <!-- ===== VISUAL DAY CARDS GALLERY ===== -->
+  <section id="visual-gallery" style="margin-bottom:28px;">
+    <h2 class="section-title">מסלול ויזואלי · 8 כרטיסיות יומיות</h2>
+    <p class="section-sub" style="color:#4b5563;">גללו ימינה לכל ימי המסלול · לחצו על כרטיסייה לצפייה מלאה</p>
+    <div style="display:flex;gap:14px;overflow-x:auto;padding:4px 2px 16px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:#cbd5e1 #f1f5f9;">
+      <div style="flex:0 0 auto;scroll-snap-align:start;"><img src="%D7%99%D7%95%D7%9D%201.png" alt="יום 1 – טביליסי" loading="lazy" style="height:440px;width:auto;border-radius:18px;cursor:zoom-in;box-shadow:0 8px 28px rgba(0,0,0,.18);transition:transform .2s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform=''" onclick="openLightbox(this.src,'יום 1 – טביליסי')"></div>
+      <div style="flex:0 0 auto;scroll-snap-align:start;"><img src="%D7%99%D7%95%D7%9D%202.png" alt="יום 2 – דשבאשי" loading="lazy" style="height:440px;width:auto;border-radius:18px;cursor:zoom-in;box-shadow:0 8px 28px rgba(0,0,0,.18);transition:transform .2s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform=''" onclick="openLightbox(this.src,'יום 2 – דשבאשי')"></div>
+      <div style="flex:0 0 auto;scroll-snap-align:start;"><img src="%D7%99%D7%95%D7%9D%203.png" alt="יום 3 – בורג׳ומי" loading="lazy" style="height:440px;width:auto;border-radius:18px;cursor:zoom-in;box-shadow:0 8px 28px rgba(0,0,0,.18);transition:transform .2s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform=''" onclick="openLightbox(this.src,'יום 3 – בורג׳ומי')"></div>
+      <div style="flex:0 0 auto;scroll-snap-align:start;"><img src="%D7%99%D7%95%D7%9D%204.png" alt="יום 4 – קוטאיסי" loading="lazy" style="height:440px;width:auto;border-radius:18px;cursor:zoom-in;box-shadow:0 8px 28px rgba(0,0,0,.18);transition:transform .2s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform=''" onclick="openLightbox(this.src,'יום 4 – קוטאיסי')"></div>
+      <div style="flex:0 0 auto;scroll-snap-align:start;"><img src="%D7%99%D7%95%D7%9D%205.png" alt="יום 5 – מרטבילי → בטומי" loading="lazy" style="height:440px;width:auto;border-radius:18px;cursor:zoom-in;box-shadow:0 8px 28px rgba(0,0,0,.18);transition:transform .2s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform=''" onclick="openLightbox(this.src,'יום 5 – מרטבילי → בטומי')"></div>
+      <div style="flex:0 0 auto;scroll-snap-align:start;"><img src="%D7%99%D7%95%D7%9D%206.png" alt="יום 6 – Mtirala" loading="lazy" style="height:440px;width:auto;border-radius:18px;cursor:zoom-in;box-shadow:0 8px 28px rgba(0,0,0,.18);transition:transform .2s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform=''" onclick="openLightbox(this.src,'יום 6 – Mtirala')"></div>
+      <div style="flex:0 0 auto;scroll-snap-align:start;"><img src="%D7%99%D7%95%D7%9D%207.png" alt="יום 7 – בטומי חופשי" loading="lazy" style="height:440px;width:auto;border-radius:18px;cursor:zoom-in;box-shadow:0 8px 28px rgba(0,0,0,.18);transition:transform .2s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform=''" onclick="openLightbox(this.src,'יום 7 – בטומי')"></div>
+      <div style="flex:0 0 auto;scroll-snap-align:start;"><img src="%D7%99%D7%95%D7%9D%208.png" alt="יום 8 – הביתה" loading="lazy" style="height:440px;width:auto;border-radius:18px;cursor:zoom-in;box-shadow:0 8px 28px rgba(0,0,0,.18);transition:transform .2s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform=''" onclick="openLightbox(this.src,'יום 8 – הביתה')"></div>
+    </div>
+    <p style="font-size:11px;color:#9ca3af;text-align:center;margin-top:4px;">← גלילה אופקית · 8 ימים</p>
+  </section>
+
+  <!-- Lightbox overlay -->
+  <div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9999;align-items:center;justify-content:center;flex-direction:column;gap:12px;" onclick="this.style.display='none'">
+    <p id="lbCaption" style="color:#f1f5f9;font-size:14px;font-weight:600;margin:0;"></p>
+    <img id="lbImg" style="max-height:88vh;max-width:92vw;border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.6);" alt="">
+    <p style="color:#9ca3af;font-size:12px;margin:0;">לחץ בכל מקום לסגירה</p>
+  </div>
 
   <section id="days">
     <h2 class="section-title">המסלול היומי · 8 ימים בגאורגיה</h2>
@@ -1586,6 +1611,14 @@
 <footer class="wrap" style="padding:18px 0 40px;color:#475569;font-size:13px;text-align:center;">🇬🇪 Georgia 2026 · מסע ג׳יפים לשני זוגות · Safe travels &amp; תחזרו עם זיכרונות בלתי נשכחים ♥</footer>
 
 <script>
+  function openLightbox(src, caption) {
+    document.getElementById('lbImg').src = src;
+    document.getElementById('lbCaption').textContent = caption || '';
+    const lb = document.getElementById('lightbox');
+    lb.style.display = 'flex';
+    document.addEventListener('keydown', function esc(e){ if(e.key==='Escape'){lb.style.display='none'; document.removeEventListener('keydown',esc);} });
+  }
+
   function switchRoute(which, btn) {
     document.querySelectorAll('.route-tab-btn').forEach(b=>b.classList.remove('active'));
     if(btn) btn.classList.add('active');
