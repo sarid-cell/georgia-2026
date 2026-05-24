@@ -73,7 +73,7 @@
     .hero-kpi div{padding:8px 9px;border-radius:16px;background:#f8fafc;border:1px solid rgba(148,163,184,.4);}
     .hero-kpi-title{color:var(--muted);margin-bottom:2px;}
     .hero-kpi-value{font-weight:700;color:#0f172a;}
-    .hero-badge{position:absolute;right:18px;top:18px;padding:5px 10px;border-radius:999px;background:rgba(15,118,110,.9);font-size:11px;color:#e0f2fe;border:1px solid rgba(34,211,238,.6);}
+    .hero-badge{position:absolute;left:18px;top:18px;padding:5px 10px;border-radius:999px;background:rgba(15,118,110,.9);font-size:11px;color:#e0f2fe;border:1px solid rgba(34,211,238,.6);}
 
     main{padding:0 0 48px;}
     section{margin-bottom:28px;}
@@ -121,13 +121,6 @@
     .stagger > *:nth-child(5){transition-delay:.32s}
     .stagger > *:nth-child(6){transition-delay:.40s}
 
-    @media (max-width:800px){
-      .hero-grid{grid-template-columns:1fr;}
-      .day-grid{grid-template-columns:1fr;}
-      header{position:static;}
-      .nav-bar{flex-direction:column;align-items:flex-start;gap:8px;}
-    }
-  
     .nav a, .brand, .section-title, .day-name, .day-label { opacity:1 !important; }
     header, header * { color:#f3f4f6 !important; }
     thead th { color:#0f172a !important; background:#eef2ff !important; }
@@ -152,9 +145,51 @@
 .map-info-card{background:#f8fafc;border-radius:16px;padding:14px 12px;border:1px solid #e5e7eb;font-size:12px;min-height:200px;}
 .map-info-card h4{font-size:14px;font-weight:700;margin-bottom:6px;color:#0ea5e9;}
 .map-info-card ul{padding-right:16px;color:#4b5563;line-height:1.7;}
-@media(max-width:800px){
+/* ===== MOBILE-FIRST OVERHAUL ===== */
+@media (max-width:800px){
+  body{font-size:16px;}
+  /* Sticky nav stays sticky, but compact */
+  header{position:sticky;}
+  .nav-bar{flex-direction:row !important;flex-wrap:nowrap;padding:10px 0;gap:6px;}
+  .logo span{display:none;}
+  .logo-mark{width:28px;height:28px;flex-shrink:0;}
+  .nav-links{overflow-x:auto;flex-wrap:nowrap !important;gap:3px;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding-bottom:2px;flex:1;min-width:0;}
+  .nav-links::-webkit-scrollbar{display:none;}
+  .nav-links a{white-space:nowrap;font-size:11px;padding:5px 8px;}
+  /* Hero layout */
+  .hero-grid{grid-template-columns:1fr;}
+  h1{font-size:clamp(22px,6.5vw,34px) !important;line-height:1.2;}
+  .hero-sub{font-size:14px;}
+  /* Hero card – badge flows in the document so it doesn't overlap title */
+  .hero-badge{position:static !important;display:inline-block;margin-bottom:10px;}
+  .hero-card{padding:14px 14px;}
+  .hero-kpi{grid-template-columns:repeat(2,1fr);gap:8px;}
+  .hero-kpi div{padding:7px 8px;}
+  .hero-kpi-value{font-size:13px;}
+  /* Day grid */
+  .day-grid{grid-template-columns:1fr;padding:14px 12px;gap:14px;}
+  table{font-size:11px;}
+  th,td{padding:6px 7px;}
+  /* Tabs */
+  #route-tabs{display:grid !important;grid-template-columns:repeat(3,1fr) !important;gap:8px !important;overflow:visible !important;}
+  .route-tab-btn{padding:10px 6px !important;gap:4px !important;border-radius:14px !important;flex-direction:column;align-items:center;justify-content:center;}
+  .route-tab-btn > span{font-size:20px !important;}
+  .tab-title{font-size:12px !important;text-align:center !important;}
+  .tab-subtitle{display:none !important;}
+  /* Philosophy grid */
   .philosophy-grid{grid-template-columns:1fr;}
+  /* Map grid */
   .map-grid-inner{grid-template-columns:1fr !important;}
+  /* Sections */
+  .section-title{font-size:18px;}
+  .hotel-card,.budget-card{padding:12px 12px;}
+}
+@media (max-width:480px){
+  .wrap{padding:0 13px;}
+  h1{font-size:clamp(21px,7vw,28px) !important;}
+  .hero-pill{font-size:10px;padding:3px 6px;}
+  .hero-tags .tag{font-size:10px;padding:3px 7px;}
+  .day-grid{padding:12px 10px;}
 }
 /* Packing list */
 .pack-cat{background:#fff;border-radius:20px;border:1px solid #e5e7eb;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.06);}
@@ -193,26 +228,26 @@
 <main class="wrap">
 
   <!-- ===== ROUTE TAB SWITCHER ===== -->
-  <div style="display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 20px;border-bottom:2px solid #e5e7eb;padding-bottom:18px;">
+  <div id="route-tabs" style="display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 20px;border-bottom:2px solid #e5e7eb;padding-bottom:18px;">
     <button class="route-tab-btn" id="tab-smart" onclick="switchRoute('smart',this)">
       <span style="font-size:22px;flex-shrink:0;">✨</span>
       <div>
-        <div style="font-weight:700;font-size:14px;">המסלול החכם של קלוד</div>
-        <div style="font-size:11px;color:#6b7280;">קוטאיסי + מרטבילי · ג׳יפ 4 ימים · חוסך 160 ק"מ</div>
+        <div class="tab-title" style="font-weight:700;font-size:14px;">המסלול החכם של קלוד</div>
+        <div class="tab-subtitle" style="font-size:11px;color:#6b7280;">קוטאיסי + מרטבילי · ג׳יפ 4 ימים · חוסך 160 ק"מ</div>
       </div>
     </button>
     <button class="route-tab-btn active" id="tab-original" onclick="switchRoute('original',this)">
       <span style="font-size:22px;flex-shrink:0;">📋</span>
       <div>
-        <div style="font-weight:700;font-size:14px;">המסלול המקורי שלכם</div>
-        <div style="font-size:11px;color:#6b7280;">דשבאשי + בורג׳ומי + רכבת לבטומי · ג׳יפ 3 ימים</div>
+        <div class="tab-title" style="font-weight:700;font-size:14px;">המסלול המקורי שלכם</div>
+        <div class="tab-subtitle" style="font-size:11px;color:#6b7280;">דשבאשי + בורג׳ומי + רכבת לבטומי · ג׳יפ 3 ימים</div>
       </div>
     </button>
     <button class="route-tab-btn" id="tab-pack" onclick="switchRoute('pack',this)">
       <span style="font-size:22px;flex-shrink:0;">🎒</span>
       <div>
-        <div style="font-weight:700;font-size:14px;">מה לארוז</div>
-        <div style="font-size:11px;color:#6b7280;">רשימת ציוד + סימון וי כשמוכן</div>
+        <div class="tab-title" style="font-weight:700;font-size:14px;">מה לארוז</div>
+        <div class="tab-subtitle" style="font-size:11px;color:#6b7280;">רשימת ציוד + סימון וי כשמוכן</div>
       </div>
     </button>
   </div>
@@ -1772,7 +1807,10 @@
 </div>
 
 </main>
-<footer class="wrap" style="padding:18px 0 40px;color:#475569;font-size:13px;text-align:center;">🇬🇪 Georgia 2026 · מסע ג׳יפים לשני זוגות · Safe travels &amp; תחזרו עם זיכרונות בלתי נשכחים ♥</footer>
+<footer class="wrap" style="padding:24px 0 48px;text-align:center;">
+  <div style="margin-bottom:10px;font-size:15px;font-weight:700;color:#1e293b;letter-spacing:.01em;">עוצב ונבנה ע״י <span style="color:#0ea5e9;">שירה שריד</span> ✨</div>
+  <div style="font-size:13px;color:#64748b;">🇬🇪 Georgia 2026 · מסע ג׳יפים לשני זוגות · Safe travels &amp; תחזרו עם זיכרונות בלתי נשכחים ♥</div>
+</footer>
 
 <!-- AI Chat Widget -->
 <div id="chat-bubble" onclick="toggleChat()" style="position:fixed;bottom:24px;left:24px;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#0ea5e9,#22c55e);box-shadow:0 6px 24px rgba(14,165,233,.45);cursor:pointer;z-index:5000;display:flex;align-items:center;justify-content:center;font-size:24px;transition:transform .2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform=''">🤖</div>
@@ -1811,6 +1849,19 @@
     document.getElementById('content-original').style.display = which==='original' ? '' : 'none';
     document.getElementById('content-pack').style.display = which==='pack' ? '' : 'none';
     window.scrollTo({top:0, behavior:'smooth'});
+    // Re-trigger animations for elements that were hidden when observer ran
+    setTimeout(() => {
+      const sec = document.getElementById('content-' + which);
+      if (!sec) return;
+      const animEls = sec.querySelectorAll('.fade-in:not(.visible),.slide-right:not(.visible),.scale-up:not(.visible),.hotel-card:not(.visible),.budget-card:not(.visible),.philosophy-card:not(.visible)');
+      const vh = window.innerHeight;
+      animEls.forEach((el, i) => {
+        const r = el.getBoundingClientRect();
+        if (r.top < vh * 1.15 && r.bottom > -10) {
+          setTimeout(() => el.classList.add('visible'), i * 45);
+        }
+      });
+    }, 80);
   }
 
   const mapDayData = {
@@ -1878,7 +1929,7 @@
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.15 });
+  }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
 
   document.querySelectorAll('.fade-in,.slide-right,.scale-up,.hotel-card,.budget-card,.philosophy-card').forEach((el) => observer.observe(el));
 
