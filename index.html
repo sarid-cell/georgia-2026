@@ -121,6 +121,23 @@
     th { color:#0f172a !important; }
     .section-sub { color:#4b5563 !important; }
 
+/* Philosophy cards */
+.philosophy-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:28px;}
+.philosophy-card{background:#fff;border-radius:20px;padding:16px 14px;border:1px solid #e5e7eb;box-shadow:0 6px 20px rgba(0,0,0,.07);}
+.philosophy-icon{font-size:22px;margin-bottom:6px;}
+.philosophy-title{font-size:13px;font-weight:700;color:#111827;margin-bottom:5px;}
+.philosophy-text{font-size:11px;color:#6b7280;line-height:1.55;}
+/* Animated map */
+.map-day-btn{padding:5px 11px;border-radius:20px;border:1px solid #e5e7eb;background:#fff;font-size:11px;cursor:pointer;font-family:inherit;color:#4b5563;transition:all .18s;}
+.map-day-btn:hover,.map-day-btn.active{background:#0f172a;color:#f1f5f9;border-color:#0f172a;}
+.route-path{transition:stroke-dashoffset .9s cubic-bezier(.4,0,.2,1);}
+.map-info-card{background:#f8fafc;border-radius:16px;padding:14px 12px;border:1px solid #e5e7eb;font-size:12px;min-height:200px;}
+.map-info-card h4{font-size:14px;font-weight:700;margin-bottom:6px;color:#0ea5e9;}
+.map-info-card ul{padding-right:16px;color:#4b5563;line-height:1.7;}
+@media(max-width:800px){
+  .philosophy-grid{grid-template-columns:1fr;}
+  .map-grid-inner{grid-template-columns:1fr !important;}
+}
 </style>
 </head>
 <body>
@@ -136,6 +153,7 @@
       <a href="#hotels">מלונות</a>
       <a href="#budget">תקציב</a>
       <a href="#logistics">לוגיסטיקה וטיפים</a>
+      <a href="#route-map">מפת אנימציה</a>
     </nav>
   </div>
 </header>
@@ -157,7 +175,7 @@
           <a href="#days" class="btn-primary">קפיצה ללו"ז היומי</a>
           <a href="#budget" class="btn-ghost">לראות את התקציב המלא</a>
         </div>
-        <p class="hero-sub" style="font-size:12px;color:var(--muted);max-width:34rem;">הערת תכנון: לילה ראשון בטביליסי מאפשר יום פתיחה רגוע בעיר. מיום 2 יוצאים עם ג׳יפ שנאסף בבוקר לעבר דשבאשי ובורג׳ומי, והמעבר המרכזי חזרה לבטומי לשלושת הלילות האחרונים נעשה ברכבת.</p>
+        <p class="hero-sub" style="font-size:12px;color:var(--muted);max-width:34rem;">הערת תכנון: יום 1 מוקדש לטביליסי בלי נהיגה כלל. ימים 2–5 עם הג׳יפ: דשבאשי ← בורג׳ומי ← קוטאיסי ← קניון מרטבילי ← בטומי (מסירת ג׳יפ). ימים 6–7 בטומי 5★ עם Mtirala ויום חופש. כך חוסכים 160 ק"מ של נסיעה חוזרת לטביליסי ומוסיפים את קניון מרטבילי – הפנינה הכי צילומית של גאורגיה.</p>
       </div>
       <aside class="hero-card" aria-label="סיכום לוגיסטי קצר">
         <div class="hero-badge">Every day has water 💧</div>
@@ -167,13 +185,14 @@
           <span class="hero-pill">Day 1 · טיסה → טביליסי</span>
           <span class="hero-pill">Day 2 · דשבאשי</span>
           <span class="hero-pill">Day 3 · בורג׳ומי</span>
-          <span class="hero-pill">Day 4 · טביליסי</span>
-          <span class="hero-pill">Day 5–7 · בטומי 5★</span>
+          <span class="hero-pill">Day 4 · קוטאיסי</span>
+          <span class="hero-pill">Day 5 · מרטבילי → בטומי</span>
+          <span class="hero-pill">Day 6–7 · בטומי 5★</span>
         </div>
         <div class="hero-kpi">
           <div>
             <div class="hero-kpi-title">מרחק כולל משוער</div>
-            <div class="hero-kpi-value">~950–1,050 ק"מ</div>
+            <div class="hero-kpi-value">~720–820 ק"מ</div>
           </div>
           <div>
             <div class="hero-kpi-title">זמן נהיגה נטו ממוצע</div>
@@ -196,79 +215,87 @@
     <h2 class="section-title">המסלול היומי · 8 ימים בגאורגיה</h2>
     <p class="section-sub" style="color:#4b5563;">לו"ז לפי שעות, עם זמן נסיעה נטו, הצעות ל־4×4, מקורות מים בכל יום, לינה ומסעדות מומלצות.</p>
 
-    <!-- Day 1 -->
-    <article class="day-grid fade-in" id="day1">
-      <div>
-        <div class="day-header">
-          <div class="day-label">יום 1 · 19.06.26</div>
-          <div class="day-name">נחיתה בטביליסי → לילה ראשון בטביליסי</div>
-        </div>
-        <p class="day-meta">🗺️ ציר: נמל תעופה טביליסי → מלון במרכז → Rike Park → רכבל לנריקלה → אבאנותובאני → מפל Leghvtakhevi → לינה בטביליסי · ⏱️ 30–60 דק׳ נסיעה עירונית מצטברת · 📍 20–35 ק"מ.</p>
-        <p class="day-route">זהו יום פתיחה רך וחכם אחרי הטיסה. במקום נסיעה ארוכה מערבה, מתחילים בטביליסי עם תצפית יפה, מים כבר ביום הראשון, ואווירה עירונית נעימה לפני היציאה למסלול ההרים והקניונים.</p>
-        <div class="chips">
-          <span class="chip">✈️ נחיתה 10:00 · TBS</span>
-          <span class="chip">🚠 רכבל נריקלה</span>
-          <span class="chip">💧 מרחצאות + מפל עירוני</span>
-        </div>
-        <p class="day-note">מקור המים היומי הוא מרחצאות הגופרית והמפל העירוני Leghvtakhevi – פתיחה מדויקת למסע מים בלי לעייף בנהיגה ארוכה.</p>
-
-        <div class="hotel-card">
-          <h3>איפה ישנים ואוכלים?</h3>
-          <p class="hotel-meta">לילה 1 · טביליסי</p>
-          <p style="font-size:12px;">מומלץ לילה ראשון במלון בוטיק/4★ באזור אבאנותובאני, סולולאקי או מרכז העיר, עם חניה מסודרת וגישה נוחה לרכבל, למרחצאות ולמסעדות.</p>
-          <p style="font-size:12px;">ארוחת ערב: מסעדה גאורגית טובה באזור העיר העתיקה/סולולאקי – אוכל מקומי, יין גאורגי ואווירה רגועה בלי נסיעות מיותרות.</p>
-        </div>
-      </div>
-      <div>
-        <table aria-label="לו"ז יום 1">
-          <thead>
-            <tr><th style="width:26%">שעות</th><th>פעילות</th><th>הערות 4×4 & מים</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>10:00–11:30</td>
-              <td>נחיתה, ביקורת גבולות, איסוף מזוודות וסים מקומי (Magti/Geocell)</td>
-              <td>מומלץ להתחבר ל‑Wi‑Fi בשדה ולהוריד את מפת Georgia ב‑Maps.me.</td>
-            </tr>
-            <tr>
-              <td>11:30–12:30</td>
-              <td>Bolt/מונית מהשדה למלון בטביליסי (~20–30 דק׳ · ~10$)</td>
-              <td>אין צורך בג׳יפ היום – Bolt זול, נוח, ואין דאגות חניה בעיר העתיקה.</td>
-            </tr>
-            <tr>
-              <td>12:30–14:00</td>
-              <td>צ'ק־אין במלון או השארת מזוודות, ארוחת צהריים קלה</td>
-              <td>מסודרים בלי לחץ – הג׳יפ נאסף מחר בבוקר לפני היציאה לדשבאשי.</td>
-            </tr>
-            <tr>
-              <td>14:00–15:30</td>
-              <td>ארוחת צהריים קלה ומנוחה קצרה</td>
-              <td>שומרים אנרגיה לפתיחה נעימה ולא עמוסה.</td>
-            </tr>
-            <tr>
-              <td>15:30–16:30</td>
-              <td>Rike Park + רכבל לנריקלה</td>
-              <td>תצפית מצוינת על טביליסי – חוויה חזקה בלי מאמץ גדול.</td>
-            </tr>
-            <tr>
-              <td>16:30–18:00</td>
-              <td>ירידה רגלית לאבאנותובאני ומפל Leghvtakhevi</td>
-              <td>💧 מפל עירוני ונהר בלב העיר – פתיחה מושלמת למסע המים.</td>
-            </tr>
-            <tr>
-              <td>18:00–20:00</td>
-              <td>מרחצאות גופרית פרטיים או קפה רגוע באזור</td>
-              <td>♨️ התאקלמות נעימה אחרי טיסה, בלי להעמיס.</td>
-            </tr>
-            <tr>
-              <td>20:30</td>
-              <td>ארוחת ערב וחזרה למלון</td>
-              <td>לישון בזמן, כדי להתחיל רעננים את יום 2.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </article>
+<!-- Day 1 -->
+<article class="day-grid fade-in" id="day1">
+  <div>
+    <div class="day-header">
+      <div class="day-label">יום 1 · 19.06.26 · שישי</div>
+      <div class="day-name">נחיתה בטביליסי · יום עיר מלא</div>
+    </div>
+    <p class="day-meta">🗺️ ציר: שדה תעופה TBS → עיר עתיקה → שוק דריי ברידג׳ → גשר השלום → ריקה פארק → רכבל → מצודת נריקלה → אבאנותובאני → מפל Leghvtakhevi · ⏱️ נסיעה עירונית בלבד (Bolt) · 📍 אין ג׳יפ היום.</p>
+    <p class="day-route">יום שישי = שוק דריי ברידג׳ בשיאו. מגיעים, מניחים מזוודות, ויוצאים לחוות את הלב הפועם של טביליסי העתיקה. כל האטרקציות רגלית, ללא רכב, ללא דאגות חניה.</p>
+    <div class="chips">
+      <span class="chip">✈️ נחיתה 10:00 · TBS</span>
+      <span class="chip">🛍️ Dry Bridge Market (שישי!)</span>
+      <span class="chip">🌉 גשר השלום</span>
+      <span class="chip">🚠 רכבל + מצודת נריקלה</span>
+      <span class="chip">💧 מפל עירוני + מרחצאות</span>
+      <span class="chip">🎭 תיאטרון רזו (אופציה)</span>
+    </div>
+    <p class="day-note">💧 מקור מים: מרחצאות גופרית אבאנותובאני + מפל Leghvtakhevi – פתיחה מושלמת למסע מים.</p>
+    <div class="hotel-card">
+      <h3>איפה ישנים ואוכלים?</h3>
+      <p class="hotel-meta">לילה 1 · טביליסי</p>
+      <p style="font-size:12px;">מלון בוטיק/4★ בסולולאקי, אבאנותובאני או מרכז: <strong>Rooms Hotel Tbilisi</strong> / <strong>Fabrika Suites</strong> / <strong>Hotel Stamba</strong>. גישה רגלית לכל האטרקציות. אין צורך בחניה – הג׳יפ נאסף רק מחר.</p>
+      <p style="font-size:12px;">🎭 <strong>תיאטרון רזו גבריאדזה</strong> (13 Shavteli St, עיר עתיקה) – תיאטרון בובות אגדי שנוצר ע"י האמן רזו גבריאדזה. הצגות ערב (בד"כ 19:00–20:00) בימים ספציפיים. <strong>להזמין כרטיסים מראש!</strong> זוהי חוויה תרבותית שאין דומה לה בגאורגיה.</p>
+      <p style="font-size:12px;">ארוחת ערב: <strong>Barbarestan</strong> (מטבח גאורגי מקורי), <strong>Shavi Lomi</strong> (ביסטרו מקומי אהוב) או מסעדת דגים קטנה בסולולאקי.</p>
+    </div>
+  </div>
+  <div>
+    <table aria-label="לו&quot;ז יום 1">
+      <thead>
+        <tr><th style="width:26%">שעות</th><th>פעילות</th><th>טיפ</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>10:00–11:30</td>
+          <td>נחיתה, ביקורת גבולות, סים מקומי (Magti/Geocell)</td>
+          <td>להוריד Maps.me + מפת Georgia על Wi‑Fi בשדה.</td>
+        </tr>
+        <tr>
+          <td>11:30–12:30</td>
+          <td>Bolt למלון (~10$ · 20 דק׳). אין ג׳יפ היום – מחר בבוקר.</td>
+          <td>Bolt הכי נוח. אין ערך בלקחת ג׳יפ היום – רק בלגן בחניה.</td>
+        </tr>
+        <tr>
+          <td>12:30–14:00</td>
+          <td>🛍️ <strong>Dry Bridge Market</strong> – שוק פשפשים אותנטי: יודאיקה, סובייטיקה, שטיחים, תכשיטים</td>
+          <td>שישי = שוק בשיאו! לבוא עם מזומן GEL, תיק בד, ותיאבון לקנות.</td>
+        </tr>
+        <tr>
+          <td>14:00–15:00</td>
+          <td>ארוחת צהריים קלה בקרבת שדרות רוסטאבלי / סולולאקי</td>
+          <td>🛍️ שדרות רוסטאבלי – הרחוב הראשי, חנויות, קפות, אווירה.</td>
+        </tr>
+        <tr>
+          <td>15:00–15:30</td>
+          <td>🌉 <strong>גשר השלום</strong> (Bridge of Peace) + ריקה פארק</td>
+          <td>גשר פלדה וזכוכית מרהיב מעל נהר הקורה – חובה לצילום.</td>
+        </tr>
+        <tr>
+          <td>15:30–17:00</td>
+          <td>🚠 <strong>רכבל לנריקלה</strong> + מצודת נריקלה (Narikala Fortress)</td>
+          <td>תצפית 360° על כל טביליסי. ירידה רגלית דרך הגנים.</td>
+        </tr>
+        <tr>
+          <td>17:00–18:30</td>
+          <td>💧 <strong>אבאנותובאני</strong> (רובע המרחצאות) + מפל <strong>Leghvtakhevi</strong></td>
+          <td>מפל בתוך העיר בין הבתים – הפתעה שלא מצפים אליה.</td>
+        </tr>
+        <tr>
+          <td>19:00–20:30</td>
+          <td>♨️ מרחצאות גופרית פרטיים (חדר לזוגות) <strong>או</strong> 🎭 תיאטרון רזו גבריאדזה</td>
+          <td>לא לשלב את השניים ביום אחד – לבחור אחד ולהנות לגמרי.</td>
+        </tr>
+        <tr>
+          <td>21:00</td>
+          <td>ארוחת ערב ולינה</td>
+          <td>מחר מוקדם – יציאה בג׳יפ לדשבאשי.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</article>
 
     <!-- Day 2 -->
     <article class="day-grid fade-in" id="day2">
@@ -382,115 +409,137 @@
       </div>
     </article>
 
-    <!-- Day 4 -->
-    <article class="day-grid fade-in" id="day4">
-      <div>
-        <div class="day-header">
-          <div class="day-label">יום 4 · 22.06.26</div>
-          <div class="day-name">בורג׳ומי → טביליסי · הגעה רגועה, מרחצאות וערב נעים</div>
-        </div>
-        <p class="day-meta">🗺️ ציר: בורג׳ומי → עצירת טבע קצרה/קפה → טביליסי · ⏱️ 2.5–3 שעות נהיגה · 📍 ~160 ק"מ.</p>
-        <p class="day-route">זהו יום מעבר נעים לקראת הרכבת של מחר. במקום לחזור שוב על כל העיר העתיקה, שומרים על קצב רגוע, מנצלים את הרכב להגעה נוחה לעיר, ומתמקדים בהתארגנות חכמה לערב ולבוקר שלמחרת.</p>
-        <div class="chips">
-          <span class="chip">🚙 חזרה נוחה עם הג׳יפ</span>
-          <span class="chip">♨️ מרחצאות / ערב רגוע</span>
-          <span class="chip">🚆 לילה לפני רכבת לבטומי</span>
-        </div>
-        <p class="day-note">מקור המים היומי הוא עצירת נהר קצרה בדרך או מרחצאות גופרית בערב – בלי כפילות מלאה של יום 1.</p>
+<!-- Day 4 -->
+<article class="day-grid fade-in" id="day4">
+  <div>
+    <div class="day-header">
+      <div class="day-label">יום 4 · 22.06.26</div>
+      <div class="day-name">בורג׳ומי → קוטאיסי · קניון אוקאצה ומפל קינצ׳חה</div>
+    </div>
+    <p class="day-meta">🗺️ ציר: בורג׳ומי → קוטאיסי → קניון Okatse → מפל Kinchkha → לינה קוטאיסי · ⏱️ ~2 ש' נהיגה + 3–4 ש' פעילות · 📍 ~100 ק"מ.</p>
+    <p class="day-route">במקום לחזור לטביליסי (160 ק"מ מיותרים), ממשיכים מערבה לקוטאיסי – ועוצרים בשתי אטרקציות מים/קניון מדהימות שנמצאות ממש בדרך. גשר הזכוכית של Okatse ומפל Kinchkha הם בין הנופים הכי מרהיבים בגאורגיה.</p>
+    <div class="chips">
+      <span class="chip">🏞️ קניון Okatse + גשר זכוכית</span>
+      <span class="chip">💦 מפל Kinchkha הגדול</span>
+      <span class="chip">🚙 4×4 · כביש הררי</span>
+    </div>
+    <p class="day-note">💧 מפל Kinchkha הוא אחד המפלים הגדולים בגאורגיה – מים, ריסוס, קשת ואוויר צח.</p>
+    <div class="hotel-card">
+      <h3>איפה ישנים ואוכלים?</h3>
+      <p class="hotel-meta">לילה 4 · קוטאיסי</p>
+      <p style="font-size:12px;">מלון נוח במרכז קוטאיסי – <strong>Hotel Imereti</strong> או מלון בוטיק דומה. לא צריך 5★ כאן. חניה עדיפה.</p>
+      <p style="font-size:12px;">ארוחת ערב: מסעדה גאורגית מקומית בקוטאיסי – מטבח אימרטי (שונה מהמטבח הקרטבלי): Kutaisi Deda Ena או מסעדה ממליץ מלון.</p>
+    </div>
+  </div>
+  <div>
+    <table aria-label="לו&quot;ז יום 4">
+      <thead>
+        <tr><th>שעות</th><th>פעילות</th><th>4×4 & מים</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>08:30–10:30</td>
+          <td>נסיעה מבורג׳ומי לאזור קניון Okatse (~90 ק"מ)</td>
+          <td>כביש הררי נוח; לצאת אחרי ארוחת בוקר.</td>
+        </tr>
+        <tr>
+          <td>10:30–13:00</td>
+          <td>🏞️ קניון Okatse: שביל תצפית + <strong>גשר הזכוכית</strong> מעל הקניון</td>
+          <td>💧 קניון ירוק עמוק עם נחל – כניסה בתשלום, נוח לשני זוגות.</td>
+        </tr>
+        <tr>
+          <td>13:00–14:30</td>
+          <td>💦 <strong>מפל Kinchkha</strong> – מפל ענקי (100+ מטר) בהליכה קצרה</td>
+          <td>מתיזים מים מרחוק – לקחת ג׳קט גשם! ציוד צילום בשקית אטומה.</td>
+        </tr>
+        <tr>
+          <td>14:30–15:30</td>
+          <td>ארוחת צהריים פיקניק/כפרי באזור</td>
+          <td>להביא אוכל מהמלון או לאכול בכפר הסמוך.</td>
+        </tr>
+        <tr>
+          <td>15:30–16:30</td>
+          <td>נסיעה לקוטאיסי (30 ק"מ), צ'ק-אין</td>
+          <td>כביש נוח; אין לחץ.</td>
+        </tr>
+        <tr>
+          <td>19:00–21:00</td>
+          <td>ארוחת ערב בקוטאיסי</td>
+          <td>מחר יום גדול: מרטבילי + בטומי.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</article>
 
-        <div class="hotel-card">
-          <h3>איפה ישנים ואוכלים?</h3>
-          <p class="hotel-meta">לילה 4 · טביליסי</p>
-          <p style="font-size:12px;">מומלץ לבחור מלון נוח במרכז או קרוב יחסית לתחנת הרכבת, עם חניה מסודרת, כדי להפוך את בוקר יום 5 לפשוט יותר.</p>
-          <p style="font-size:12px;">ארוחת ערב: ארוחה רגועה במרכז טביליסי – בלי עוד סיור ערב עמוס. המטרה היא לסיים מוקדם ולהגיע רעננים לרכבת.</p>
-        </div>
-      </div>
-      <div>
-        <table aria-label="לו"ז יום 4">
-          <thead>
-            <tr><th>שעות</th><th>פעילות</th><th>הערות</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>09:00–11:30</td>
-              <td>נסיעה מבורג׳ומי לטביליסי</td>
-              <td>כביש נוח יחסית; מומלץ לצאת אחרי ארוחת בוקר רגועה.</td>
-            </tr>
-            <tr>
-              <td>11:30–13:00</td>
-              <td>עצירת קפה/נהר קצרה בדרך או הגעה מוקדמת לעיר</td>
-              <td>אין צורך למלא בכוח אטרקציות נוספות.</td>
-            </tr>
-            <tr>
-              <td>13:00–14:30</td>
-              <td>צ'ק־אין במלון בטביליסי / מנוחה</td>
-              <td>עדיף מלון עם גישה נוחה לרכב ולמזוודות.</td>
-            </tr>
-            <tr>
-              <td>15:30–17:30</td>
-              <td>מרחצאות גופרית פרטיים או זמן חופשי בעיר</td>
-              <td>אם כבר היו מרחצאות ביום 1 – אפשר פשוט לנוח/לצאת לקפה.</td>
-            </tr>
-            <tr>
-              <td>18:00–20:30</td>
-              <td>ארוחת ערב מוקדמת</td>
-              <td>לשמור ערב נעים וקל לקראת הרכבת של יום 5.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </article>
-
-    <!-- Day 5 -->
-    <article class="day-grid fade-in" id="day5">
-      <div>
-        <div class="day-header">
-          <div class="day-label">יום 5 · 23.06.26</div>
-          <div class="day-name">טביליסי → בטומי ברכבת · צ'ק-אין 5★</div>
-        </div>
-        <p class="day-meta">🗺️ ציר: מלון בטביליסי → תחנת רכבת → בטומי → מלון 5★ · ⏱️ ~5 ש' רכבת · 📍 ~350 ק"מ.</p>
-        <div class="chips">
-          <span class="chip">🚆 רכבת ישירה</span>
-          <span class="chip">🏨 צ'ק-אין · התחלת 3 לילות פרימיום</span>
-          <span class="chip">🌊 ים שחור וספא</span>
-        </div>
-
-        <div class="hotel-card">
-          <h3>המלצה למלון 5★ בבטומי</h3>
-          <p class="hotel-meta">לילות 5–7 · בטומי</p>
-          <p style="font-size:12px;">Le Méridien Batumi או Rooms Hotel Batumi – שניהם ברמת 5★, עם ספא, בריכה, וגישה מהירה לים ולטיילת. ההמלצה: לבחור אחד מהם לכל שלושת הלילות כדי לצמצם מעברים.</p>
-        </div>
-      </div>
-      <div>
-        <table aria-label="לו"ז יום 5">
-          <thead>
-            <tr><th>שעות</th><th>פעילות</th><th>הערות</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>06:45–07:30</td>
-              <td>צ'ק-אאוט מהיר, נסיעה לתחנת הרכבת</td>
-              <td>להשאיר מספיק זמן לבדיקות ולאיתור הרציף.</td>
-            </tr>
-            <tr>
-              <td>08:00–13:00</td>
-              <td>רכבת טביליסי → בטומי</td>
-              <td>זמנים משוערים; יש לוודא לוחות זמנים מדויקים באתר הרכבת.</td>
-            </tr>
-            <tr>
-              <td>13:00–15:00</td>
-              <td>מונית למלון 5★, צ'ק-אין, מנוחה</td>
-              <td>מומלץ לבקש Early Check-in מראש.</td>
-            </tr>
-            <tr>
-              <td>15:00–18:00</td>
-              <td>בריכה, ספא, טיול קצר בטיילת</td>
-              <td>💧 בריכה + ים שחור – מים מסוג אחר אחרי ימי ההרים.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </article>
+<!-- Day 5 -->
+<article class="day-grid fade-in" id="day5">
+  <div>
+    <div class="day-header">
+      <div class="day-label">יום 5 · 23.06.26</div>
+      <div class="day-name">קוטאיסי → קניון מרטבילי → בטומי · מסירת ג׳יפ</div>
+    </div>
+    <p class="day-meta">🗺️ ציר: קוטאיסי → קניון מרטבילי (שייט!) → בטומי → מלון 5★ · ⏱️ ~3 ש' נהיגה + 2–3 ש' שייט/פעילות · 📍 ~170 ק"מ. מסירת ג׳יפ בבטומי.</p>
+    <p class="day-route">היום הגדול ביותר מבחינת נוף ומים. קניון מרטבילי הוא הפנינה הכי צילומית של גאורגיה – שייט בסירות עץ במים טורקיז בתוך קניון ירוק. מגיעים לבטומי בג׳יפ, מוסרים אותו, ונכנסים ל-3 לילות 5★.</p>
+    <div class="chips">
+      <span class="chip">🚣 שייט במרטבילי – חובה!</span>
+      <span class="chip">💎 מים טורקיז בקניון</span>
+      <span class="chip">🚙 מסירת ג׳יפ בבטומי</span>
+      <span class="chip">🏨 צ'ק-אין 5★</span>
+    </div>
+    <p class="day-note">💧 שיא מסע המים: שייט בסירות עץ בקניון עם מים טורקיז – אחד מ-10 הנופים הכי יפים בגאורגיה.</p>
+    <div class="hotel-card">
+      <h3>המלצה למלון 5★ בבטומי</h3>
+      <p class="hotel-meta">לילות 5–7 · בטומי</p>
+      <p style="font-size:12px;"><strong>Le Méridien Batumi</strong> או <strong>Rooms Hotel Batumi</strong> – ריזורט 5★ עם ספא, בריכה, גישה לים. לבחור אחד לכל 3 הלילות – לא לזוז ממנו. לבקש Early Check-in מראש.</p>
+      <p style="font-size:12px;">ארוחת ערב: ארוחת ברוכים הבאים לבטומי – דגים טריים, פירות ים, יין לבן גאורגי קר על הטיילת.</p>
+    </div>
+  </div>
+  <div>
+    <table aria-label="לו&quot;ז יום 5">
+      <thead>
+        <tr><th>שעות</th><th>פעילות</th><th>4×4 & מים</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>08:00–09:30</td>
+          <td>יציאה מקוטאיסי לכיוון קניון מרטבילי (~35 ק"מ)</td>
+          <td>נסיעה קצרה; לצאת מוקדם לפני הקהל.</td>
+        </tr>
+        <tr>
+          <td>09:30–12:30</td>
+          <td>🚣 <strong>קניון מרטבילי</strong> – שייט בסירות עץ + מסלול הליכה ביער</td>
+          <td>💧 מים טורקיז, קניון ירוק, מפלים קטנים. כניסה + שייט = ~15-20$ לאדם.</td>
+        </tr>
+        <tr>
+          <td>12:30–14:00</td>
+          <td>ארוחת צהריים כפרית ליד הקניון</td>
+          <td>מסעדות קטנות פשוטות ליד הכניסה – מקחאלי, חינקלי, טבח.</td>
+        </tr>
+        <tr>
+          <td>14:00–16:30</td>
+          <td>נסיעה מרטבילי → בטומי (~135 ק"מ)</td>
+          <td>כביש מהיר לבטומי; ג׳יפ אחרון בדרך – ממש תיהנו מהנסיעה.</td>
+        </tr>
+        <tr>
+          <td>16:30–17:30</td>
+          <td>🔑 מסירת ג׳יפ בסניף בטומי + Bolt למלון 5★</td>
+          <td>לתאם מראש עם חברת ההשכרה שיש להם סניף בבטומי (Hertz/Sixt/Europcar).</td>
+        </tr>
+        <tr>
+          <td>17:30–19:00</td>
+          <td>צ'ק-אין 5★, מנוחה, בריכה ראשונה</td>
+          <td>💧 בריכת ריזורט + ים שחור – מים מסוג שלישי אחרי קניונים ונהרות.</td>
+        </tr>
+        <tr>
+          <td>20:00</td>
+          <td>ארוחת ערב ראשונה בבטומי</td>
+          <td>להנות – 3 לילות של 5★ מחכים.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</article>
 
     <!-- Day 6 -->
     <article class="day-grid fade-in" id="day6">
@@ -503,7 +552,7 @@
         <div class="chips">
           <span class="chip">🌧️ יער גשם · המסלול הרטוב</span>
           <span class="chip">🚶‍♀️ 4–5 שעות הליכה</span>
-          <span class="chip">🚙 4×4 מומלץ מאוד</span>
+          <span class="chip">🚙 4×4 מקומי/טיור מאורגן</span>
         </div>
 
         <div class="hotel-card">
@@ -521,7 +570,7 @@
             <tr>
               <td>09:00–10:00</td>
               <td>נסיעה מבטומי לכיוון Mtirala NP</td>
-              <td>כביש כפרי/הררי; בימים גשומים חובה להפעיל 4×4 בזהירות.[web:133][web:136]</td>
+              <td>כביש כפרי/הררי; בימים גשומים חובה להפעיל 4×4 בזהירות. ניתן לשכור ג׳יפ/רכב שטח מקומי בבטומי ליום אחד, או להזמין טיול מאורגן עם מדריך.</td>
             </tr>
             <tr>
               <td>10:00–14:30</td>
@@ -631,6 +680,43 @@
     </article>
   </section>
 
+  <section id="route-philosophy">
+    <h2 class="section-title">למה המסלול הזה? · הלוגיקה מאחורי כל יום</h2>
+    <p class="section-sub" style="color:#4b5563;">6 החלטות תכנון שמבדילות בין טיול טוב לבין טיול מושלם.</p>
+    <div class="philosophy-grid">
+      <div class="philosophy-card">
+        <div class="philosophy-icon">✈️→🏙️</div>
+        <div class="philosophy-title">יום 1: טביליסי ולא בטומי</div>
+        <div class="philosophy-text">נחיתה + 6 שעות נסיעה = יום שרוף. במקום, יום עיר שלם בטביליסי – שוק דריי ברידג׳ (שישי!), גשר השלום, מצודת נריקלה, מרחצאות. הגוף מתאקלם, הראש מתחבר לגאורגיה.</div>
+      </div>
+      <div class="philosophy-card">
+        <div class="philosophy-icon">🚙❌</div>
+        <div class="philosophy-title">יום 1: ללא ג׳יפ</div>
+        <div class="philosophy-text">אין ערך ב-4×4 בטביליסי. חניה בעיר העתיקה = כאב ראש. Bolt עולה ~10$ ומגיע בדיוק לדלת. הג׳יפ נאסף יום 2 בבוקר – וישר לדרכי שטח.</div>
+      </div>
+      <div class="philosophy-card">
+        <div class="philosophy-icon">🔺→🔻→🔺</div>
+        <div class="philosophy-title">ימים 2–4: ציר הגיוני</div>
+        <div class="philosophy-text">טביליסי ← דרום (דשבאשי) ← צפון-מערב (בורג׳ומי) ← מערב (קוטאיסי) – כמו "גל" שמתקדם מערבה בלי חזרות. כל יום קרוב יותר לבטומי.</div>
+      </div>
+      <div class="philosophy-card">
+        <div class="philosophy-icon">🗺️💡</div>
+        <div class="philosophy-title">יום 4: קוטאיסי ולא חזרה לטביליסי</div>
+        <div class="philosophy-text">הנוסח הקודם שלח אותם 160 ק"מ מזרחה ואז 350 ק"מ מערבה ברכבת. שינוי אחד חוסך 160 ק"מ ומוסיף קניון Okatse + מפל Kinchkha שממש בדרך.</div>
+      </div>
+      <div class="philosophy-card">
+        <div class="philosophy-icon">🚣💎</div>
+        <div class="philosophy-title">יום 5: מרטבילי – הפנינה החסרה</div>
+        <div class="philosophy-text">טיול מים ללא מרטבילי כמו טיול רומא בלי הקולוסיאום. שייט בסירות עץ במים טורקיז הוא הרגע הכי "וואו" של כל גאורגיה, ורוב תיירים מחמיצים אותו.</div>
+      </div>
+      <div class="philosophy-card">
+        <div class="philosophy-icon">🏨⭐⭐⭐⭐⭐</div>
+        <div class="philosophy-title">ימים 5–7: בטומי בשיאו</div>
+        <div class="philosophy-text">3 לילות 5★ בסוף הטיול, לא בהתחלה. מגיעים לבטומי אחרי כל ימי השטח, רעננים ונרגשים. הים, הספא והבריכה מרגישים כמו פרס מוצדק.</div>
+      </div>
+    </div>
+  </section>
+
   <section id="hotels">
     <h2 class="section-title">מלונות מומלצים לפי לילות</h2>
     <p class="section-sub" style="color:#4b5563;">שילוב בין גמישות לבין חוויית פרימיום בימים האחרונים.</p>
@@ -654,9 +740,9 @@
     </div>
 
     <div class="hotel-card">
-      <h3>טביליסי – לילה 4 (22.06)</h3>
-      <p class="hotel-meta">מלון בוטיק במרכז</p>
-      <p style="font-size:12px;">נגישות לאבאנותובאני, גשר השלום ותחנת הרכבת של מחר בבוקר.</p>
+      <h3>קוטאיסי – לילה 4 (22.06)</h3>
+      <p class="hotel-meta">מלון מרכזי · בדרך לבטומי</p>
+      <p style="font-size:12px;">Hotel Imereti או מלון בוטיק קטן בקוטאיסי. לינה אחת, בלי לחזור לטביליסי. מחר בבוקר יוצאים ישר למרטבילי ולבטומי.</p>
     </div>
 
     <div class="hotel-card">
@@ -788,8 +874,18 @@
             <td>4 כרטיסים לפי מחלקה/סוג רכבת; כדאי לרכוש מראש.</td>
           </tr>
           <tr>
+            <td><a href="https://en.wikipedia.org/wiki/Okatse_Canyon" target="_blank" rel="noopener">קניון Okatse + מפל Kinchkha (קוטאיסי)</a></td>
+            <td>60–100$</td>
+            <td>שתי אטרקציות בנסיעה אחת, כניסה בתשלום נמוך + חניה.</td>
+          </tr>
+          <tr>
+            <td><a href="https://en.wikipedia.org/wiki/Martvili_Canyon" target="_blank" rel="noopener">קניון מרטבילי (שייט + כניסה)</a></td>
+            <td>80–120$</td>
+            <td>~15–20$ לאדם לשייט + כניסה; ההמלצה הכי חמה של כל המסלול.</td>
+          </tr>
+          <tr>
             <td><strong>סה"כ אטרקציות ומעברים</strong></td>
-            <td><strong>340–610$</strong></td>
+            <td><strong>480–830$</strong></td>
             <td>אפשר לצמצם/להרחיב לפי תקציב.</td>
           </tr>
         </tbody>
@@ -832,23 +928,217 @@
       </ul>
     </div>
   </section>
-  <section id="tbilisi-map" class="wrap">
-    <h2 class="section-title">מפת טביליסי ומרחקים מרכזיים</h2>
-    <p class="section-sub" style="color:#4b5563;">מפה אינטראקטיבית של טביליסי והקשרים העיקריים במסלול. ניתן להתקרב, להתרחק ולנווט.</p>
-    <div style="border-radius:24px;overflow:hidden;border:1px solid #e5e7eb;box-shadow:0 18px 45px rgba(15,23,42,.18);margin-bottom:16px;">
-      <iframe title="מפת טביליסי" src="https://www.openstreetmap.org/export/embed.html?bbox=44.70%2C41.65%2C44.90%2C41.80&amp;layer=mapnik" style="width:100%;height:360px;border:0;" loading="lazy"></iframe>
+  <section id="route-map" class="wrap">
+    <h2 class="section-title">מפת המסלול האינטראקטיבית · אנימציה יומית</h2>
+    <p class="section-sub" style="color:#4b5563;">בחרו יום כדי לראות את הנסיעה, המרחקים ונקודות העניין על מפה סכמטית של גאורגיה.</p>
+
+    <div style="background:#fff;border-radius:24px;border:1px solid #e5e7eb;padding:20px 16px;box-shadow:0 18px 45px rgba(15,23,42,.10);overflow:hidden;">
+
+      <!-- Day selector -->
+      <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px;justify-content:center;">
+        <button class="map-day-btn active" onclick="mapShowDay('all',this)">📍 כל המסלול</button>
+        <button class="map-day-btn" onclick="mapShowDay(1,this)">יום 1 · טביליסי</button>
+        <button class="map-day-btn" onclick="mapShowDay(2,this)">יום 2 · דשבאשי</button>
+        <button class="map-day-btn" onclick="mapShowDay(3,this)">יום 3 · בורג׳ומי</button>
+        <button class="map-day-btn" onclick="mapShowDay(4,this)">יום 4 · קוטאיסי</button>
+        <button class="map-day-btn" onclick="mapShowDay(5,this)">יום 5 · מרטבילי→בטומי</button>
+        <button class="map-day-btn" onclick="mapShowDay(6,this)">יום 6 · Mtirala</button>
+      </div>
+
+      <div class="map-grid-inner" style="display:grid;grid-template-columns:1fr 260px;gap:16px;align-items:start;">
+        <!-- SVG Map -->
+        <div style="overflow:hidden;border-radius:16px;border:1px solid #e5e7eb;">
+          <svg id="georgiaMap" viewBox="0 0 860 480" style="width:100%;height:auto;display:block;">
+            <defs>
+              <linearGradient id="seaGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#93c5fd"/>
+                <stop offset="100%" stop-color="#dbeafe"/>
+              </linearGradient>
+              <linearGradient id="landGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#d1fae5"/>
+                <stop offset="100%" stop-color="#f0fdf4"/>
+              </linearGradient>
+            </defs>
+
+            <!-- Sky / background -->
+            <rect width="860" height="480" fill="#f0f9ff"/>
+
+            <!-- Black Sea -->
+            <path d="M 0,0 L 188,0 L 148,155 L 160,230 L 182,345 L 195,395 L 170,480 L 0,480 Z"
+                  fill="url(#seaGrad)" opacity="0.85"/>
+            <text x="80" y="280" font-size="12" fill="#3b82f6" font-weight="600" text-anchor="middle" opacity="0.8">הים השחור</text>
+
+            <!-- Georgia polygon -->
+            <path d="M 163,168 L 193,92 L 252,22 L 442,8 L 618,20 L 792,102 L 822,198 L 815,315 L 756,397 L 662,455 L 540,466 L 388,454 L 258,430 L 210,394 L 193,372 L 218,328 L 196,242 L 170,178 Z"
+                  fill="url(#landGrad)" stroke="#86efac" stroke-width="2.5"/>
+
+            <!-- Mountain hint north -->
+            <path d="M 252,22 Q 430,55 618,20" fill="none" stroke="#a3a3a3" stroke-width="1" stroke-dasharray="5,4" opacity="0.5"/>
+
+            <!-- ===== ROUTE PATHS ===== -->
+            <!-- Day 2: Tbilisi → Dashbashi (orange) -->
+            <path id="rp2" class="route-path" d="M 618,356 Q 572,408 518,412"
+                  fill="none" stroke="#f97316" stroke-width="4.5" stroke-linecap="round"
+                  pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+            <!-- Day 3: Dashbashi → Borjomi (purple) -->
+            <path id="rp3" class="route-path" d="M 518,412 Q 478,386 438,332"
+                  fill="none" stroke="#8b5cf6" stroke-width="4.5" stroke-linecap="round"
+                  pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+            <!-- Day 4: Borjomi → Kutaisi (cyan) -->
+            <path id="rp4" class="route-path" d="M 438,332 Q 392,288 348,244"
+                  fill="none" stroke="#06b6d4" stroke-width="4.5" stroke-linecap="round"
+                  pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+            <!-- Day 5a: Kutaisi → Martvili (green) -->
+            <path id="rp5a" class="route-path" d="M 348,244 Q 328,228 304,212"
+                  fill="none" stroke="#22c55e" stroke-width="4.5" stroke-linecap="round"
+                  pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+            <!-- Day 5b: Martvili → Batumi (green) -->
+            <path id="rp5b" class="route-path" d="M 304,212 Q 248,288 193,372"
+                  fill="none" stroke="#22c55e" stroke-width="4.5" stroke-linecap="round"
+                  pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+            <!-- Day 6: Batumi → Mtirala (dashed red) -->
+            <path id="rp6" class="route-path" d="M 193,372 Q 218,338 238,308 Q 218,338 193,372"
+                  fill="none" stroke="#f43f5e" stroke-width="3.5" stroke-linecap="round"
+                  stroke-dasharray="0.08,0.06" pathLength="1"
+                  style="stroke-dashoffset:1"/>
+
+            <!-- ===== DISTANCE LABELS (shown when path visible) ===== -->
+            <text id="dl2" x="575" y="396" font-size="10" fill="#f97316" text-anchor="middle" opacity="0">~130 ק"מ</text>
+            <text id="dl3" x="480" y="382" font-size="10" fill="#8b5cf6" text-anchor="middle" opacity="0">~160 ק"מ</text>
+            <text id="dl4" x="392" y="296" font-size="10" fill="#06b6d4" text-anchor="middle" opacity="0">~100 ק"מ</text>
+            <text id="dl5a" x="326" y="228" font-size="10" fill="#22c55e" text-anchor="middle" opacity="0">~35 ק"מ</text>
+            <text id="dl5b" x="248" y="306" font-size="10" fill="#22c55e" text-anchor="middle" opacity="0">~135 ק"מ</text>
+            <text id="dl6" x="240" y="330" font-size="10" fill="#f43f5e" text-anchor="middle" opacity="0">~80 ק"מ</text>
+
+            <!-- ===== CITY MARKERS ===== -->
+            <!-- Tbilisi -->
+            <circle cx="618" cy="356" r="13" fill="#fef9c3" stroke="#f59e0b" stroke-width="2.5"/>
+            <text x="618" y="361" text-anchor="middle" font-size="12" font-weight="800" fill="#92400e">1</text>
+            <text x="618" y="378" text-anchor="middle" font-size="11" fill="#111827" font-weight="600">טביליסי</text>
+
+            <!-- Dashbashi -->
+            <circle cx="518" cy="412" r="11" fill="#fed7aa" stroke="#f97316" stroke-width="2.5"/>
+            <text x="518" y="417" text-anchor="middle" font-size="11" font-weight="800" fill="#9a3412">2</text>
+            <text x="518" y="432" text-anchor="middle" font-size="10" fill="#111827">דשבאשי</text>
+
+            <!-- Borjomi -->
+            <circle cx="438" cy="332" r="11" fill="#ede9fe" stroke="#8b5cf6" stroke-width="2.5"/>
+            <text x="438" y="337" text-anchor="middle" font-size="11" font-weight="800" fill="#5b21b6">3</text>
+            <text x="438" y="352" text-anchor="middle" font-size="10" fill="#111827">בורג׳ומי</text>
+
+            <!-- Kutaisi -->
+            <circle cx="348" cy="244" r="11" fill="#cffafe" stroke="#06b6d4" stroke-width="2.5"/>
+            <text x="348" y="249" text-anchor="middle" font-size="11" font-weight="800" fill="#0e7490">4</text>
+            <text x="348" y="264" text-anchor="middle" font-size="10" fill="#111827">קוטאיסי</text>
+
+            <!-- Martvili -->
+            <circle cx="304" cy="212" r="11" fill="#dcfce7" stroke="#22c55e" stroke-width="2.5"/>
+            <text x="304" y="217" text-anchor="middle" font-size="11" font-weight="800" fill="#15803d">5</text>
+            <text x="304" y="232" text-anchor="middle" font-size="10" fill="#111827">מרטבילי</text>
+
+            <!-- Mtirala -->
+            <circle cx="238" cy="308" r="8" fill="#ffe4e6" stroke="#f43f5e" stroke-width="2"/>
+            <text x="238" y="324" text-anchor="middle" font-size="9" fill="#9f1239">Mtirala</text>
+
+            <!-- Batumi star -->
+            <circle cx="193" cy="372" r="15" fill="#dbeafe" stroke="#3b82f6" stroke-width="3"/>
+            <text x="193" y="378" text-anchor="middle" font-size="14" font-weight="900" fill="#1d4ed8">★</text>
+            <text x="193" y="396" text-anchor="middle" font-size="11" fill="#111827" font-weight="600">בטומי</text>
+          </svg>
+        </div>
+
+        <!-- Info panel -->
+        <div id="mapInfoPanel" class="map-info-card">
+          <h4>📍 כל המסלול</h4>
+          <ul>
+            <li><strong>יום 1:</strong> טביליסי – עיר, שוק, תרבות</li>
+            <li><strong>יום 2:</strong> דשבאשי – קניון וגשר זכוכית</li>
+            <li><strong>יום 3:</strong> בורג׳ומי – פארק ומעיינות</li>
+            <li><strong>יום 4:</strong> קוטאיסי – Okatse + Kinchkha</li>
+            <li><strong>יום 5:</strong> מרטבילי שייט → בטומי 5★</li>
+            <li><strong>יום 6:</strong> Mtirala יער גשם</li>
+            <li><strong>יום 7:</strong> בטומי חופשי + פרידה</li>
+          </ul>
+          <p style="margin-top:10px;font-size:11px;color:#6b7280;">🚙 ג׳יפ: ימים 2–5 (~530 ק"מ)<br>🚶 רגלי: יום 1, ימים 6–7</p>
+        </div>
+      </div>
+
+      <!-- Legend -->
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;justify-content:center;font-size:11px;color:#4b5563;">
+        <span style="display:flex;align-items:center;gap:4px;"><span style="width:20px;height:4px;background:#f97316;border-radius:2px;display:inline-block;"></span>יום 2</span>
+        <span style="display:flex;align-items:center;gap:4px;"><span style="width:20px;height:4px;background:#8b5cf6;border-radius:2px;display:inline-block;"></span>יום 3</span>
+        <span style="display:flex;align-items:center;gap:4px;"><span style="width:20px;height:4px;background:#06b6d4;border-radius:2px;display:inline-block;"></span>יום 4</span>
+        <span style="display:flex;align-items:center;gap:4px;"><span style="width:20px;height:4px;background:#22c55e;border-radius:2px;display:inline-block;"></span>יום 5</span>
+        <span style="display:flex;align-items:center;gap:4px;"><span style="width:20px;height:4px;background:#f43f5e;border-radius:2px;display:inline-block;"></span>יום 6 (לולאה)</span>
+      </div>
     </div>
-    <ul style="font-size:14px;color:#4b5563;padding-right:18px;margin-bottom:24px;">
-      <li>שדה תעופה טביליסי → מרכז העיר: כ־17 ק"מ · 25–35 דקות.</li>
-      <li>מרכז טביליסי → תחנת הרכבת: כ־4–6 ק"מ · 10–20 דקות.</li>
-      <li>טביליסי → בורג׳ומי: כ־160 ק"מ · 2.5–3 שעות.</li>
-    </ul>
   </section>
 
 </main>
 <footer class="wrap" style="padding:18px 0 40px;color:#475569;font-size:13px;text-align:center;">נבנה באמצעות כלי AI · כל הזכויות שמורות לשירה שריד.</footer>
 
 <script>
+  const mapDayData = {
+    all: {
+      title:'📍 כל המסלול',
+      html:'<ul><li><strong>יום 1:</strong> טביליסי – עיר, שוק, תרבות</li><li><strong>יום 2:</strong> דשבאשי – קניון וגשר זכוכית</li><li><strong>יום 3:</strong> בורג׳ומי – פארק ומעיינות</li><li><strong>יום 4:</strong> קוטאיסי – Okatse + Kinchkha</li><li><strong>יום 5:</strong> מרטבילי שייט → בטומי 5★</li><li><strong>יום 6:</strong> Mtirala יער גשם</li><li><strong>יום 7:</strong> בטומי חופשי + פרידה</li></ul><p style="margin-top:10px;font-size:11px;color:#6b7280;">🚙 ג׳יפ: ימים 2–5 (~530 ק"מ)<br>🚶 רגלי: יום 1, ימים 6–7</p>',
+      paths:['rp2','rp3','rp4','rp5a','rp5b','rp6'],labels:['dl2','dl3','dl4','dl5a','dl5b','dl6']
+    },
+    1:{title:'יום 1 · טביליסי',
+       html:'<ul><li>✈️ נחיתה 10:00 TBS</li><li>🛍️ Dry Bridge Market (שישי!)</li><li>🌉 גשר השלום + ריקה פארק</li><li>🚠 רכבל → מצודת נריקלה</li><li>💧 אבאנותובאני + מפל Leghvtakhevi</li><li>🎭 תיאטרון רזו (אופציה)</li></ul><p style="margin-top:8px;font-size:11px;color:#6b7280;">⏱️ נסיעות: Bolt בלבד · 📍 אין ג׳יפ היום</p>',
+       paths:[],labels:[]},
+    2:{title:'יום 2 · טביליסי → דשבאשי',
+       html:'<ul><li>🚙 איסוף ג׳יפ 07:30</li><li>🏞️ קניון Dashbashi</li><li>🌉 גשר הזכוכית</li><li>💧 מפלים ובריכות טבעיות</li></ul><p style="margin-top:8px;font-size:11px;color:#6b7280;">📍 ~130 ק"מ · ⏱️ ~2.5 ש׳</p>',
+       paths:['rp2'],labels:['dl2']},
+    3:{title:'יום 3 · דשבאשי → בורג׳ומי',
+       html:'<ul><li>💧 פארק בורג׳ומי-חראגאולי</li><li>🏃 הליכה לאורך הנהר</li><li>🫧 מעיינות מינרליים טבעיים</li><li>🚙 לולאת 4×4 אופציונלית</li></ul><p style="margin-top:8px;font-size:11px;color:#6b7280;">📍 ~160 ק"מ · ⏱️ ~2.5 ש׳</p>',
+       paths:['rp2','rp3'],labels:['dl3']},
+    4:{title:'יום 4 · בורג׳ומי → קוטאיסי',
+       html:'<ul><li>🏞️ קניון Okatse + גשר זכוכית</li><li>💦 מפל Kinchkha הגדול</li><li>🚙 נסיעה מערבה – חוסכים 160 ק"מ!</li></ul><p style="margin-top:8px;font-size:11px;color:#6b7280;">📍 ~100 ק"מ · ⏱️ ~2 ש׳ נסיעה</p>',
+       paths:['rp2','rp3','rp4'],labels:['dl4']},
+    5:{title:'יום 5 · קוטאיסי → מרטבילי → בטומי',
+       html:'<ul><li>🚣 שייט קניון מרטבילי – <strong>חובה!</strong></li><li>💎 מים טורקיז בקניון ירוק</li><li>🔑 מסירת ג׳יפ בבטומי</li><li>🏨 צ׳ק-אין 5★</li></ul><p style="margin-top:8px;font-size:11px;color:#6b7280;">📍 ~170 ק"מ · ⏱️ ~3 ש׳</p>',
+       paths:['rp2','rp3','rp4','rp5a','rp5b'],labels:['dl5a','dl5b']},
+    6:{title:'יום 6 · Mtirala National Park',
+       html:'<ul><li>🌧️ יער גשם טרופי (לולאה מבטומי)</li><li>🚶 4–5 שעות הליכה</li><li>💧 מפלים בתוך יער</li><li>🚙 ג׳יפ מקומי/טיור מאורגן</li></ul><p style="margin-top:8px;font-size:11px;color:#6b7280;">📍 ~80 ק"מ לולאה · חזרה למלון 5★</p>',
+       paths:['rp2','rp3','rp4','rp5a','rp5b','rp6'],labels:['dl6']},
+  };
+
+  function mapShowDay(day, btn) {
+    document.querySelectorAll('.map-day-btn').forEach(b=>b.classList.remove('active'));
+    if(btn) btn.classList.add('active');
+    const data = mapDayData[day] || mapDayData.all;
+    // hide all paths + labels
+    ['rp2','rp3','rp4','rp5a','rp5b','rp6'].forEach(id=>{
+      const el=document.getElementById(id);
+      if(el) el.style.strokeDashoffset='1';
+    });
+    ['dl2','dl3','dl4','dl5a','dl5b','dl6'].forEach(id=>{
+      const el=document.getElementById(id);
+      if(el) el.style.opacity='0';
+    });
+    // show relevant paths with stagger
+    (data.paths||[]).forEach((id,i)=>{
+      setTimeout(()=>{
+        const el=document.getElementById(id);
+        if(el) el.style.strokeDashoffset='0';
+      }, i*200);
+    });
+    // show labels
+    (data.labels||[]).forEach((id,i)=>{
+      setTimeout(()=>{
+        const el=document.getElementById(id);
+        if(el) el.style.opacity='1';
+      }, (data.paths||[]).length*200 + i*100);
+    });
+    // update info panel
+    const panel=document.getElementById('mapInfoPanel');
+    if(panel) panel.innerHTML='<h4>'+data.title+'</h4>'+data.html;
+  }
+
+  // Auto-show all on load
+  window.addEventListener('load', ()=>{ mapShowDay('all', document.querySelector('.map-day-btn')); });
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
