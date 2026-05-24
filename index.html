@@ -1641,8 +1641,159 @@
 
   </div><!-- /content-original -->
 
+  <div id="content-pack" style="display:none">
+  <h2 class="section-title" style="margin-top:8px;">🎒 רשימת האריזה לגאורגיה</h2>
+  <p class="section-sub" style="color:#4b5563;">סמנו וי כשכל פריט ארוז · הרשימה נשמרת אוטומטית בדפדפן שלכם</p>
+
+  <div style="display:flex;justify-content:flex-end;margin-bottom:16px;gap:10px;">
+    <button onclick="clearAllPack()" style="padding:7px 14px;border-radius:12px;border:1px solid #e5e7eb;background:#fff;font-size:12px;cursor:pointer;font-family:inherit;color:#6b7280;">נקה הכל</button>
+    <button onclick="checkAllPack()" style="padding:7px 14px;border-radius:12px;border:1px solid #22c55e;background:#f0fdf4;font-size:12px;cursor:pointer;font-family:inherit;color:#15803d;font-weight:600;">✓ סמן הכל</button>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;">
+
+    <!-- Category 1: Documents -->
+    <div class="pack-cat">
+      <div class="pack-cat-header" style="background:linear-gradient(135deg,#dbeafe,#eff6ff);">📄 מסמכים חיוניים</div>
+      <div class="pack-items">
+        <label class="pack-item"><input type="checkbox" data-key="p1"> דרכון (תוקף מעל 6 חודשים)</label>
+        <label class="pack-item"><input type="checkbox" data-key="p2"> ביטוח נסיעות (כולל פינוי רפואי)</label>
+        <label class="pack-item"><input type="checkbox" data-key="p3"> הסכם השכרת ג׳יפ (הדפסה)</label>
+        <label class="pack-item"><input type="checkbox" data-key="p4"> אישורי מלון (הדפסה)</label>
+        <label class="pack-item"><input type="checkbox" data-key="p5"> כרטיסי רכבת TBS→BUM (אם רלוונטי)</label>
+        <label class="pack-item"><input type="checkbox" data-key="p6"> צילום דרכון בענן / אימייל לעצמכם</label>
+      </div>
+    </div>
+
+    <!-- Category 2: Clothing -->
+    <div class="pack-cat">
+      <div class="pack-cat-header" style="background:linear-gradient(135deg,#fce7f3,#fdf2f8);">👕 ביגוד</div>
+      <div class="pack-items">
+        <label class="pack-item"><input type="checkbox" data-key="c1"> נעלי הליכה עמידות למים (חובה!)</label>
+        <label class="pack-item"><input type="checkbox" data-key="c2"> נעלי מים לקניונים ונהרות</label>
+        <label class="pack-item"><input type="checkbox" data-key="c3"> מכנסי טיול קצרים × 3</label>
+        <label class="pack-item"><input type="checkbox" data-key="c4"> חולצות יבשות מהר × 4</label>
+        <label class="pack-item"><input type="checkbox" data-key="c5"> מעיל גשם קל (Mtirala = גשם בטוח!)</label>
+        <label class="pack-item"><input type="checkbox" data-key="c6"> כובע שמש + כובע גשם</label>
+        <label class="pack-item"><input type="checkbox" data-key="c7"> בגד ים × 2</label>
+        <label class="pack-item"><input type="checkbox" data-key="c8"> חליפת ערב לבטומי 5★</label>
+        <label class="pack-item"><input type="checkbox" data-key="c9"> לבוש צנוע לכנסיות (כתפיים מכוסות)</label>
+      </div>
+    </div>
+
+    <!-- Category 3: Tech -->
+    <div class="pack-cat">
+      <div class="pack-cat-header" style="background:linear-gradient(135deg,#e0f2fe,#f0f9ff);">📱 טכנולוגיה</div>
+      <div class="pack-items">
+        <label class="pack-item"><input type="checkbox" data-key="t1"> סוללת גיבוי 20,000 mAh</label>
+        <label class="pack-item"><input type="checkbox" data-key="t2"> מטען לרכב (2 יציאות)</label>
+        <label class="pack-item"><input type="checkbox" data-key="t3"> מצלמת אקשן / GoPro לקניונים</label>
+        <label class="pack-item"><input type="checkbox" data-key="t4"> Maps.me + מפות גאורגיה מורדות offline</label>
+        <label class="pack-item"><input type="checkbox" data-key="t5"> כרטיס SIM גאורגי (Magti/Geocell)</label>
+        <label class="pack-item"><input type="checkbox" data-key="t6"> שקיות אטומות לטלפונים (Dry Bag)</label>
+        <label class="pack-item"><input type="checkbox" data-key="t7"> מחזיק טלפון לרכב</label>
+      </div>
+    </div>
+
+    <!-- Category 4: Medical -->
+    <div class="pack-cat">
+      <div class="pack-cat-header" style="background:linear-gradient(135deg,#fef2f2,#fff5f5);">🏥 בריאות ורפואה</div>
+      <div class="pack-items">
+        <label class="pack-item"><input type="checkbox" data-key="m1"> ערכת עזרה ראשונה בסיסית</label>
+        <label class="pack-item"><input type="checkbox" data-key="m2"> קרם הגנה SPF 50+</label>
+        <label class="pack-item"><input type="checkbox" data-key="m3"> תרסיס נגד יתושים (DEET)</label>
+        <label class="pack-item"><input type="checkbox" data-key="m4"> תרופות בסיסיות (כאב, חום, שלשול)</label>
+        <label class="pack-item"><input type="checkbox" data-key="m5"> גלולות טיהור מים (לשטח)</label>
+        <label class="pack-item"><input type="checkbox" data-key="m6"> מגבונים אנטיבקטריאליים</label>
+      </div>
+    </div>
+
+    <!-- Category 5: Jeep/Trail -->
+    <div class="pack-cat">
+      <div class="pack-cat-header" style="background:linear-gradient(135deg,#fef3c7,#fffbeb);">🚙 לג׳יפ ולשטח</div>
+      <div class="pack-items">
+        <label class="pack-item"><input type="checkbox" data-key="j1"> מגבות מיקרופייבר × 4</label>
+        <label class="pack-item"><input type="checkbox" data-key="j2"> תרמיל יומי (20-30L) לכל נפש</label>
+        <label class="pack-item"><input type="checkbox" data-key="j3"> בקבוק מים לשימוש חוזר (2L)</label>
+        <label class="pack-item"><input type="checkbox" data-key="j4"> פנס ראש / לפיד</label>
+        <label class="pack-item"><input type="checkbox" data-key="j5"> אוכל לדרך: אנרגיה, אגוזים, חטיפים</label>
+        <label class="pack-item"><input type="checkbox" data-key="j6"> שקיות זבל (לא לזהם את הטבע!)</label>
+      </div>
+    </div>
+
+    <!-- Category 6: Money -->
+    <div class="pack-cat">
+      <div class="pack-cat-header" style="background:linear-gradient(135deg,#d1fae5,#ecfdf5);">💰 כסף ותשלומים</div>
+      <div class="pack-items">
+        <label class="pack-item"><input type="checkbox" data-key="mn1"> מזומן GEL (לפחות 500-700₾ לשניים)</label>
+        <label class="pack-item"><input type="checkbox" data-key="mn2"> כרטיס אשראי ללא עמלת מטח</label>
+        <label class="pack-item"><input type="checkbox" data-key="mn3"> כרטיס גיבוי נוסף</label>
+        <label class="pack-item"><input type="checkbox" data-key="mn4"> Bolt App מותקן + כרטיס אשראי קשור</label>
+      </div>
+    </div>
+
+    <!-- Category 7: Batumi premium -->
+    <div class="pack-cat">
+      <div class="pack-cat-header" style="background:linear-gradient(135deg,#ede9fe,#f5f3ff);">🏖️ לבטומי 5★</div>
+      <div class="pack-items">
+        <label class="pack-item"><input type="checkbox" data-key="b1"> בגדי ים + כסא חוף / מזרן</label>
+        <label class="pack-item"><input type="checkbox" data-key="b2"> שמש + משקפי שמש איכותיים</label>
+        <label class="pack-item"><input type="checkbox" data-key="b3"> בגד ים נוסף (שיתייבש)</label>
+        <label class="pack-item"><input type="checkbox" data-key="b4"> נעלי ים / כפכפים</label>
+        <label class="pack-item"><input type="checkbox" data-key="b5"> שמלה / חולצת ערב לארוחת פרידה</label>
+      </div>
+    </div>
+
+    <!-- Category 8: Apps -->
+    <div class="pack-cat">
+      <div class="pack-cat-header" style="background:linear-gradient(135deg,#ccfbf1,#f0fdfa);">📲 אפליקציות להתקין לפני</div>
+      <div class="pack-items">
+        <label class="pack-item"><input type="checkbox" data-key="ap1"> Maps.me + הורדת מפה offline</label>
+        <label class="pack-item"><input type="checkbox" data-key="ap2"> Bolt (מונית)</label>
+        <label class="pack-item"><input type="checkbox" data-key="ap3"> Google Translate (גאורגית offline)</label>
+        <label class="pack-item"><input type="checkbox" data-key="ap4"> Booking.com / מלונות מאומתים</label>
+        <label class="pack-item"><input type="checkbox" data-key="ap5"> WhatsApp לתיאום עם ספקים מקומיים</label>
+        <label class="pack-item"><input type="checkbox" data-key="ap6"> iOverlander לדיווחי שטח</label>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="pack-progress-bar" style="margin-top:24px;background:#f1f5f9;border-radius:20px;padding:16px 18px;border:1px solid #e2e8f0;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+      <span style="font-size:13px;font-weight:700;color:#0f172a;">התקדמות האריזה</span>
+      <span id="pack-count" style="font-size:13px;color:#0ea5e9;font-weight:700;">0 / 0</span>
+    </div>
+    <div style="background:#e2e8f0;border-radius:999px;height:10px;overflow:hidden;">
+      <div id="pack-bar" style="height:100%;background:linear-gradient(90deg,#0ea5e9,#22c55e);border-radius:999px;width:0%;transition:width .4s ease;"></div>
+    </div>
+    <p id="pack-msg" style="font-size:12px;color:#64748b;margin-top:6px;text-align:center;"></p>
+  </div>
+</div>
+
 </main>
 <footer class="wrap" style="padding:18px 0 40px;color:#475569;font-size:13px;text-align:center;">🇬🇪 Georgia 2026 · מסע ג׳יפים לשני זוגות · Safe travels &amp; תחזרו עם זיכרונות בלתי נשכחים ♥</footer>
+
+<!-- AI Chat Widget -->
+<div id="chat-bubble" onclick="toggleChat()" style="position:fixed;bottom:24px;left:24px;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#0ea5e9,#22c55e);box-shadow:0 6px 24px rgba(14,165,233,.45);cursor:pointer;z-index:5000;display:flex;align-items:center;justify-content:center;font-size:24px;transition:transform .2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform=''">🤖</div>
+
+<div id="chat-panel" style="display:none;position:fixed;bottom:90px;left:24px;width:340px;max-height:480px;background:#fff;border-radius:24px;box-shadow:0 20px 60px rgba(0,0,0,.18);z-index:5000;border:1px solid #e5e7eb;overflow:hidden;flex-direction:column;">
+  <div style="background:linear-gradient(135deg,#0ea5e9,#22c55e);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;">
+    <div style="color:#fff;">
+      <div style="font-weight:700;font-size:14px;">🇬🇪 מדריך גאורגיה AI</div>
+      <div style="font-size:11px;opacity:.85;">שאל כל שאלה על הטיול</div>
+    </div>
+    <button onclick="toggleChat()" style="background:none;border:none;color:#fff;font-size:18px;cursor:pointer;padding:4px;">✕</button>
+  </div>
+  <div id="chat-messages" style="flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px;max-height:300px;min-height:120px;">
+    <div class="chat-msg bot">שלום! אני כאן לעזור לכם בכל שאלה על הטיול בגאורגיה 🇬🇪 שאלו אותי על מסעדות, דרכים, אטרקציות, מלונות, בטיחות – הכל!</div>
+  </div>
+  <div style="padding:10px 12px;border-top:1px solid #f1f5f9;display:flex;gap:8px;">
+    <input id="chat-input" type="text" placeholder="שאל שאלה..." style="flex:1;padding:9px 12px;border-radius:14px;border:1px solid #e5e7eb;font-size:13px;font-family:inherit;outline:none;direction:rtl;" onkeydown="if(event.key==='Enter')sendChat()">
+    <button onclick="sendChat()" style="padding:9px 14px;border-radius:14px;background:linear-gradient(135deg,#0ea5e9,#22c55e);border:none;color:#fff;font-size:14px;cursor:pointer;">➤</button>
+  </div>
+  <div style="padding:6px 12px 10px;font-size:10px;color:#9ca3af;text-align:center;">מופעל על ידי Claude AI · תשובות עשויות להיות כלליות</div>
+</div>
 
 <script>
   function openLightbox(src, caption) {
@@ -1658,6 +1809,7 @@
     if(btn) btn.classList.add('active');
     document.getElementById('content-smart').style.display = which==='smart' ? '' : 'none';
     document.getElementById('content-original').style.display = which==='original' ? '' : 'none';
+    document.getElementById('content-pack').style.display = which==='pack' ? '' : 'none';
     window.scrollTo({top:0, behavior:'smooth'});
   }
 
@@ -1719,9 +1871,6 @@
     if(panel) panel.innerHTML='<h4>'+data.title+'</h4>'+data.html;
   }
 
-  // Auto-show all on load
-  window.addEventListener('load', ()=>{ mapShowDay('all', document.querySelector('.map-day-btn')); });
-
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -1731,7 +1880,88 @@
     });
   }, { threshold: 0.15 });
 
-  document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+  document.querySelectorAll('.fade-in,.slide-right,.scale-up,.hotel-card,.budget-card,.philosophy-card').forEach((el) => observer.observe(el));
+
+  // Packing list
+  function initPack() {
+    const items = document.querySelectorAll('.pack-item input[type=checkbox]');
+    items.forEach(cb => {
+      const key = 'pack_' + cb.dataset.key;
+      if(localStorage.getItem(key) === '1') { cb.checked = true; cb.parentElement.classList.add('checked'); }
+      cb.addEventListener('change', () => {
+        localStorage.setItem(key, cb.checked ? '1' : '0');
+        cb.parentElement.classList.toggle('checked', cb.checked);
+        updatePackProgress();
+      });
+    });
+    updatePackProgress();
+  }
+  function updatePackProgress() {
+    const all = document.querySelectorAll('.pack-item input[type=checkbox]');
+    const done = [...all].filter(c=>c.checked).length;
+    document.getElementById('pack-count').textContent = done + ' / ' + all.length;
+    const pct = all.length ? Math.round(done/all.length*100) : 0;
+    document.getElementById('pack-bar').style.width = pct + '%';
+    const msgs = ['מתחילים לארוז! 🎒','יפה! ממשיכים 💪','חצי הדרך! 🌟','כמעט שם! 🏁','הכל ארוז! מוכנים לגאורגיה! 🇬🇪'];
+    document.getElementById('pack-msg').textContent = msgs[Math.min(Math.floor(pct/25), 4)];
+  }
+  function clearAllPack() {
+    document.querySelectorAll('.pack-item input[type=checkbox]').forEach(cb => {
+      cb.checked = false; cb.parentElement.classList.remove('checked');
+      localStorage.removeItem('pack_' + cb.dataset.key);
+    });
+    updatePackProgress();
+  }
+  function checkAllPack() {
+    document.querySelectorAll('.pack-item input[type=checkbox]').forEach(cb => {
+      cb.checked = true; cb.parentElement.classList.add('checked');
+      localStorage.setItem('pack_' + cb.dataset.key, '1');
+    });
+    updatePackProgress();
+  }
+
+  // Chat widget
+  function toggleChat() {
+    const p = document.getElementById('chat-panel');
+    p.style.display = p.style.display === 'none' ? 'flex' : 'none';
+    if(p.style.display !== 'none') document.getElementById('chat-input').focus();
+  }
+  async function sendChat() {
+    const inp = document.getElementById('chat-input');
+    const msg = inp.value.trim();
+    if(!msg) return;
+    inp.value = '';
+    addChatMsg(msg, 'user');
+    const thinking = addChatMsg('חושב...', 'thinking');
+    try {
+      const res = await fetch('/api/chat', {
+        method:'POST',
+        headers:{'content-type':'application/json'},
+        body: JSON.stringify({ message: msg })
+      });
+      const data = await res.json();
+      thinking.remove();
+      addChatMsg(data.reply || 'מצטער, לא הצלחתי לענות כרגע.', 'bot');
+    } catch(e) {
+      thinking.remove();
+      addChatMsg('שגיאה בחיבור. נסה שוב.', 'bot');
+    }
+  }
+  function addChatMsg(text, type) {
+    const div = document.createElement('div');
+    div.className = 'chat-msg ' + type;
+    div.textContent = text;
+    const msgs = document.getElementById('chat-messages');
+    msgs.appendChild(div);
+    msgs.scrollTop = msgs.scrollHeight;
+    return div;
+  }
+
+  // Init on load
+  window.addEventListener('load', () => {
+    initPack();
+    mapShowDay('all', document.querySelector('.map-day-btn'));
+  });
 </script>
 </body>
 </html>
