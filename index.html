@@ -53,7 +53,7 @@
 
     .hero{padding:36px 0 22px;}
     .hero-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:28px;align-items:center;}
-    .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;padding:4px 9px;border-radius:999px;border:1px solid rgba(148,163,184,.4);background:radial-gradient(circle at 0 0,rgba(56,189,248,.22),transparent 55%);color:#e5e7eb;margin-bottom:10px;}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;padding:4px 9px;border-radius:999px;border:1px solid rgba(148,163,184,.4);background:radial-gradient(circle at 0 0,rgba(56,189,248,.22),transparent 55%);color:#1e293b;margin-bottom:10px;}
     .dot{width:6px;height:6px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,.15);}
     h1{font-size:clamp(36px,4vw,52px);line-height:1.1;margin-bottom:12px;}
     .hero-sub{font-size:15px;color:#374151;max-width:40rem;margin-bottom:18px;}
@@ -70,9 +70,9 @@
     .hero-pill-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
     .hero-pill{padding:4px 8px;border-radius:999px;background:#ffffff;border:1px solid rgba(148,163,184,.45);font-size:11px;color:var(--muted);}
     .hero-kpi{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;font-size:11px;margin-bottom:6px;}
-    .hero-kpi div{padding:8px 9px;border-radius:16px;background:#ffffff;border:1px solid rgba(148,163,184,.4);}
+    .hero-kpi div{padding:8px 9px;border-radius:16px;background:#f8fafc;border:1px solid rgba(148,163,184,.4);}
     .hero-kpi-title{color:var(--muted);margin-bottom:2px;}
-    .hero-kpi-value{font-weight:700;color:#e5e7eb;}
+    .hero-kpi-value{font-weight:700;color:#0f172a;}
     .hero-badge{position:absolute;right:18px;top:18px;padding:5px 10px;border-radius:999px;background:rgba(15,118,110,.9);font-size:11px;color:#e0f2fe;border:1px solid rgba(34,211,238,.6);}
 
     main{padding:0 0 48px;}
@@ -85,7 +85,7 @@
     .day-label{font-size:11px;color:#a5b4fc;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:2px;}
     .day-name{font-size:17px;font-weight:700;}
     .day-meta{font-size:12px;color:var(--muted);margin-bottom:8px;}
-    .day-route{font-size:12px;margin-bottom:8px;color:#e5e7eb;}
+    .day-route{font-size:12px;margin-bottom:8px;color:#374151;}
     .chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;}
     .chip{font-size:11px;padding:3px 8px;border-radius:999px;background:#ffffff;border:1px solid rgba(148,163,184,.4);color:var(--muted);}
     .day-note{font-size:12px;color:var(--muted);}
@@ -95,7 +95,8 @@
     th{background:#f3f4f6;color:#e5e7eb;font-weight:600;}
     tr:last-child td{border-bottom:none;}
 
-    .hotel-card,.budget-card{background:var(--surface);border-radius:var(--radius-lg);padding:14px 14px;border:1px solid var(--border);box-shadow:0 18px 40px rgba(0,0,0,.6);margin-bottom:12px;}
+    .hotel-card,.budget-card{background:var(--surface);border-radius:var(--radius-lg);padding:14px 14px;border:1px solid var(--border);box-shadow:0 18px 40px rgba(0,0,0,.6);margin-bottom:12px;opacity:0;transform:scale(0.93);transition:opacity .55s ease,transform .55s cubic-bezier(.34,1.56,.64,1);}
+    .hotel-card.visible,.budget-card.visible{opacity:1;transform:none;}
     .hotel-card h3,.budget-card h3{font-size:15px;margin-bottom:4px;}
     .hotel-meta{font-size:12px;color:var(--muted);margin-bottom:6px;}
 
@@ -105,8 +106,20 @@
     .tips-list{font-size:12px;color:var(--muted);padding-left:18px;}
     .tips-list li{margin-bottom:4px;}
 
-    .fade-in{opacity:0;transform:translateY(10px);transition:opacity 500ms ease,transform 500ms ease;}
-    .fade-in.visible{opacity:1;transform:translateY(0);}
+    /* Enhanced animations */
+    .fade-in{opacity:0;transform:translateY(24px);transition:opacity .65s cubic-bezier(.22,.61,.36,1),transform .65s cubic-bezier(.22,.61,.36,1);}
+    .fade-in.visible{opacity:1;transform:none;}
+    .slide-right{opacity:0;transform:translateX(-28px);transition:opacity .6s cubic-bezier(.22,.61,.36,1),transform .6s cubic-bezier(.22,.61,.36,1);}
+    .slide-right.visible{opacity:1;transform:none;}
+    .scale-up{opacity:0;transform:scale(0.93);transition:opacity .55s ease,transform .55s cubic-bezier(.34,1.56,.64,1);}
+    .scale-up.visible{opacity:1;transform:none;}
+    /* stagger children */
+    .stagger > *:nth-child(1){transition-delay:.0s}
+    .stagger > *:nth-child(2){transition-delay:.08s}
+    .stagger > *:nth-child(3){transition-delay:.16s}
+    .stagger > *:nth-child(4){transition-delay:.24s}
+    .stagger > *:nth-child(5){transition-delay:.32s}
+    .stagger > *:nth-child(6){transition-delay:.40s}
 
     @media (max-width:800px){
       .hero-grid{grid-template-columns:1fr;}
@@ -123,7 +136,8 @@
 
 /* Philosophy cards */
 .philosophy-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:28px;}
-.philosophy-card{background:#fff;border-radius:20px;padding:16px 14px;border:1px solid #e5e7eb;box-shadow:0 6px 20px rgba(0,0,0,.07);}
+.philosophy-card{background:#fff;border-radius:20px;padding:16px 14px;border:1px solid #e5e7eb;box-shadow:0 6px 20px rgba(0,0,0,.07);opacity:0;transform:translateX(-28px);transition:opacity .6s cubic-bezier(.22,.61,.36,1),transform .6s cubic-bezier(.22,.61,.36,1);}
+.philosophy-card.visible{opacity:1;transform:none;}
 .philosophy-icon{font-size:22px;margin-bottom:6px;}
 .philosophy-title{font-size:13px;font-weight:700;color:#111827;margin-bottom:5px;}
 .philosophy-text{font-size:11px;color:#6b7280;line-height:1.55;}
@@ -142,6 +156,19 @@
   .philosophy-grid{grid-template-columns:1fr;}
   .map-grid-inner{grid-template-columns:1fr !important;}
 }
+/* Packing list */
+.pack-cat{background:#fff;border-radius:20px;border:1px solid #e5e7eb;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.06);}
+.pack-cat-header{padding:12px 16px;font-size:13px;font-weight:700;color:#1e293b;border-bottom:1px solid #e5e7eb;}
+.pack-items{padding:10px 12px;display:flex;flex-direction:column;gap:2px;}
+.pack-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:12px;cursor:pointer;font-size:13px;color:#374151;transition:background .15s;}
+.pack-item:hover{background:#f8fafc;}
+.pack-item input[type=checkbox]{width:18px;height:18px;cursor:pointer;accent-color:#0ea5e9;flex-shrink:0;}
+.pack-item.checked{color:#9ca3af;text-decoration:line-through;}
+/* Chat widget */
+.chat-msg{padding:9px 12px;border-radius:14px;font-size:13px;max-width:85%;line-height:1.5;}
+.chat-msg.bot{background:#f1f5f9;color:#1e293b;align-self:flex-start;border-radius:4px 14px 14px 14px;}
+.chat-msg.user{background:linear-gradient(135deg,#0ea5e9,#22c55e);color:#fff;align-self:flex-end;border-radius:14px 14px 4px 14px;text-align:right;}
+.chat-msg.thinking{background:#f1f5f9;color:#94a3b8;font-style:italic;}
 </style>
 </head>
 <body>
@@ -179,6 +206,13 @@
       <div>
         <div style="font-weight:700;font-size:14px;">המסלול המקורי שלכם</div>
         <div style="font-size:11px;color:#6b7280;">דשבאשי + בורג׳ומי + רכבת לבטומי · ג׳יפ 3 ימים</div>
+      </div>
+    </button>
+    <button class="route-tab-btn" id="tab-pack" onclick="switchRoute('pack',this)">
+      <span style="font-size:22px;flex-shrink:0;">🎒</span>
+      <div>
+        <div style="font-weight:700;font-size:14px;">מה לארוז</div>
+        <div style="font-size:11px;color:#6b7280;">רשימת ציוד + סימון וי כשמוכן</div>
       </div>
     </button>
   </div>
