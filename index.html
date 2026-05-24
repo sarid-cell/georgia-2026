@@ -127,6 +127,10 @@
 .philosophy-icon{font-size:22px;margin-bottom:6px;}
 .philosophy-title{font-size:13px;font-weight:700;color:#111827;margin-bottom:5px;}
 .philosophy-text{font-size:11px;color:#6b7280;line-height:1.55;}
+/* Route Tab Switcher */
+.route-tab-btn{display:flex;align-items:center;gap:12px;padding:12px 18px;border-radius:16px;border:2px solid #e5e7eb;background:#fff;cursor:pointer;font-family:inherit;text-align:right;transition:all .2s;color:#374151;}
+.route-tab-btn.active{border-color:#0ea5e9;background:#f0f9ff;color:#0369a1;box-shadow:0 4px 16px rgba(14,165,233,.18);}
+.route-tab-btn:hover:not(.active){border-color:#9ca3af;background:#f9fafb;}
 /* Animated map */
 .map-day-btn{padding:5px 11px;border-radius:20px;border:1px solid #e5e7eb;background:#fff;font-size:11px;cursor:pointer;font-family:inherit;color:#4b5563;transition:all .18s;}
 .map-day-btn:hover,.map-day-btn.active{background:#0f172a;color:#f1f5f9;border-color:#0f172a;}
@@ -159,6 +163,26 @@
 </header>
 
 <main class="wrap">
+
+  <!-- ===== ROUTE TAB SWITCHER ===== -->
+  <div style="display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 20px;border-bottom:2px solid #e5e7eb;padding-bottom:18px;">
+    <button class="route-tab-btn active" id="tab-smart" onclick="switchRoute('smart',this)">
+      <span style="font-size:22px;flex-shrink:0;">✨</span>
+      <div>
+        <div style="font-weight:700;font-size:14px;">המסלול החכם של קלוד</div>
+        <div style="font-size:11px;color:#6b7280;">קוטאיסי + מרטבילי · ג׳יפ 4 ימים · חוסך 160 ק"מ</div>
+      </div>
+    </button>
+    <button class="route-tab-btn" id="tab-original" onclick="switchRoute('original',this)">
+      <span style="font-size:22px;flex-shrink:0;">📋</span>
+      <div>
+        <div style="font-weight:700;font-size:14px;">המסלול המקורי שלכם</div>
+        <div style="font-size:11px;color:#6b7280;">דשבאשי + בורג׳ומי + רכבת לבטומי · ג׳יפ 3 ימים</div>
+      </div>
+    </button>
+  </div>
+
+  <div id="content-smart">
   <section id="overview" class="hero">
     <div class="hero-grid">
       <div>
@@ -1073,11 +1097,503 @@
       </div>
     </div>
   </section>
+  </div><!-- /content-smart -->
+
+  <!-- =================== ORIGINAL ROUTE =================== -->
+  <div id="content-original" style="display:none">
+
+    <!-- Comparison banner -->
+    <div style="background:linear-gradient(135deg,#fef9c3,#fde68a);border:2px solid #f59e0b;border-radius:20px;padding:16px 18px;margin:4px 0 24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+      <span style="font-size:28px;flex-shrink:0;">💡</span>
+      <div style="flex:1;min-width:200px;">
+        <div style="font-weight:800;font-size:15px;color:#92400e;margin-bottom:4px;">ידעתם? יש מסלול חלופי שחוסך 160 ק"מ ומוסיף פנינה צילומית</div>
+        <div style="font-size:12px;color:#78350f;line-height:1.55;">אם ההזמנות עוד פתוחות – שווה לבחון את מסלול קלוד: במקום לחזור לטביליסי ביום 4, ממשיכים מבורג׳ומי ישירות מערבה לקוטאיסי ואז לקניון מרטבילי (שייט בצבעי טורקיז!) ולבטומי. חוסכים ~160 ק"מ + מוסיפים 2 אטרקציות עוצרות נשימה.</div>
+      </div>
+      <button onclick="switchRoute('smart',document.getElementById('tab-smart'))" style="padding:9px 16px;border-radius:14px;border:none;background:#f59e0b;color:#fff;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap;">לראות מסלול קלוד ✨</button>
+    </div>
+
+    <!-- Hero original -->
+    <section class="hero" style="padding-top:0;">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow"><span class="dot" style="background:#f59e0b;"></span> המסלול המקורי לפי בקשתכם · ייתכן שמלונות ורכבת כבר הוזמנו</div>
+          <h1 style="font-size:clamp(28px,3.5vw,44px);">המסלול המקורי שלכם<br>דשבאשי · בורג׳ומי · רכבת · בטומי</h1>
+          <p class="hero-sub">בדיוק לפי הבקשה: לינה בדשבאשי, לינה בבורג׳ומי, חזרה לטביליסי, רכבת ב-23.06, ו-3 לילות 5★ בבטומי.</p>
+          <div class="hero-tags">
+            <span class="tag">✈️ נחיתה: 19.06 · 10:00 · טביליסי</span>
+            <span class="tag">🚂 רכבת: 23.06 · טביליסי → בטומי</span>
+            <span class="tag">✈️ המראה: 26.06 · 09:35 · בטומי</span>
+            <span class="tag">🚙 ג׳יפ: ימים 2–4 (3 ימים)</span>
+          </div>
+          <div class="hero-cta">
+            <a href="#" onclick="document.getElementById('days-orig').scrollIntoView({behavior:'smooth'});return false;" class="btn-primary">ללו"ז המקורי</a>
+            <a href="#" onclick="document.getElementById('budget-orig').scrollIntoView({behavior:'smooth'});return false;" class="btn-ghost">לתקציב המפורט</a>
+          </div>
+        </div>
+        <aside class="hero-card">
+          <div class="hero-badge" style="background:rgba(245,158,11,.9);">3 ימי ג׳יפ</div>
+          <h2>תמונת-על · מסלול מקורי</h2>
+          <p class="hero-meta">7 לילות · 8 ימים · ג׳יפ ימים 2–4 · רכבת ביום 5.</p>
+          <div class="hero-pill-row">
+            <span class="hero-pill">Day 1 · טביליסי</span>
+            <span class="hero-pill">Day 2 · דשבאשי 🏞️</span>
+            <span class="hero-pill">Day 3 · בורג׳ומי 💧</span>
+            <span class="hero-pill">Day 4 · טביליסי</span>
+            <span class="hero-pill">Day 5 · 🚂 → בטומי</span>
+            <span class="hero-pill">Days 6–7 · בטומי 5★</span>
+          </div>
+          <div class="hero-kpi">
+            <div><div class="hero-kpi-title">ק"מ בג׳יפ</div><div class="hero-kpi-value">~360 ק"מ</div></div>
+            <div><div class="hero-kpi-title">ימי ג׳יפ</div><div class="hero-kpi-value">3 ימים</div></div>
+            <div><div class="hero-kpi-title">לילות בטומי 5★</div><div class="hero-kpi-value">3 לילות</div></div>
+            <div><div class="hero-kpi-title">רכבת</div><div class="hero-kpi-value">23.06 · ~3.5 שע׳</div></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Days original -->
+    <section id="days-orig">
+      <h2 class="section-title">לו"ז יומי · המסלול המקורי</h2>
+      <p class="section-sub" style="color:#4b5563;">מסלול מפורט לפי זמנים עם מרחקים, מסעדות ולינות – בדיוק לפי הבקשה.</p>
+
+      <!-- Day 1 original -->
+      <article class="day-grid fade-in">
+        <div>
+          <div class="day-header">
+            <div class="day-label">יום 1 · 19.06.26 · שישי</div>
+            <div class="day-name">נחיתה בטביליסי · יום עיר מלא</div>
+          </div>
+          <p class="day-meta">🗺️ ציר: TBS → מלון → עיר עתיקה → דריי ברידג׳ → גשר השלום → נריקלה → אבאנותובאני · ⏱️ Bolt בלבד · 📍 אין ג׳יפ היום · 🛌 לינה: טביליסי</p>
+          <p class="day-route">יום שישי = שוק דריי ברידג׳ בשיאו – אלפי פריטי וינטג׳, יצירות ותכשיטים מקומיים. מגיעים, מניחים מזוודות, ומגלים טביליסי ברגל: עיר עתיקה, רכבל, מצודת נריקלה, אבאנותובאני ומפל.</p>
+          <div class="chips">
+            <span class="chip">✈️ נחיתה 10:00</span>
+            <span class="chip">🚕 Bolt למלון ~$8</span>
+            <span class="chip">🛍️ שוק דריי ברידג׳</span>
+            <span class="chip">🏨 לינה: טביליסי</span>
+          </div>
+          <p class="day-note">🌟 יום שישי = Dry Bridge Market בשיאו. לא לפספס! פתוח כל השבוע אבל שישי-שבת הכי תוסס.</p>
+        </div>
+        <table>
+          <thead><tr><th>שעה</th><th>מה עושים</th><th>טיפ / מרחק</th></tr></thead>
+          <tbody>
+            <tr><td>10:00</td><td>✈️ נחיתה TBS</td><td>Bolt לעיר ~$8, 20 דק׳</td></tr>
+            <tr><td>11:30</td><td>☕ ארוחת בוקר</td><td>Café Littera / Entree</td></tr>
+            <tr><td>13:00</td><td>🛍️ Dry Bridge Market</td><td>ליד גשר השלום – שישי בשיא!</td></tr>
+            <tr><td>15:00</td><td>🌉 גשר השלום + ריקה פארק</td><td>חינם, נוף מרהיב לעיר</td></tr>
+            <tr><td>16:30</td><td>🚠 רכבל → מצודת נריקלה</td><td>~$2/נפש, 5 דק׳ נסיעה</td></tr>
+            <tr><td>17:30</td><td>💧 אבאנותובאני + מפל Leghvtakhevi</td><td>רבע שעה הליכה</td></tr>
+            <tr><td>19:30</td><td>🍽️ ארוחת ערב</td><td>Barbarestan / Shavi Lomi</td></tr>
+            <tr><td>21:30</td><td>🎭 תיאטרון רזו (אופציה)</td><td>13 Shavteli St · הזמינו מראש</td></tr>
+          </tbody>
+        </table>
+      </article>
+
+      <!-- Day 2 original: Tbilisi → Dashbashi -->
+      <article class="day-grid fade-in">
+        <div>
+          <div class="day-header">
+            <div class="day-label">יום 2 · 20.06.26 · שבת</div>
+            <div class="day-name">דשבאשי · קניון, גשר זכוכית ומפלים</div>
+          </div>
+          <p class="day-meta">🗺️ ציר: טביליסי → <a href="https://en.wikipedia.org/wiki/Dashbashi_Canyon" target="_blank">קניון דשבאשי</a> → (וארדזיה אופציה) → לינת לילה · ⏱️ ~130 ק"מ · ~2.5 שע׳ נסיעה · 🛌 לינה: דשבאשי</p>
+          <p class="day-route">יוצאים עם הג׳יפ לקניון הכי מרשים של גאורגיה הפנימית: מפלים, גשר זכוכית מרהיב ובריכות טבעיות. אופציה: מנזר וארדזיה מהמאה ה-12 (UNESCO) ~30 ק"מ מדשבאשי – מנזר מערות בצוק.</p>
+          <div class="chips">
+            <span class="chip">🚙 יום ג׳יפ 1/3</span>
+            <span class="chip">🏞️ קניון דשבאשי</span>
+            <span class="chip">🌉 גשר זכוכית</span>
+            <span class="chip">⛪ וארדזיה (אופציה)</span>
+            <span class="chip">🏨 לינה: דשבאשי</span>
+          </div>
+          <p class="day-note">🏨 לינה: <strong>Dashbashi Cave Hotel</strong> (מלון מרהיב בתוך הקניון!) · או גסטהאוס מקומי באספינדזה ~$30-50. הזמינו מראש – מקומות מוגבלים!</p>
+        </div>
+        <table>
+          <thead><tr><th>שעה</th><th>מה עושים</th><th>מרחק / טיפ</th></tr></thead>
+          <tbody>
+            <tr><td>07:30</td><td>🚙 איסוף ג׳יפ 4×4</td><td>Mycar/Sixt TBS · ~$130-150/יום</td></tr>
+            <tr><td>08:30</td><td>🚗 נסיעה דרום-מערב</td><td>~130 ק"מ · ~2.5 שע׳</td></tr>
+            <tr><td>11:00</td><td>🏞️ קניון דשבאשי</td><td>כניסה ~15₾/נפש</td></tr>
+            <tr><td>12:00</td><td>🌉 גשר הזכוכית</td><td>תמונות חובה! קצות הרגליים על הרוק</td></tr>
+            <tr><td>13:30</td><td>🥪 ארוחת צהריים</td><td>מסעדה מקומית באזור</td></tr>
+            <tr><td>15:30</td><td>⛪ מנזר וארדזיה (אופציה)</td><td>+~1 שע׳ הלוך-חזור, ~$5/נפש</td></tr>
+            <tr><td>18:00</td><td>🏕️ צ׳ק-אין</td><td>Dashbashi Cave Hotel</td></tr>
+            <tr><td>20:00</td><td>🍽️ ארוחת ערב</td><td>בגסטהאוס / מסעדה מקומית</td></tr>
+          </tbody>
+        </table>
+      </article>
+
+      <!-- Day 3 original: Dashbashi → Borjomi -->
+      <article class="day-grid fade-in">
+        <div>
+          <div class="day-header">
+            <div class="day-label">יום 3 · 21.06.26 · ראשון</div>
+            <div class="day-name">בורג׳ומי · מעיינות מינרליים ופארק לאומי</div>
+          </div>
+          <p class="day-meta">🗺️ ציר: דשבאשי → (טירת ראבאתי – אופציה) → <a href="https://en.wikipedia.org/wiki/Borjomi-Kharagauli_National_Park" target="_blank">פארק בורג׳ומי-חראגאולי</a> · ⏱️ ~70–100 ק"מ · ~2 שע׳ · 🛌 לינה: בורג׳ומי</p>
+          <p class="day-route">בורג׳ומי = המים המינרליים המפורסמים של גאורגיה – שותים ישירות מהברז, בחינם! הפארק הלאומי (6,800 קמ"ר) אחד הגדולים בגאורגיה. אופציה: <a href="https://en.wikipedia.org/wiki/Rabati_Castle" target="_blank">טירת ראבאתי</a> הענקית באקלצחה.</p>
+          <div class="chips">
+            <span class="chip">🚙 יום ג׳יפ 2/3</span>
+            <span class="chip">🏰 ראבאתי (אופציה)</span>
+            <span class="chip">💧 מעיינות מינרליים</span>
+            <span class="chip">🌲 פארק לאומי</span>
+            <span class="chip">🏨 לינה: בורג׳ומי</span>
+          </div>
+          <p class="day-note">🏨 מומלץ: <strong>Grand Hotel Borjomi</strong> (~$180-250, SPA מהנה) · <strong>Borjomi Likani Hotel</strong> (~$120-160, בריכות מינרליות). הזמינו מראש!</p>
+        </div>
+        <table>
+          <thead><tr><th>שעה</th><th>מה עושים</th><th>מרחק / טיפ</th></tr></thead>
+          <tbody>
+            <tr><td>09:00</td><td>🚗 יציאה לבורג׳ומי</td><td>~70-100 ק"מ · ~2 שע׳</td></tr>
+            <tr><td>10:30</td><td>🏰 טירת ראבאתי (אופציה)</td><td>אקלצחה, כניסה חינם, ~30 דק׳</td></tr>
+            <tr><td>12:30</td><td>🏞️ כניסה לפארק בורג׳ומי</td><td>~10₾/נפש</td></tr>
+            <tr><td>13:00</td><td>💧 מעיינות מינרליים</td><td>שתייה ישירה מהברז – חינם!</td></tr>
+            <tr><td>14:30</td><td>🚶 הליכה לאורך הנהר</td><td>4×4 שבילי יער אופציה</td></tr>
+            <tr><td>16:30</td><td>🏨 צ׳ק-אין + SPA</td><td>Grand Hotel / Likani Spa</td></tr>
+            <tr><td>19:30</td><td>🍽️ ארוחת ערב</td><td>מסעדת המלון / מסעדה מקומית</td></tr>
+          </tbody>
+        </table>
+      </article>
+
+      <!-- Day 4 original: Borjomi → Tbilisi -->
+      <article class="day-grid fade-in">
+        <div>
+          <div class="day-header">
+            <div class="day-label">יום 4 · 22.06.26 · שני</div>
+            <div class="day-name">חזרה לטביליסי · החזרת ג׳יפ + קניות</div>
+          </div>
+          <p class="day-meta">🗺️ ציר: בורג׳ומי → טביליסי · ⏱️ ~160 ק"מ · ~2.5 שע׳ · 🔑 החזרת ג׳יפ · 🛌 לינה: טביליסי</p>
+          <p class="day-route">חוזרים לטביליסי, מחזירים ג׳יפ, ונהנים מיום עירוני: שוק דזרטר בזאר (הכי אותנטי), גלריה טביליסי (מודרני), ארוחת פרידה מהמטבח הגאורגי. הכנה לרכבת מחר.</p>
+          <div class="chips">
+            <span class="chip">🚙 יום ג׳יפ 3/3 – יום אחרון</span>
+            <span class="chip">🔑 החזרת ג׳יפ</span>
+            <span class="chip">🛍️ שוק דזרטר</span>
+            <span class="chip">🏨 לינה: טביליסי</span>
+          </div>
+          <p class="day-note">💡 הערה: זוהי ה"נסיעה הכפולה" – חוזרים 160 ק"מ מזרחה, בעוד בטומי נמצאת ממש מערבה. במסלול קלוד, ממשיכים ישירות קדימה לקוטאיסי ומרטבילי וחוסכים את הנסיעה הזו.</p>
+        </div>
+        <table>
+          <thead><tr><th>שעה</th><th>מה עושים</th><th>טיפ</th></tr></thead>
+          <tbody>
+            <tr><td>09:00</td><td>☕ בוקר נינוח בבורג׳ומי</td><td>קפה + מאפה מקומי</td></tr>
+            <tr><td>10:00</td><td>🚗 נסיעה לטביליסי</td><td>~160 ק"מ · ~2.5 שע׳</td></tr>
+            <tr><td>12:30</td><td>🔑 החזרת ג׳יפ</td><td>בחברת ההשכרה</td></tr>
+            <tr><td>13:30</td><td>🍽️ ארוחת צהריים</td><td>Shavi Lomi / Culinarium Khasheria</td></tr>
+            <tr><td>15:00</td><td>🛍️ שוק דזרטר בזאר</td><td>הכי אותנטי – תבלינים, גבינות, מתנות</td></tr>
+            <tr><td>17:00</td><td>🛍️ Galleria Tbilisi</td><td>קניון מודרני עם A/C נחמד</td></tr>
+            <tr><td>19:30</td><td>🍽️ ארוחת פרידה מטביליסי</td><td>Barbarestan – הזמינו מראש!</td></tr>
+            <tr><td>22:00</td><td>📦 אריזה לרכבת מחר</td><td>רכבת בוקר – קומו 08:00</td></tr>
+          </tbody>
+        </table>
+      </article>
+
+      <!-- Day 5 original: Train to Batumi -->
+      <article class="day-grid fade-in">
+        <div>
+          <div class="day-header">
+            <div class="day-label">יום 5 · 23.06.26 · שלישי</div>
+            <div class="day-name">רכבת לבטומי · עיר הים השחור</div>
+          </div>
+          <p class="day-meta">🗺️ ציר: תחנת רכבת טביליסי → בטומי · ⏱️ ~3.5–4 שע׳ · 🚂 רכבת · 🛌 לינה: בטומי 5★ (לילה ראשון)</p>
+          <p class="day-route">מסע רכבת פנורמי דרך גאורגיה לעבר ים שחור. מגיעים לבטומי, צ׳ק-אין ב-5★, טיילת הים, ארוחת ערב ראשונה מול הגלים.</p>
+          <div class="chips">
+            <span class="chip">🚂 רכבת TBS → BUM</span>
+            <span class="chip">🎫 הזמינו מראש!</span>
+            <span class="chip">🌊 בטומי ים שחור</span>
+            <span class="chip">🏨 5★ – לילה ראשון</span>
+          </div>
+          <p class="day-note">🎫 רכבת: הזמינו ב-<a href="https://tickets.railway.ge" target="_blank">tickets.railway.ge</a>. מחיר ~$20-30/נפש (קופה II). Bolt מהתחנה למלון ~$5.</p>
+        </div>
+        <table>
+          <thead><tr><th>שעה</th><th>מה עושים</th><th>טיפ</th></tr></thead>
+          <tbody>
+            <tr><td>08:30</td><td>🚕 Bolt לתחנת רכבת</td><td>~$5, 15 דק׳</td></tr>
+            <tr><td>09:00</td><td>🚂 רכבת לבטומי</td><td>כרטיסים מראש · ~$20-30/נפש</td></tr>
+            <tr><td>12:30</td><td>🌊 הגעה לבטומי</td><td>Bolt למלון ~$5</td></tr>
+            <tr><td>13:30</td><td>🏨 צ׳ק-אין 5★</td><td>בקשו חדר עם נוף לים!</td></tr>
+            <tr><td>15:00</td><td>🏖️ חוף + הירגעות</td><td>חוף מרכזי / חוף המלון</td></tr>
+            <tr><td>17:00</td><td>🚶 בולוור בטומי</td><td>3 ק"מ על שפת הים</td></tr>
+            <tr><td>19:30</td><td>🍽️ ארוחת ערב</td><td>Baraka / Tamada Restaurant</td></tr>
+            <tr><td>21:00</td><td>🌃 פונטן + פסל עלי ונינו</td><td>נוף לילי מרהיב</td></tr>
+          </tbody>
+        </table>
+      </article>
+
+      <!-- Day 6 original: Mtirala -->
+      <article class="day-grid fade-in">
+        <div>
+          <div class="day-header">
+            <div class="day-label">יום 6 · 24.06.26 · רביעי</div>
+            <div class="day-name">Mtirala · יער גשם טרופי</div>
+          </div>
+          <p class="day-meta">🗺️ ציר: בטומי → <a href="https://en.wikipedia.org/wiki/Mtirala_National_Park" target="_blank">פארק Mtirala</a> (לולאה ~80 ק"מ) → בטומי · ⏱️ יום שלם · 🚙 ג׳יפ מקומי חובה · 🛌 לינה: בטומי 5★</p>
+          <p class="day-route">Mtirala = "הרים בוכים" בגאורגית – יער גשם טרופי אמיתי עם 4,500 מ"מ גשם בשנה. נחלים בכל פינה, מפלים בתוך ירוק עז, 4–5 שעות הליכה נוחה. ג׳יפ מקומי הכרחי להגיע פנימה.</p>
+          <div class="chips">
+            <span class="chip">🌧️ Mtirala NP</span>
+            <span class="chip">🚙 ג׳יפ מקומי חובה</span>
+            <span class="chip">💧 Makhuntseti בדרך</span>
+            <span class="chip">🏨 חזרה לבטומי 5★</span>
+          </div>
+          <p class="day-note">🚙 הזמינו ג׳יפ מקומי (~$50-80/נפש) דרך המלון או <a href="https://www.getyourguide.com" target="_blank">GetYourGuide</a>. שלבו עם קשת Makhuntseti (גשר אבן עתיק + מפל) בדרך.</p>
+        </div>
+        <table>
+          <thead><tr><th>שעה</th><th>מה עושים</th><th>טיפ</th></tr></thead>
+          <tbody>
+            <tr><td>08:30</td><td>🚙 יציאה עם ג׳יפ מקומי</td><td>טיור מאורגן / הזמנה דרך מלון</td></tr>
+            <tr><td>09:30</td><td>💧 קשת Makhuntseti</td><td>גשר אבן עתיק + מפל, ~30 דק׳</td></tr>
+            <tr><td>11:00</td><td>🌲 כניסה לפארק Mtirala</td><td>~10₾/נפש</td></tr>
+            <tr><td>11:30</td><td>🚶 שביל הגשם הראשי</td><td>4-5 שעות · נוח לכולם</td></tr>
+            <tr><td>14:00</td><td>🥪 פיקניק ביער</td><td>הכינו מהמלון</td></tr>
+            <tr><td>16:00</td><td>💧 מפלים + בריכות פנימיות</td><td>לבשו בגדים שמתרטבים!</td></tr>
+            <tr><td>17:30</td><td>🚗 חזרה לבטומי</td><td>~45 דק׳</td></tr>
+            <tr><td>19:30</td><td>🍽️ ערב + SPA</td><td>מגיע לכם 5★ הלילה!</td></tr>
+          </tbody>
+        </table>
+      </article>
+
+      <!-- Day 7 original: Batumi free -->
+      <article class="day-grid fade-in">
+        <div>
+          <div class="day-header">
+            <div class="day-label">יום 7 · 25.06.26 · חמישי</div>
+            <div class="day-name">בטומי · יום חוף חופשי</div>
+          </div>
+          <p class="day-meta">🗺️ ציר: בטומי 5★ · חוף, גן בוטני, בולוור, ערב פרידה · ⏱️ יום חופשי לחלוטין · 🛌 לינה: בטומי 5★ (לילה אחרון)</p>
+          <p class="day-route">יום אחרון לפני טיסה מחר בבוקר מוקדם. חוף ים שחור, גן הבוטני המרהיב, קניות אחרונות, וארוחת ערב פרידה מפנקת.</p>
+          <div class="chips">
+            <span class="chip">🏖️ חוף ים שחור</span>
+            <span class="chip">🌿 גן בוטני בטומי</span>
+            <span class="chip">🛍️ בטומי מול</span>
+            <span class="chip">🍽️ ארוחת פרידה</span>
+          </div>
+          <p class="day-note">✈️ מחר: טיסה 09:35 מבטומי. קומו לא יאוחר מ-07:00! שדה בטומי קטן – הגיעו 2 שעות מראש.</p>
+        </div>
+        <table>
+          <thead><tr><th>שעה</th><th>מה עושים</th><th>טיפ</th></tr></thead>
+          <tbody>
+            <tr><td>09:00</td><td>☕ ארוחת בוקר 5★</td><td>אכלו טוב – יום פרידה</td></tr>
+            <tr><td>10:30</td><td>🏖️ חוף ים שחור</td><td>Batumi Central Beach</td></tr>
+            <tr><td>13:00</td><td>🍽️ צהריים בפרומנד</td><td>Baraka / White Noise Cafe</td></tr>
+            <tr><td>15:00</td><td>🌿 <a href="https://www.batumibot.ge" target="_blank">גן בוטני בטומי</a></td><td>~$5/נפש · 6 ק"מ מהעיר</td></tr>
+            <tr><td>17:30</td><td>🛍️ בטומי מול / Free Zone</td><td>קניות אחרונות</td></tr>
+            <tr><td>19:30</td><td>🍽️ ארוחת ערב פרידה</td><td>מסעדת 5★ במלון</td></tr>
+            <tr><td>21:30</td><td>🌃 בולוור + אורות לילה</td><td>פסל עלי ונינו – חובה!</td></tr>
+            <tr><td>23:00</td><td>📦 אריזה + שינה</td><td>טיסה 09:35 מחר!</td></tr>
+          </tbody>
+        </table>
+      </article>
+
+      <!-- Day 8 original: Departure -->
+      <article class="day-grid fade-in">
+        <div>
+          <div class="day-header">
+            <div class="day-label">יום 8 · 26.06.26 · שישי</div>
+            <div class="day-name">המראה מבטומי</div>
+          </div>
+          <p class="day-meta">🗺️ ציר: מלון → שדה תעופה בטומי · ✈️ המראה 09:35 · ⏱️ קומו 07:00</p>
+          <p class="day-route">בוקר מוקדם, Bolt לשדה התעופה (15 דק׳), ופרידה מגאורגיה. תנסעו שוב!</p>
+          <div class="chips">
+            <span class="chip">✈️ המראה 09:35 · BUM</span>
+            <span class="chip">🕖 קומו 07:00!</span>
+            <span class="chip">🚕 Bolt ~$5 · 15 דק׳</span>
+          </div>
+          <p class="day-note">⚠️ שדה בטומי קטן אך יעיל – הגיעו 07:35 (2 שעות לפני). check-in ביולי מהיר בדרך כלל.</p>
+        </div>
+        <table>
+          <thead><tr><th>שעה</th><th>מה עושים</th><th>טיפ</th></tr></thead>
+          <tbody>
+            <tr><td>07:00</td><td>⏰ קימה + בוקר קל</td><td>ארוחת בוקר מהירה</td></tr>
+            <tr><td>07:30</td><td>🚕 Bolt לשדה תעופה</td><td>~$5 · 15 דק׳</td></tr>
+            <tr><td>07:50</td><td>✅ צ׳ק-אין + ביטחון</td><td>2 שעות לפני = מספיק</td></tr>
+            <tr><td>09:35</td><td>✈️ המראה</td><td>!Goodbye Georgia 🇬🇪</td></tr>
+          </tbody>
+        </table>
+      </article>
+    </section>
+
+    <!-- Hotels original -->
+    <section>
+      <h2 class="section-title">המלצות מלונות · המסלול המקורי</h2>
+      <p class="section-sub" style="color:#4b5563;">לפי הלינות המקוריות: טביליסי (לילות 1 ו-4), דשבאשי (לילה 2), בורג׳ומי (לילה 3), בטומי 5★ (לילות 5–7).</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;">
+
+        <div class="hotel-card">
+          <h3>🌙 לילות 1 + 4 · טביליסי</h3>
+          <p class="hotel-meta">מרכזי · אווירה · ביצועים גבוהים</p>
+          <ul class="tips-list">
+            <li><strong><a href="https://roomshotels.com/tbilisi/" target="_blank">Rooms Hotel Tbilisi</a></strong> – המלון הטרנדי ביותר. בריכת גג, בר, עיצוב יצירתי. ~$150-200/לילה/חדר.</li>
+            <li><strong><a href="https://stambahotel.com" target="_blank">Stamba Hotel</a></strong> – מפעל דפוס הפך בוטיק מדהים. ~$130-180.</li>
+            <li><strong><a href="https://fabrikatbilisi.com" target="_blank">Fabrika Hostel & Suites</a></strong> – קומפלקס יצירתי, גינה, קפה. ~$80-120.</li>
+          </ul>
+        </div>
+
+        <div class="hotel-card">
+          <h3>🌙 לילה 2 · דשבאשי</h3>
+          <p class="hotel-meta">ממש בקניון / גסטהאוס מקומי</p>
+          <ul class="tips-list">
+            <li><strong>Dashbashi Cave Hotel</strong> – מלון מרהיב ממש בתוך הקניון. ~$100-150/חדר. הזמינו מראש!</li>
+            <li><strong>גסטהאוסים מקומיים – אספינדזה</strong> – ~$30-50/לילה עם ארוחות. חוויה אותנטית.</li>
+            <li><strong>אלטרנטיבה:</strong> לישון בבורג׳ומי ולחסוך לינה (70 ק"מ).</li>
+          </ul>
+        </div>
+
+        <div class="hotel-card">
+          <h3>🌙 לילה 3 · בורג׳ומי</h3>
+          <p class="hotel-meta">SPA + מעיינות מינרליים</p>
+          <ul class="tips-list">
+            <li><strong>Grand Hotel Borjomi</strong> – 5★, SPA, בריכה. ~$180-250/לילה/חדר.</li>
+            <li><strong>Borjomi Likani Hotel</strong> – בתוך הפארק, בריכות מינרליות. ~$120-160.</li>
+            <li><strong>Borjomi Palace Hotel</strong> – בוטיק, מרכזי, שקט. ~$80-110.</li>
+          </ul>
+        </div>
+
+        <div class="hotel-card" style="grid-column:1/-1;">
+          <h3>🌙 לילות 5–7 · בטומי 5★ (3 לילות)</h3>
+          <p class="hotel-meta">הבחירה הגדולה ביותר בתקציב – בחרו היטב!</p>
+          <ul class="tips-list" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:6px;">
+            <li><strong><a href="https://www.marriott.com/hotels/travel/bussi-sheraton-batumi-hotel/" target="_blank">Sheraton Batumi Hotel</a></strong> – 5★, מרכזי, בריכה, גג. ~$250-350/לילה/חדר.</li>
+            <li><strong><a href="https://www.radissonhotels.com/en-us/hotels/radisson-blu-batumi" target="_blank">Radisson Blu Batumi</a></strong> – 5★, נוף לים, מרכזי. ~$200-280.</li>
+            <li><strong>Wyndham Grand Batumi</strong> – 5★, בריכת גג, ספא. ~$220-300.</li>
+            <li><strong>Intourist Hotel Batumi</strong> – 4★, ישירות על הים. ~$120-160. פחות יוקרתי.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Budget original - 4 categories as requested -->
+    <section id="budget-orig">
+      <h2 class="section-title">הערכת הוצאות · המסלול המקורי</h2>
+      <p class="section-sub" style="color:#4b5563;">פירוט נפרד לפי הבקשה שלכם – רכב+דלק, מסעדות, מלונות, אטרקציות. עבור 2 זוגות (4 נפשות).</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-bottom:20px;">
+
+        <div class="budget-card" style="border-top:4px solid #f97316;">
+          <h3>🚙 1. השכרת רכב + דלק</h3>
+          <table style="margin-top:10px;width:100%;font-size:12px;border-collapse:collapse;">
+            <thead><tr><th style="background:#fff7ed;color:#9a3412;padding:7px 8px;border-bottom:1px solid #fed7aa;">פריט</th><th style="background:#fff7ed;color:#9a3412;padding:7px 8px;border-bottom:1px solid #fed7aa;">עלות</th></tr></thead>
+            <tbody>
+              <tr><td style="padding:6px 8px;border-bottom:1px solid #fee2e2;">ג׳יפ 4×4 · 3 ימים (~$130-150/יום)</td><td style="padding:6px 8px;border-bottom:1px solid #fee2e2;">$390–450</td></tr>
+              <tr><td style="padding:6px 8px;border-bottom:1px solid #fee2e2;">דלק · ~360 ק"מ + עיר</td><td style="padding:6px 8px;border-bottom:1px solid #fee2e2;">$40–60</td></tr>
+              <tr><td style="padding:6px 8px;border-bottom:1px solid #fee2e2;">ביטוח נוסף + פיקדון</td><td style="padding:6px 8px;border-bottom:1px solid #fee2e2;">$30–50</td></tr>
+              <tr style="font-weight:700;background:#fff7ed;"><td style="padding:7px 8px;">סה"כ רכב</td><td style="padding:7px 8px;">$460–560</td></tr>
+            </tbody>
+          </table>
+          <p style="font-size:11px;color:#6b7280;margin-top:8px;">💡 לנפש: ~$115–140 · חברות מקומיות זולות יותר</p>
+        </div>
+
+        <div class="budget-card" style="border-top:4px solid #22c55e;">
+          <h3>🍽️ 2. מסעדות</h3>
+          <table style="margin-top:10px;width:100%;font-size:12px;border-collapse:collapse;">
+            <thead><tr><th style="background:#f0fdf4;color:#166534;padding:7px 8px;border-bottom:1px solid #bbf7d0;">קטגוריה</th><th style="background:#f0fdf4;color:#166534;padding:7px 8px;border-bottom:1px solid #bbf7d0;">הערכה</th></tr></thead>
+            <tbody>
+              <tr><td style="padding:6px 8px;border-bottom:1px solid #dcfce7;">ימים 1–4 · 2 זוגות (פנים גאורגיה)</td><td style="padding:6px 8px;border-bottom:1px solid #dcfce7;">$280–400</td></tr>
+              <tr><td style="padding:6px 8px;border-bottom:1px solid #dcfce7;">ימים 5–7 · 2 זוגות (בטומי 5★)</td><td style="padding:6px 8px;border-bottom:1px solid #dcfce7;">$360–540</td></tr>
+              <tr style="font-weight:700;background:#f0fdf4;"><td style="padding:7px 8px;">סה"כ מסעדות</td><td style="padding:7px 8px;">$640–940</td></tr>
+            </tbody>
+          </table>
+          <p style="font-size:11px;color:#6b7280;margin-top:8px;">💡 לנפש: ~$160–235 · בטומי ~$60-90/זוג/ארוחת ערב</p>
+        </div>
+
+        <div class="budget-card" style="border-top:4px solid #8b5cf6;">
+          <h3>🏨 3. מלונות</h3>
+          <table style="margin-top:10px;width:100%;font-size:12px;border-collapse:collapse;">
+            <thead><tr><th style="background:#faf5ff;color:#6b21a8;padding:7px 8px;border-bottom:1px solid #e9d5ff;">לינה</th><th style="background:#faf5ff;color:#6b21a8;padding:7px 8px;border-bottom:1px solid #e9d5ff;">2 חדרים</th></tr></thead>
+            <tbody>
+              <tr><td style="padding:6px 8px;border-bottom:1px solid #ede9fe;">טביליסי × 2 לילות (ל׳ 1 + 4)</td><td style="padding:6px 8px;border-bottom:1px solid #ede9fe;">$320–500</td></tr>
+              <tr><td style="padding:6px 8px;border-bottom:1px solid #ede9fe;">דשבאשי × 1 לילה</td><td style="padding:6px 8px;border-bottom:1px solid #ede9fe;">$80–200</td></tr>
+              <tr><td style="padding:6px 8px;border-bottom:1px solid #ede9fe;">בורג׳ומי × 1 לילה</td><td style="padding:6px 8px;border-bottom:1px solid #ede9fe;">$160–300</td></tr>
+              <tr><td style="padding:6px 8px;border-bottom:1px solid #ede9fe;">בטומי 5★ × 3 לילות</td><td style="padding:6px 8px;border-bottom:1px solid #ede9fe;">$1,200–2,100</td></tr>
+              <tr style="font-weight:700;background:#faf5ff;"><td style="padding:7px 8px;">סה"כ מלונות</td><td style="padding:7px 8px;">$1,760–3,100</td></tr>
+            </tbody>
+          </table>
+          <p style="font-size:11px;color:#6b7280;margin-top:8px;">💡 בטומי 5★ = ~70% מתקציב המלונות. זה נורמלי לאיכות כזו.</p>
+        </div>
+
+        <div class="budget-card" style="border-top:4px solid #0ea5e9;">
+          <h3>🎟️ 4. אטרקציות מומלצות</h3>
+          <table style="margin-top:10px;width:100%;font-size:12px;border-collapse:collapse;">
+            <thead><tr><th style="background:#f0f9ff;color:#0369a1;padding:7px 8px;border-bottom:1px solid #bae6fd;">אטרקציה</th><th style="background:#f0f9ff;color:#0369a1;padding:7px 8px;border-bottom:1px solid #bae6fd;">4 נפשות</th></tr></thead>
+            <tbody>
+              <tr><td style="padding:6px 8px;border-bottom:1px solid #e0f2fe;">🚠 רכבל נריקלה (טביליסי)</td><td style="padding:6px 8px;border-bottom:1px solid #e0f2fe;">~$8</td></tr>
+              <tr><td style="padding:6px 8px;border-bottom:1px solid #e0f2fe;">🏞️ קניון דשבאשי + גשר זכוכית</td><td style="padding:6px 8px;border-bottom:1px solid #e0f2fe;">~$60</td></tr>
+              <tr><td style="padding:6px 8px;border-bottom:1px solid #e0f2fe;">⛪ מנזר וארדזיה (אופציה)</td><td style="padding:6px 8px;border-bottom:1px solid #e0f2fe;">~$20</td></tr>
+              <tr><td style="padding:6px 8px;border-bottom:1px solid #e0f2fe;">🌲 פארק בורג׳ומי</td><td style="padding:6px 8px;border-bottom:1px solid #e0f2fe;">~$12</td></tr>
+              <tr><td style="padding:6px 8px;border-bottom:1px solid #e0f2fe;">🛁 SPA בבורג׳ומי (אופציה)</td><td style="padding:6px 8px;border-bottom:1px solid #e0f2fe;">~$80–120</td></tr>
+              <tr><td style="padding:6px 8px;border-bottom:1px solid #e0f2fe;">🚂 רכבת TBS→BUM × 4 נפשות</td><td style="padding:6px 8px;border-bottom:1px solid #e0f2fe;">~$100</td></tr>
+              <tr><td style="padding:6px 8px;border-bottom:1px solid #e0f2fe;">🌧️ ג׳יפ מקומי Mtirala</td><td style="padding:6px 8px;border-bottom:1px solid #e0f2fe;">~$200–320</td></tr>
+              <tr><td style="padding:6px 8px;border-bottom:1px solid #e0f2fe;">🌿 גן בוטני בטומי</td><td style="padding:6px 8px;border-bottom:1px solid #e0f2fe;">~$20</td></tr>
+              <tr style="font-weight:700;background:#f0f9ff;"><td style="padding:7px 8px;">סה"כ אטרקציות</td><td style="padding:7px 8px;">$500–660</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Total summary -->
+      <div style="background:linear-gradient(135deg,#f0f9ff,#dbeafe);border:2px solid #38bdf8;border-radius:20px;padding:20px 18px;margin-bottom:24px;">
+        <h3 style="font-size:16px;margin-bottom:14px;color:#0369a1;">💰 סיכום כולל · 4 נפשות · 8 ימים</h3>
+        <table>
+          <thead><tr><th>קטגוריה</th><th>מינימום</th><th>מקסימום</th><th>לנפש (ממוצע)</th></tr></thead>
+          <tbody>
+            <tr><td>🚙 רכב + דלק</td><td>$460</td><td>$560</td><td>~$128</td></tr>
+            <tr><td>🍽️ מסעדות</td><td>$640</td><td>$940</td><td>~$198</td></tr>
+            <tr><td>🏨 מלונות</td><td>$1,760</td><td>$3,100</td><td>~$608</td></tr>
+            <tr><td>🎟️ אטרקציות</td><td>$500</td><td>$660</td><td>~$145</td></tr>
+            <tr style="background:#dbeafe;font-weight:800;font-size:14px;"><td>💎 סה"כ 4 נפשות</td><td>~$3,360</td><td>~$5,260</td><td>~$1,080</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:11px;color:#0369a1;margin-top:12px;">* בטומי 5★ = ~70% מתקציב המלונות. פתרון חיסכון: Radisson Blu (~$200/לילה) על Sheraton (~$300). הפרש של $600 ל-2 חדרים × 3 לילות.</p>
+      </div>
+    </section>
+
+    <!-- Car rental section -->
+    <section>
+      <h2 class="section-title">השכרת ג׳יפ 4×4 · המלצות מפורטות</h2>
+      <p class="section-sub" style="color:#4b5563;">לצורך המסלול המקורי: ג׳יפ לימים 2–4 (3 ימים), איסוף והחזרה בטביליסי.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;">
+        <div class="budget-card">
+          <h3>🚙 חברות השכרה מומלצות</h3>
+          <ul class="tips-list">
+            <li><strong>Mycar Georgia</strong> – חברה מקומית, מחירים טובים, ג׳יפים נקיים. ~$120-150/יום.</li>
+            <li><strong>Hertz / Sixt / Europcar</strong> – בשדה TBS. ~$150-200/יום ל-4×4 מלא.</li>
+            <li><strong>Rent a Car Georgia</strong> – אתר מקומי, לרוב זול יותר מהבינלאומיים.</li>
+            <li><strong>Airbnb Cars Georgia</strong> – בעלים פרטיים, גמיש ואישי.</li>
+          </ul>
+        </div>
+        <div class="budget-card">
+          <h3>📋 מה לבדוק בעת ההשכרה</h3>
+          <ul class="tips-list">
+            <li>רכב High Clearance 4×4 אמיתי – לא SUV בלבד</li>
+            <li>ביטוח מלא כולל צמיגים, שמשות וגרירה</li>
+            <li>ג׳ריקן דלק (מיכל רזרבה) לאזורים נידחים</li>
+            <li>בדקו: גלגל רזרבי, כבל גרירה, קרש יציאה ממלכודת</li>
+            <li>GPS מובנה או מחזיק לטלפון</li>
+          </ul>
+        </div>
+        <div class="budget-card">
+          <h3>🗺️ ניווט בגאורגיה</h3>
+          <ul class="tips-list">
+            <li><strong>Maps.me</strong> – עובד אופליין, הכי מדויק לכבישי עפר</li>
+            <li><strong>Google Maps</strong> – לנסיעות עירוניות ובינעירוניות</li>
+            <li><strong>iOverlander</strong> – דיווחי שטח עדכניים מנוסעים</li>
+            <li>הורידו מפות אופליין לפני היציאה!</li>
+            <li>WhatsApp לתיאום עם מדריכים מקומיים</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /content-original -->
 
 </main>
 <footer class="wrap" style="padding:18px 0 40px;color:#475569;font-size:13px;text-align:center;">נבנה באמצעות כלי AI · כל הזכויות שמורות לשירה שריד.</footer>
 
 <script>
+  function switchRoute(which, btn) {
+    document.querySelectorAll('.route-tab-btn').forEach(b=>b.classList.remove('active'));
+    if(btn) btn.classList.add('active');
+    document.getElementById('content-smart').style.display = which==='smart' ? '' : 'none';
+    document.getElementById('content-original').style.display = which==='original' ? '' : 'none';
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
   const mapDayData = {
     all: {
       title:'📍 כל המסלול',
