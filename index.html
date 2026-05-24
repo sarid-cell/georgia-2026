@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>טיול ג׳יפים לגאורגיה · שני זוגות</title>
+  <meta name="description" content="מסלול 4x4 לשני זוגות בגאורגיה – מים, שטח ו-3 לילות פרימיום בבטומי. מותאם לדרישת הלקוח, כולל תקציב, לו״ז ותכנון תחבורה." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:#f9fafb;
+      --bg-soft:#ffffff;
+      --surface:#ffffff;
+      --surface-soft:#f3f4f6;
+      --border:#e5e7eb;
+      --text:#111827;
+      --muted:#4b5563;
+      --accent:#0ea5e9;
+      --accent-soft:#1d3c57;
+      --danger:#f97373;
+      --radius-lg:24px;
+      --radius-pill:999px;
+      --shadow-soft:0 24px 70px rgba(0,0,0,.65);
+      --transition:200ms cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Heebo',system-ui,-apple-system,blinkmacsystemfont,'Segoe UI',sans-serif;
+      background:#f9fafb;
+      color:#111827;
+      line-height:1.7;
+      -webkit-font-smoothing:antialiased;
+      font-size:18px;
+    }
+    a{color:var(--accent);text-decoration:none}
+    a:hover{color:#7dd3fc}
+    .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+    header{
+      position:sticky;top:0;z-index:40;
+      backdrop-filter:blur(18px);
+      background:linear-gradient(to bottom,rgba(2,6,23,.95),rgba(2,6,23,.7));
+      border-bottom:1px solid rgba(148,163,184,.2);
+    }
+    .nav-bar{display:flex;align-items:center;justify-content:space-between;padding:14px 0;}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:0.08em;font-size:13px;text-transform:uppercase;color:var(--muted);}
+    .logo-mark{width:26px;height:26px;border-radius:13px;background:radial-gradient(circle at 30% 20%,#e0f2fe,transparent 50%),radial-gradient(circle at 80% 80%,#38bdf8,transparent 50%);box-shadow:0 0 0 1px rgba(15,23,42,.7),0 16px 40px rgba(15,23,42,.9);}
+    .nav-links{display:flex;gap:8px;flex-wrap:wrap;}
+    .nav-links a{font-size:13px;padding:6px 11px;border-radius:999px;color:var(--muted);border:1px solid transparent;transition:var(--transition);}
+    .nav-links a:hover,.nav-links a:focus-visible{color:var(--text);border-color:rgba(148,163,184,.35);background:#ffffff;outline:none}
+
+    .hero{padding:36px 0 22px;}
+    .hero-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:28px;align-items:center;}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;padding:4px 9px;border-radius:999px;border:1px solid rgba(148,163,184,.4);background:radial-gradient(circle at 0 0,rgba(56,189,248,.22),transparent 55%);color:#e5e7eb;margin-bottom:10px;}
+    .dot{width:6px;height:6px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,.15);}
+    h1{font-size:clamp(36px,4vw,52px);line-height:1.1;margin-bottom:12px;}
+    .hero-sub{font-size:15px;color:#374151;max-width:40rem;margin-bottom:18px;}
+    .hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;}
+    .tag{font-size:11px;padding:4px 9px;border-radius:999px;border:1px solid rgba(148,163,184,.35);color:var(--muted);}
+    .hero-cta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;}
+    .btn-primary{border-radius:14px;border:1px solid #38bdf8;padding:9px 16px;font-size:14px;font-weight:700;background:linear-gradient(135deg,#0ea5e9,#22c55e);color:#0b1120;box-shadow:0 14px 45px rgba(8,47,73,.7);transition:var(--transition);}
+    .btn-primary:hover{transform:translateY(-1px);box-shadow:0 18px 55px rgba(8,47,73,.9);}
+    .btn-ghost{border-radius:14px;border:1px solid rgba(148,163,184,.4);padding:9px 14px;font-size:13px;color:var(--muted);background:#ffffff;}
+
+    .hero-card{position:relative;background:#ffffff;border-radius:26px;padding:20px 18px;border:1px solid rgba(148,163,184,.4);box-shadow:var(--shadow-soft);overflow:hidden;}
+    .hero-card h2{font-size:17px;margin-bottom:6px;}
+    .hero-meta{font-size:12px;color:var(--muted);margin-bottom:10px;}
+    .hero-pill-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
+    .hero-pill{padding:4px 8px;border-radius:999px;background:#ffffff;border:1px solid rgba(148,163,184,.45);font-size:11px;color:var(--muted);}
+    .hero-kpi{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;font-size:11px;margin-bottom:6px;}
+    .hero-kpi div{padding:8px 9px;border-radius:16px;background:#ffffff;border:1px solid rgba(148,163,184,.4);}
+    .hero-kpi-title{color:var(--muted);margin-bottom:2px;}
+    .hero-kpi-value{font-weight:700;color:#e5e7eb;}
+    .hero-badge{position:absolute;right:18px;top:18px;padding:5px 10px;border-radius:999px;background:rgba(15,118,110,.9);font-size:11px;color:#e0f2fe;border:1px solid rgba(34,211,238,.6);}
+
+    main{padding:0 0 48px;}
+    section{margin-bottom:28px;}
+    .section-title{font-size:22px;font-weight:800;margin-bottom:8px;}
+    .section-sub{font-size:13px;color:var(--muted);margin-bottom:14px;}
+
+    .day-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1.2fr);gap:18px;margin-bottom:18px;padding:18px 16px;border-radius:var(--radius-lg);background:linear-gradient(135deg,#ffffff,#f3f4f6);border:1px solid #e5e7eb;box-shadow:0 20px 45px rgba(15,23,42,.8);}
+    .day-header{margin-bottom:10px;}
+    .day-label{font-size:11px;color:#a5b4fc;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:2px;}
+    .day-name{font-size:17px;font-weight:700;}
+    .day-meta{font-size:12px;color:var(--muted);margin-bottom:8px;}
+    .day-route{font-size:12px;margin-bottom:8px;color:#e5e7eb;}
+    .chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;}
+    .chip{font-size:11px;padding:3px 8px;border-radius:999px;background:#ffffff;border:1px solid rgba(148,163,184,.4);color:var(--muted);}
+    .day-note{font-size:12px;color:var(--muted);}
+
+    table{width:100%;border-collapse:collapse;font-size:12px;background:#ffffff;border-radius:16px;overflow:hidden;border:1px solid rgba(30,64,175,.55);}
+    th,td{padding:8px 9px;border-bottom:1px solid rgba(30,64,175,.6);vertical-align:top;text-align:right;}
+    th{background:#f3f4f6;color:#e5e7eb;font-weight:600;}
+    tr:last-child td{border-bottom:none;}
+
+    .hotel-card,.budget-card{background:var(--surface);border-radius:var(--radius-lg);padding:14px 14px;border:1px solid var(--border);box-shadow:0 18px 40px rgba(0,0,0,.6);margin-bottom:12px;}
+    .hotel-card h3,.budget-card h3{font-size:15px;margin-bottom:4px;}
+    .hotel-meta{font-size:12px;color:var(--muted);margin-bottom:6px;}
+
+    .budget-table{margin-top:8px;font-size:12px;}
+    .budget-table th{background:#f3f4f6;} 
+
+    .tips-list{font-size:12px;color:var(--muted);padding-left:18px;}
+    .tips-list li{margin-bottom:4px;}
+
+    .fade-in{opacity:0;transform:translateY(10px);transition:opacity 500ms ease,transform 500ms ease;}
+    .fade-in.visible{opacity:1;transform:translateY(0);}
+
+    @media (max-width:800px){
+      .hero-grid{grid-template-columns:1fr;}
+      .day-grid{grid-template-columns:1fr;}
+      header{position:static;}
+      .nav-bar{flex-direction:column;align-items:flex-start;gap:8px;}
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap nav-bar">
+    <div class="logo" aria-label="טיול ג׳יפים גאורגיה">
+      <div class="logo-mark" aria-hidden="true"></div>
+      <span>GEORGIA · 4×4 WATER EXPEDITION</span>
+    </div>
+    <nav class="nav-links" aria-label="ניווט ראשי">
+      <a href="#overview">תמונת על</a>
+      <a href="#days">לו"ז יומי</a>
+      <a href="#hotels">מלונות</a>
+      <a href="#budget">תקציב</a>
+      <a href="#logistics">לוגיסטיקה וטיפים</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="overview" class="hero">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow"><span class="dot"></span> שני זוגות. ג׳יפ אחד (או שניים). שמונה ימים של מים ושטח.</div>
+        <h1>מסע מים ושטח<br>מטביליסי לבטומי · מסע פרטי לשני זוגות</h1>
+        <p class="hero-sub">מסע ג׳יפים אינטימי לשני זוגות, שמחבר בין נחיתה עירונית בטביליסי ללילות חוף בבטומי, דרך קניונים, מפלים, נהרות ויערות גשם – עם שילוב מאוזן בין שטח, מים ומלונות פרימיום 5★.</p>
+        <div class="hero-tags">
+          <span class="tag">✈️ נחיתה: 19.06 · 10:00 · טביליסי</span>
+          <span class="tag">✈️ המראה: 26.06 · 09:35 · בטומי</span>
+          <span class="tag">👥 2 זוגות · 1–2 נהגים</span>
+          <span class="tag">🚙 4×4 לקטע ההררי · רכבת לקטע טביליסי–בטומי</span>
+        </div>
+        <div class="hero-cta">
+          <a href="#days" class="btn-primary">קפיצה ללו"ז היומי</a>
+          <a href="#budget" class="btn-ghost">לראות את התקציב המלא</a>
+        </div>
+        <p class="hero-sub" style="font-size:12px;color:var(--muted);max-width:34rem;">הערת תכנון: לילה ראשון בבטומי ולאחר מכן לינות בדשבאשי ובבורג׳ומי יוצרות מסלול זיגזג. כדי לשמור על נסיעות נעימות, חלק מימי השטח נבנו כלולאות קצרות סביב בסיס הלינה, והמעבר המרכזי חזרה לבטומי נעשה ברכבת.</p>
+      </div>
+      <aside class="hero-card" aria-label="סיכום לוגיסטי קצר">
+        <div class="hero-badge">Every day has water 💧</div>
+        <h2>תמונת־על לוגיסטית</h2>
+        <p class="hero-meta">7 לילות · 8 ימים · מים כל יום · מינימום 4h נהיגה סטנדרטית ביום (מלבד יום 1).</p>
+        <div class="hero-pill-row">
+          <span class="hero-pill">Day 1 · טיסה → בטומי</span>
+          <span class="hero-pill">Day 2 · דשבאשי</span>
+          <span class="hero-pill">Day 3 · בורג׳ומי</span>
+          <span class="hero-pill">Day 4 · טביליסי</span>
+          <span class="hero-pill">Day 5–7 · בטומי 5★</span>
+        </div>
+        <div class="hero-kpi">
+          <div>
+            <div class="hero-kpi-title">מרחק כולל משוער</div>
+            <div class="hero-kpi-value">~950–1,050 ק"מ</div>
+          </div>
+          <div>
+            <div class="hero-kpi-title">זמן נהיגה נטו ממוצע</div>
+            <div class="hero-kpi-value">2.5–4 שעות ליום</div>
+          </div>
+          <div>
+            <div class="hero-kpi-title">לילות בבטומי 5★</div>
+            <div class="hero-kpi-value">3 לילות מלאים</div>
+          </div>
+          <div>
+            <div class="hero-kpi-title">דגש</div>
+            <div class="hero-kpi-value">קניונים, מפלים, נהרות, ים</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section id="days">
+    <h2 class="section-title">המסלול היומי · לפי דרישות הלקוח</h2>
+    <p class="section-sub" style="color:#4b5563;">לו"ז לפי שעות, עם זמן נסיעה נטו, הצעות ל־4×4, מקורות מים בכל יום, לינה ומסעדות מומלצות.</p>
+
+    <!-- Day 1 -->
+    <article class="day-grid fade-in" id="day1">
+      <div>
+        <div class="day-header">
+          <div class="day-label">יום 1 · 19.06.26</div>
+          <div class="day-name">נחיתה בטביליסי → לינה בבטומי</div>
+        </div>
+        <p class="day-meta">🗺️ ציר: נמל תעופה טביליסי → אוטוסטרדה מערבה → עצירות קצרות → בטומי · ⏱️ 5.5–6.5 שעות נהיגה נטו · 📍 כ־360 ק"מ.</p>
+        <p class="day-route">זהו יום מעבר ארוך יחסית שנובע ישירות מדרישת הלקוח ללילה ראשון בבטומי. מומלץ להגיע לבטומי בנינוחות, בלי לנסות “לגנוב” אטרקציות בדרך.</p>
+        <div class="chips">
+          <span class="chip">✈️ נחיתה 10:00 · TBS</span>
+          <span class="chip">🚙 4×4 על כביש סלול</span>
+          <span class="chip">🌊 ים שחור</span>
+        </div>
+        <p class="day-note">מקור המים היומי הוא החוף והטיילת של בטומי – יום שחרור ונשימה לפני ימי שטח ומים.</p>
+
+        <div class="hotel-card">
+          <h3>איפה ישנים ואוכלים?</h3>
+          <p class="hotel-meta">לילה 1 · בטומי</p>
+          <p style="font-size:12px;">מומלץ לילה ראשון במלון 4★ נוח בטיילת (למשל Radisson Blu Batumi או Hilton Batumi) כדי לא “לבזבז” לילה יוקרתי מהשלישיה הסופית כאשר הגעתם עייפים מהטיסה ומהכביש.</p>
+          <p style="font-size:12px;">ארוחת ערב: מסעדת דגים/אדג׳רולי חצ׳פורי בטיילת – פשוט, טעים, נגיש: דגים על הגריל ויין לבן יבש.</p>
+        </div>
+      </div>
+      <div>
+        <table aria-label="לו"ז יום 1">
+          <thead>
+            <tr><th style="width:26%">שעות</th><th>פעילות</th><th>הערות 4×4 & מים</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>10:00–11:30</td>
+              <td>נחיתה, ביקורת גבולות, איסוף מזוודות וסים מקומי (Magti/Geocell)</td>
+              <td>שני זוגות – מומלץ לטעון ישירות Maps.me על Wi‑Fi בשדה ולהוריד את מפת Georgia.</td>
+            </tr>
+            <tr>
+              <td>11:30–13:00</td>
+              <td>איסוף רכב 4×4, בדיקת צמיג ספייר, ג׳ק ומצבי הנעה בחנייה</td>
+              <td>זה הזמן לשאול את חברת ההשכרה על כיסוי לדרכי עפר וכבישים הרריים.</td>
+            </tr>
+            <tr>
+              <td>13:00–18:30</td>
+              <td>נסיעה מערבה בכביש הראשי לכיוון בטומי, עצירות קפה/תדלוק לפי הצורך</td>
+              <td>כביש בין־עירוני, 4×4 לא נחוץ טכנית – אבל נוח. לא מומלץ להוסיף היום שטח.</td>
+            </tr>
+            <tr>
+              <td>19:00–21:30</td>
+              <td>צ'ק־אין בבטומי, הליכה קצרה בטיילת, ארוחת ערב רגועה על הים</td>
+              <td>💧 שחייה קצרה בים השחור למי שיש כוח; יום מחר אינטנסיבי יותר.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <!-- Day 2 -->
+    <article class="day-grid fade-in" id="day2">
+      <div>
+        <div class="day-header">
+          <div class="day-label">יום 2 · 20.06.26</div>
+          <div class="day-name">בטומי → דשבאשי (קניון, מפלים וגשר זכוכית)</div>
+        </div>
+        <p class="day-meta">🗺️ ציר: בטומי → כביש מזרח/דרום־מזרח → קניון דשבאשי (Tsalka Canyon) → לינה בדשבאשי/צלקה · ⏱️ 4.5–5.5 ש' · 📍 ~260–300 ק"מ.</p>
+        <p class="day-route">היום הזה סוגר את הפער שנוצר מלילה ראשון בבטומי. מתקדמים ישירות לדשבאשי כדי ליהנות משעות אחר הצהריים במקום וממקורות המים והגשר.</p>
+        <div class="chips">
+          <span class="chip">🏞️ קניון Tsalka (Dashbashi)</span>
+          <span class="chip">🌉 גשר זכוכית</span>
+          <span class="chip">🚙 כבישים הרריים · 4×4 לא חובה אך נוח</span>
+        </div>
+        <p class="day-note">💧 מקור מים: נהר הקניון, מפלים ובריכות טבעיות באזור הגשר.</p>
+
+        <div class="hotel-card">
+          <h3>איפה ישנים ואוכלים?</h3>
+          <p class="hotel-meta">לילה 2 · דשבאשי</p>
+          <p style="font-size:12px;">היצע הלינה באזור מוגבל יחסית. מומלץ לבחור גסטהאוס/מלון קטן קרוב ככל האפשר לכניסה לקניון, כדי לחסוך נסיעות מיותרות בערב.</p>
+          <p style="font-size:12px;">ארוחת ערב: ארוחה ביתית בגסטהאוס או מסעדה מקומית פשוטה בצלקה – מרקים, חצ׳פורי, סלטים חמים ויין מקומי.</p>
+        </div>
+      </div>
+      <div>
+        <table aria-label="לו"ז יום 2">
+          <thead>
+            <tr><th>שעות</th><th>פעילות</th><th>4×4 & מים</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>08:00–12:30</td>
+              <td>יציאה מבטומי מוקדם, נסיעה לעבר דשבאשי/צלקה עם עצירת קפה</td>
+              <td>יום נסיעה בינונית־ארוכה; כביש חלקו מפותל. 4×4 נותן ביטחון ויציבות.</td>
+            </tr>
+            <tr>
+              <td>12:30–15:30</td>
+              <td>סיור בקניון דשבאשי: ירידה לתצפיות, הליכה קצרה, גשר הזכוכית</td>
+              <td>💧 מים ומפלים לאורך הקניון; לבדוק מראש זמני פתיחה ותשלום כניסה.</td>
+            </tr>
+            <tr>
+              <td>15:30–17:00</td>
+              <td>קפה/מאפה ותנועה קצרה ללינה</td>
+              <td>לא לנהוג בחושך בכבישים כפריים אם אין צורך.</td>
+            </tr>
+            <tr>
+              <td>ערב</td>
+              <td>ארוחת ערב ולילה שקט באזור דשבאשי</td>
+              <td>משלימים מים חמים/מקלחות אחרי יום אבק.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <!-- Day 3 -->
+    <article class="day-grid fade-in" id="day3">
+      <div>
+        <div class="day-header">
+          <div class="day-label">יום 3 · 21.06.26</div>
+          <div class="day-name">דשבאשי → בורג׳ומי · נהר ומעיינות</div>
+        </div>
+        <p class="day-meta">🗺️ ציר: דשבאשי/צלקה → בורג׳ומי → פארק לאומי ומעיינות → לינה בבורג׳ומי · ⏱️ 2.5–3.5 ש' · 📍 ~160–190 ק"מ.</p>
+        <div class="chips">
+          <span class="chip">💧 נהר ומעיינות מינרליים</span>
+          <span class="chip">🚶‍♀️ מסלול הליכה קל–בינוני</span>
+          <span class="chip">🚙 לולאת 4×4 אופציונלית</span>
+        </div>
+        <p class="day-note">בורג׳ומי–חראגאולי הוא אחד האזורים הירוקים והנעימים בגאורגיה, עם נהר, שבילים ויער; יום מושלם לרכך את רצף הנסיעות משני הימים הראשונים.</p>
+
+        <div class="hotel-card">
+          <h3>איפה ישנים ואוכלים?</h3>
+          <p class="hotel-meta">לילה 3 · בורג׳ומי</p>
+          <p style="font-size:12px;">מומלץ לבחור מלון/גסטהאוס ליד הפארק או בליקאני – גישה נוחה לנהר ולמסלולי ההליכה.</p>
+          <p style="font-size:12px;">ארוחת ערב: מטבח גאורגי קלאסי – סלטים חמים/קרים, חצ׳פורי ותבשילי בשר, או ארוחה ביתית בגסטהאוס.</p>
+        </div>
+      </div>
+      <div>
+        <table aria-label="לו"ז יום 3">
+          <thead>
+            <tr><th>שעות</th><th>פעילות</th><th>4×4 & מים</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>09:00–11:30</td>
+              <td>נסיעה מדשבאשי לבורג׳ומי, עצירת קפה בדרך</td>
+              <td>כביש הררי־כפרי, לשמור על קצב רגוע.</td>
+            </tr>
+            <tr>
+              <td>11:30–14:00</td>
+              <td>כניסה לפארק בורג׳ומי: הליכה לאורך הנהר, גשרים ונקודות ישיבה</td>
+              <td>💧 נחל זורם, אפשר טבילת רגליים; לשמור על נעלי הליכה טובות.</td>
+            </tr>
+            <tr>
+              <td>14:00–15:00</td>
+              <td>מעיינות מינרליים/מים מוגזים טבעיים באזור</td>
+              <td>מים מוגזים טבעיים – חוויה מקומית קלאסית.</td>
+            </tr>
+            <tr>
+              <td>15:30–18:00</td>
+              <td>אופציה ללולאת 4×4 קצרה ליער/תצפית · או מנוחה במלון</td>
+              <td>בימים גשומים – להישאר במסלול כביש בלבד.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <!-- Day 4 -->
+    <article class="day-grid fade-in" id="day4">
+      <div>
+        <div class="day-header">
+          <div class="day-label">יום 4 · 22.06.26</div>
+          <div class="day-name">בורג׳ומי → טביליסי · נהר, מרחצאות ועיר</div>
+        </div>
+        <p class="day-meta">🗺️ ציר: בורג׳ומי → עצירת טבע קצרה → טביליסי · ⏱️ 2.5–3 ש' · 📍 ~160 ק"מ.</p>
+        <div class="chips">
+          <span class="chip">🏙️ טביליסי עתיקה</span>
+          <span class="chip">💧 מרחצאות גופרית ומפל עירוני</span>
+          <span class="chip">🚆 הכנה לרכבת מחר</span>
+        </div>
+
+        <div class="hotel-card">
+          <h3>איפה ישנים ואוכלים?</h3>
+          <p class="hotel-meta">לילה 4 · טביליסי</p>
+          <p style="font-size:12px;">מומלץ לבחור מלון במרכז, בקרבת אבאנותובאני/תחנת הרכבת, כדי להקטין תנועה למחרת.</p>
+          <p style="font-size:12px;">ארוחת ערב: Barbarestan או מסעדת פיוז׳ן גאורגית–מודרנית בעיר העתיקה.</p>
+        </div>
+      </div>
+      <div>
+        <table aria-label="לו"ז יום 4">
+          <thead>
+            <tr><th>שעות</th><th>פעילות</th><th>הערות</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>09:00–11:30</td>
+              <td>נסיעה מבורג׳ומי לטביליסי</td>
+              <td>כביש נוח; להגיע למלון/לשאול מראש על חניה.</td>
+            </tr>
+            <tr>
+              <td>12:30–15:30</td>
+              <td>סיור בעיר העתיקה, נהר הקורה, גשר השלום, מבט על המפל העירוני Leghvtakhevi</td>
+              <td>💧 נהר + מפל בין הבתים – אחד ה"הפתעות" של טביליסי.</td>
+            </tr>
+            <tr>
+              <td>16:00–18:00</td>
+              <td>מרחצאות גופרית פרטיים באבאנותובאני</td>
+              <td>להזמין מראש חדר פרטי לזוגות בשעה נוחה.</td>
+            </tr>
+            <tr>
+              <td>ערב</td>
+              <td>ארוחת ערב, חזרה מוקדמת למלון · אריזה לקראת רכבת</td>
+              <td>לא להעמיס לילה ארוך – מחר בוקר מוקדם.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <!-- Day 5 -->
+    <article class="day-grid fade-in" id="day5">
+      <div>
+        <div class="day-header">
+          <div class="day-label">יום 5 · 23.06.26</div>
+          <div class="day-name">טביליסי → בטומי ברכבת · צ'ק-אין 5★</div>
+        </div>
+        <p class="day-meta">🗺️ ציר: מלון בטביליסי → תחנת רכבת → בטומי → מלון 5★ · ⏱️ ~5 ש' רכבת · 📍 ~350 ק"מ.</p>
+        <div class="chips">
+          <span class="chip">🚆 רכבת ישירה</span>
+          <span class="chip">🏨 צ'ק-אין · התחלת 3 לילות פרימיום</span>
+          <span class="chip">🌊 ים שחור וספא</span>
+        </div>
+
+        <div class="hotel-card">
+          <h3>המלצה למלון 5★ בבטומי</h3>
+          <p class="hotel-meta">לילות 5–7 · בטומי</p>
+          <p style="font-size:12px;">Le Méridien Batumi או Rooms Hotel Batumi – שניהם ברמת 5★, עם ספא, בריכה, וגישה מהירה לים ולטיילת. ההמלצה: לבחור אחד מהם לכל שלושת הלילות כדי לצמצם מעברים.</p>
+        </div>
+      </div>
+      <div>
+        <table aria-label="לו"ז יום 5">
+          <thead>
+            <tr><th>שעות</th><th>פעילות</th><th>הערות</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>06:45–07:30</td>
+              <td>צ'ק-אאוט מהיר, נסיעה לתחנת הרכבת</td>
+              <td>להשאיר מספיק זמן לבדיקות ולאיתור הרציף.</td>
+            </tr>
+            <tr>
+              <td>08:00–13:00</td>
+              <td>רכבת טביליסי → בטומי</td>
+              <td>זמנים משוערים; יש לוודא לוחות זמנים מדויקים באתר הרכבת.</td>
+            </tr>
+            <tr>
+              <td>13:00–15:00</td>
+              <td>מונית למלון 5★, צ'ק-אין, מנוחה</td>
+              <td>מומלץ לבקש Early Check-in מראש.</td>
+            </tr>
+            <tr>
+              <td>15:00–18:00</td>
+              <td>בריכה, ספא, טיול קצר בטיילת</td>
+              <td>💧 בריכה + ים שחור – מים מסוג אחר אחרי ימי ההרים.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <!-- Day 6 -->
+    <article class="day-grid fade-in" id="day6">
+      <div>
+        <div class="day-header">
+          <div class="day-label">יום 6 · 24.06.26</div>
+          <div class="day-name">Mtirala National Park · יער גשם ומפל</div>
+        </div>
+        <p class="day-meta">🗺️ ציר: בטומי → Mtirala NP → בטומי · ⏱️ 1.5–2.5 ש' נסיעה · 📍 ~60–90 ק"מ.</p>
+        <div class="chips">
+          <span class="chip">🌧️ יער גשם · המסלול הרטוב</span>
+          <span class="chip">🚶‍♀️ 4–5 שעות הליכה</span>
+          <span class="chip">🚙 4×4 מומלץ מאוד</span>
+        </div>
+
+        <div class="hotel-card">
+          <h3>איפה ישנים ואוכלים?</h3>
+          <p class="hotel-meta">לילה 6 · בטומי</p>
+          <p style="font-size:12px;">חזרה למלון 5★ באותו חדר – חלק מהחוויה הוא לא “לארוז ולפרק” כל יום מחדש.</p>
+        </div>
+      </div>
+      <div>
+        <table aria-label="לו"ז יום 6">
+          <thead>
+            <tr><th>שעות</th><th>פעילות</th><th>4×4 & מים</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>09:00–10:00</td>
+              <td>נסיעה מבטומי לכיוון Mtirala NP</td>
+              <td>כביש כפרי/הררי; בימים גשומים חובה להפעיל 4×4 בזהירות.[web:133][web:136]</td>
+            </tr>
+            <tr>
+              <td>10:00–14:30</td>
+              <td>מסלול הליכה למפל ונחל ביער גשם – Chakvistavi או מסלול דומה</td>
+              <td>💧 שיא עונת המים; ציוד גשם ונעליים טובות חובה.[web:130][web:136]</td>
+            </tr>
+            <tr>
+              <td>14:30–16:00</td>
+              <td>ארוחה כפרית/פיקניק על הנחל</td>
+              <td>מומלץ לתאם מראש או להביא סל מהריזורט.</td>
+            </tr>
+            <tr>
+              <td>16:00–17:00</td>
+              <td>חזרה לבטומי</td>
+              <td>לא לנהוג בשבילים בחושך.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <!-- Day 7 -->
+    <article class="day-grid fade-in" id="day7">
+      <div>
+        <div class="day-header">
+          <div class="day-label">יום 7 · 25.06.26</div>
+          <div class="day-name">בטומי יום סיום · ים, גן בוטני, ארוחת פרידה</div>
+        </div>
+        <p class="day-meta">🗺️ ציר: מלון → חוף/גן בוטני → מלון · ⏱️ נסיעה עירונית קצרה בלבד.</p>
+        <div class="chips">
+          <span class="chip">🌊 ים שחור</span>
+          <span class="chip">🌿 הגן הבוטני של בטומי</span>
+          <span class="chip">🍷 ארוחת פרידה</span>
+        </div>
+
+        <div class="hotel-card">
+          <h3>איפה ישנים ואוכלים?</h3>
+          <p class="hotel-meta">לילה 7 · בטומי</p>
+          <p style="font-size:12px;">אותו מלון 5★, כדי ליהנות עד הסוף מהמתקנים ולהימנע ממעבר מיותר בלילה שלפני טיסה מוקדמת.</p>
+        </div>
+      </div>
+      <div>
+        <table aria-label="לו"ז יום 7">
+          <thead>
+            <tr><th>שעות</th><th>פעילות</th><th>הערות</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>09:00–12:00</td>
+              <td>בוקר רגוע: ארוחת בוקר ארוכה, בריכה, ספא</td>
+              <td>להימנע מעומס – הטיסה למחרת מוקדמת.</td>
+            </tr>
+            <tr>
+              <td>12:00–14:30</td>
+              <td>הגן הבוטני של בטומי/פיאצה/סיור קל</td>
+              <td>אפשר לשלב קפה/גלידה ליד הים.</td>
+            </tr>
+            <tr>
+              <td>14:30–17:30</td>
+              <td>ים, מנוחה ואריזות</td>
+              <td>💧 שחייה אחרונה בים השחור.</td>
+            </tr>
+            <tr>
+              <td>20:00–22:30</td>
+              <td>ארוחת פרידה במסעדת שף/מלון</td>
+              <td>לסיים מוקדם, להשאיר זמן שינה.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <!-- Day 8 -->
+    <article class="day-grid fade-in" id="day8">
+      <div>
+        <div class="day-header">
+          <div class="day-label">יום 8 · 26.06.26</div>
+          <div class="day-name">המראה מבטומי · 09:35</div>
+        </div>
+        <p class="day-meta">🗺️ ציר: מלון בבטומי → שדה תעופה בטומי · ⏱️ 20–30 דק' נסיעה.</p>
+        <p class="day-note">להתייחס לבוקר הזה כ"חלק מהטיסה" – בלי עומסים.</p>
+      </div>
+      <div>
+        <table aria-label="לו"ז יום 8">
+          <thead>
+            <tr><th>שעות</th><th>פעילות</th><th>הערות</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>05:45–06:15</td>
+              <td>השכמה, צ'ק-אאוט מהיר</td>
+              <td>לוודא חשבון סגור ערב קודם.</td>
+            </tr>
+            <tr>
+              <td>06:15–06:45</td>
+              <td>נסיעה לשדה התעופה</td>
+              <td>להגיע מוקדם, במיוחד בקיץ.</td>
+            </tr>
+            <tr>
+              <td>09:35</td>
+              <td>המראה מבטומי</td>
+              <td>סיום הטיול.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+  </section>
+
+  <section id="hotels">
+    <h2 class="section-title">מלונות מומלצים לפי לילות</h2>
+    <p class="section-sub" style="color:#4b5563;">שילוב בין גמישות ללקוח לבין חוויית פרימיום בימים האחרונים.</p>
+
+    <div class="hotel-card">
+      <h3>בטומי – לילה 1 (19.06)</h3>
+      <p class="hotel-meta">רמת 4★ · התאקלמות אחרי טיסה ומעבר</p>
+      <p style="font-size:12px;">הצעה: Hilton Batumi / Radisson Blu Batumi – מלונות נוחים על הטיילת, בריכה, חדרים מאווררים. לא חייבים כאן 5★ כי הלקוח יקבל שלושה לילות 5★ בהמשך.</p>
+    </div>
+
+    <div class="hotel-card">
+      <h3>דשבאשי – לילה 2 (20.06)</h3>
+      <p class="hotel-meta">גסטהאוס קרוב לכניסה לקניון</p>
+      <p style="font-size:12px;">בשל ההיצע המוגבל, מומלץ לבחור גסטהאוס עם חניה מסודרת וארוחת ערב ביתית – חלק מהחוויה.</p>
+    </div>
+
+    <div class="hotel-card">
+      <h3>בורג׳ומי – לילה 3 (21.06)</h3>
+      <p class="hotel-meta">מלון קטן/ספא בליקאני או בקרבת הפארק</p>
+      <p style="font-size:12px;">גישה נוחה לנהר ולמסלולים, אפשרות לספא בערב.</p>
+    </div>
+
+    <div class="hotel-card">
+      <h3>טביליסי – לילה 4 (22.06)</h3>
+      <p class="hotel-meta">מלון בוטיק במרכז</p>
+      <p style="font-size:12px;">נגישות לאבאנותובאני, גשר השלום ותחנת הרכבת של מחר בבוקר.</p>
+    </div>
+
+    <div class="hotel-card">
+      <h3>בטומי – לילות 5–7 (23–25.06)</h3>
+      <p class="hotel-meta">מלון 5★ · דרישת הלקוח</p>
+      <p style="font-size:12px;">Le Méridien Batumi – ריזורט משקיף לים, ספא, בריכה, חדרים מודרניים, שירות ברמה גבוהה. אלטרנטיבה בסגנון בוטיקי–קולי: Rooms Batumi.</p>
+    </div>
+  </section>
+
+  <section id="budget">
+    <div style="margin-bottom:18px;border-radius:24px;border:1px solid #e5e7eb;background:#ffffff;padding:16px 18px;box-shadow:0 18px 45px rgba(15,23,42,.10);">
+      <h3 style="font-size:18px;margin-bottom:6px;">תרשים חלוקה ויזואלי (להדבקת גרף)</h3>
+      <p style="font-size:14px;color:#4b5563;">ניתן להוסיף כאן בהמשך גרף עוגה/עמודות כתמונה, המציג את היחס בין רכב+דלק, מלונות, מסעדות ואטרקציות.</p>
+    </div>
+    <h2 class="section-title">תקציב משוער · שני זוגות (8 ימים)</h2>
+    <p class="section-sub" style="color:#4b5563;">הערכות ביוני 2026 · לא כולל טיסות · מוצגות בטווחים כדי לאפשר גמישות ללקוח.</p>
+
+    <div class="budget-card">
+      <h3>1. רכב 4×4 + דלק</h3>
+      <table class="budget-table">
+        <thead>
+          <tr><th>פריט</th><th>מינימום</th><th>מקסימום</th><th>הערות</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>השכרת 4×4 (6–7 ימים)</td>
+            <td>550–650$</td>
+            <td>900–1,100$</td>
+            <td>תלוי בדגם ובחברה; רצוי SUV אמיתי עם מרווח גחון.</td>
+          </tr>
+          <tr>
+            <td>דלק ~1,000–1,200 ק"מ</td>
+            <td>180–220$</td>
+            <td>260–320$</td>
+            <td>כולל קטעי כביש ארוכים + ימי שטח (Mtirala, אזורי הר).</td>
+          </tr>
+          <tr>
+            <td><strong>סה"כ רכב + דלק</strong></td>
+            <td><strong>730–870$</strong></td>
+            <td><strong>1,160–1,420$</strong></td>
+            <td>לקבוצת 4 אנשים.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="budget-card">
+      <h3>2. מסעדות וקולינריה</h3>
+      <table class="budget-table">
+        <thead>
+          <tr><th>רמת אכילה</th><th>ליום (לקבוצה)</th><th>לכל התקופה</th><th>מה זה כולל</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>חכם–מפנק</td>
+            <td>110–140$</td>
+            <td>880–1,120$</td>
+            <td>ארוחת בוקר במלון, צהריים פשוט/Street food, ערב במסעדה טובה 4–5 פעמים, 1–2 ערבי שף.</td>
+          </tr>
+          <tr>
+            <td>פרימיום גמיש</td>
+            <td>160–210$</td>
+            <td>1,280–1,680$</td>
+            <td>מסעדות ברמה גבוהה ברוב הערבים, טעימות יין, יותר דגים ופירות ים בבטומי.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="budget-card">
+      <h3>3. מלונות</h3>
+      <table class="budget-table">
+        <thead>
+          <tr><th>פריט</th><th>מינימום</th><th>מקסימום</th><th>הערות</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>לילות 1–4 (בטומי 4★, דשבאשי, בורג׳ומי, טביליסי)</td>
+            <td>600–750$</td>
+            <td>950–1,200$</td>
+            <td>2 חדרים כפולים, ממוצע 70–150$ ללילה לחדר.</td>
+          </tr>
+          <tr>
+            <td>לילות 5–7 (בטומי 5★)</td>
+            <td>900–1,050$</td>
+            <td>1,350–1,650$</td>
+            <td>2 חדרים כפולים, 150–250$ ללילה לחדר.</td>
+          </tr>
+          <tr>
+            <td><strong>סה"כ מלונות (כל התקופה)</strong></td>
+            <td><strong>1,500–1,800$</strong></td>
+            <td><strong>2,300–2,850$</strong></td>
+            <td>תלוי ברמת היוקרה שבוחרים בכל לילה.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="budget-card">
+      <h3>4. אטרקציות ומעברים</h3>
+      <table class="budget-table">
+        <thead>
+          <tr><th>אטרקציה</th><th>הערכה לקבוצה</th><th>הערות</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>קניון דשבאשי (כניסה + גשר זכוכית)</td>
+            <td>80–120$</td>
+            <td>תלוי במספר האטרקציות שבוחרים באתר.[web:127][web:128]</td>
+          </tr>
+          <tr>
+            <td>בורג׳ומי – פארק, מסלולים, מעיינות</td>
+            <td>40–80$</td>
+            <td>חלק מהמסלולים חינמיים, חלק בתשלום נמוך.[web:111]</td>
+          </tr>
+          <tr>
+            <td>מרחצאות גופרית בטביליסי (חדר פרטי)</td>
+            <td>60–120$</td>
+            <td>לפי סוג החדר והזמן.</td>
+          </tr>
+          <tr>
+            <td>Mtirala National Park (כניסה + הדרכה אופציונלית)</td>
+            <td>80–150$</td>
+            <td>אפשר עם מדריך מקומי כדי להקל על הניווט.[web:130][web:136]</td>
+          </tr>
+          <tr>
+            <td>רכבת טביליסי–בטומי</td>
+            <td>80–140$</td>
+            <td>4 כרטיסים לפי מחלקה/סוג רכבת.[web:132][web:138]</td>
+          </tr>
+          <tr>
+            <td><strong>סה"כ אטרקציות ומעברים</strong></td>
+            <td><strong>340–610$</strong></td>
+            <td>אפשר לצמצם/להרחיב לפי תקציב.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="logistics">
+    <h2 class="section-title">לוגיסטיקה, 4×4 וטיפים חשובים</h2>
+    <p class="section-sub" style="color:#4b5563;">נקודות שמבטיחות שהטיול יישאר חוויה חיובית ולא “פרויקט שוחק”.</p>
+
+    <div class="budget-card">
+      <h3>אפליקציות ניווט מומלצות</h3>
+      <ul class="tips-list">
+        <li><strong>Maps.me</strong> – חובה להוריד את מפת Georgia מראש; עובדת מצוין אופליין לרכב ולרגל.</li>
+        <li><strong>Google Maps</strong> – לקטעי כביש, תחנות דלק ומלונות; לא לסמוך לבד על דרכי עפר.</li>
+        <li><strong>Gaia GPS / Komoot</strong> – לשבילי הרים והליכות (בורג׳ומי, Mtirala).</li>
+      </ul>
+    </div>
+
+    <div class="budget-card">
+      <h3>עשה ואל תעשה לנהיגת 4×4 בטיול הזה</h3>
+      <ul class="tips-list">
+        <li>לא מוסיפים “עוד שביל קטן” בסוף יום – במיוחד אחרי Mtirala או יום דשבאשי.</li>
+        <li>שומרים לפחות חצי מיכל דלק לפני קטעי הר/כפרים.</li>
+        <li>עוצרים כל 2–2.5 שעות ל&quot;ריסט&quot; קצר – שירותים, קפה, מתיחת רגליים.</li>
+        <li>בימים גשומים – מוותרים על דרכי עפר לא הכרחיות; הולכים על כביש בלבד.</li>
+        <li>לא נוהגים אחרי שתיית אלכוהול, גם אם זה “רק צ׳אצ׳ה אחת”.</li>
+      </ul>
+    </div>
+
+    <div class="budget-card">
+      <h3>ציוד מומלץ</h3>
+      <ul class="tips-list">
+        <li>2 זוגות נעלי הליכה + נעלי מים לכל אחד.</li>
+        <li>מגבות מיקרופייבר, בגדים להחלפה בתיק יומי.</li>
+        <li>שקיות אטומות לטלפונים ומסמכים בימי קניון/מפל.</li>
+        <li>מטען רכב + סוללת גיבוי.</li>
+        <li>מזומן קטן (GEL) לכפרים, אטרקציות קטנות וטיפים.</li>
+      </ul>
+    </div>
+  </section>
+  <section id="tbilisi-map" class="wrap">
+    <h2 class="section-title">מפת טביליסי ומרחקים מרכזיים</h2>
+    <p class="section-sub" style="color:#4b5563;">מפה אינטראקטיבית של טביליסי והקשרים העיקריים במסלול. ניתן להתקרב, להתרחק ולנווט.</p>
+    <div style="border-radius:24px;overflow:hidden;border:1px solid #e5e7eb;box-shadow:0 18px 45px rgba(15,23,42,.18);margin-bottom:16px;">
+      <iframe title="מפת טביליסי" src="https://www.openstreetmap.org/export/embed.html?bbox=44.70%2C41.65%2C44.90%2C41.80&amp;layer=mapnik" style="width:100%;height:360px;border:0;" loading="lazy"></iframe>
+    </div>
+    <ul style="font-size:14px;color:#4b5563;padding-right:18px;margin-bottom:24px;">
+      <li>שדה תעופה טביליסי → מרכז העיר: כ־17 ק"מ · 25–35 דקות.</li>
+      <li>מרכז טביליסי → תחנת הרכבת: כ־4–6 ק"מ · 10–20 דקות.</li>
+      <li>טביליסי → בורג׳ומי: כ־160 ק"מ · 2.5–3 שעות.</li>
+    </ul>
+  </section>
+
+  <section id="fx-live" class="wrap">
+    <h2 class="section-title">שערי מטבע LIVE · דולר ו‑GEL</h2>
+    <p class="section-sub" style="color:#4b5563;">קישור חי לשערי המרה. מומלץ לפתוח בחלון חדש בעת סגירת התקציב.</p>
+    <div style="border-radius:24px;overflow:hidden;border:1px solid #e5e7eb;box-shadow:0 18px 45px rgba(15,23,42,.18);margin-bottom:12px;">
+      <iframe title="Currency Widget" src="https://www.xe.com/currencyconverter/convert/?Amount=1&From=USD&To=GEL" style="width:100%;height:420px;border:0;" loading="lazy"></iframe>
+    </div>
+    <p style="font-size:13px;color:#4b5563;">טיפ: להוסיף סימנייה לדף זה בטלפון ולבדוק שער לפני סגירת כל רכיב (רכב, מלון, אטרקציות).</p>
+  </section>
+</main>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+</script>
+</body>
+</html>
