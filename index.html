@@ -145,6 +145,39 @@
 .map-info-card{background:#f8fafc;border-radius:16px;padding:14px 12px;border:1px solid #e5e7eb;font-size:12px;min-height:200px;}
 .map-info-card h4{font-size:14px;font-weight:700;margin-bottom:6px;color:#0ea5e9;}
 .map-info-card ul{padding-right:16px;color:#4b5563;line-height:1.7;}
+/* ===== ACCORDION ===== */
+.acc-item{margin-bottom:10px;border-radius:20px;border:1px solid #e5e7eb;overflow:hidden;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.05);}
+.acc-head{width:100%;display:flex;align-items:center;gap:12px;padding:14px 18px;background:#fff;border:none;cursor:pointer;font-family:inherit;text-align:right;transition:background .18s;min-height:64px;}
+.acc-head:hover{background:#f8fafc;}
+.acc-head.open{background:#f0f9ff;border-bottom:1px solid #dbeafe;}
+.acc-left{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px;text-align:right;}
+.acc-daynum{font-size:11px;color:#818cf8;text-transform:uppercase;letter-spacing:.1em;}
+.acc-dayname{font-size:14px;font-weight:700;color:#1e293b;line-height:1.3;}
+.acc-chips-row{display:flex;gap:5px;flex-shrink:0;flex-wrap:wrap;max-width:170px;justify-content:flex-end;}
+.acc-chip-mini{font-size:10px;padding:2px 7px;border-radius:999px;background:#f1f5f9;color:#475569;white-space:nowrap;}
+.acc-arrow{font-size:22px;color:#94a3b8;transition:transform .3s cubic-bezier(.4,0,.2,1);flex-shrink:0;line-height:1;user-select:none;}
+.acc-head.open .acc-arrow{transform:rotate(90deg);}
+/* Smooth height via CSS grid trick */
+.acc-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .38s cubic-bezier(.4,0,.2,1);}
+.acc-body.open{grid-template-rows:1fr;}
+.acc-inner{overflow:hidden;}
+.acc-inner>article{border-radius:0;border:none;box-shadow:none;margin-bottom:0;}
+.acc-inner .fade-in,.acc-inner .slide-right,.acc-inner .scale-up{opacity:1!important;transform:none!important;}
+
+/* ===== SUB NAV ===== */
+.sub-nav{position:sticky;top:56px;z-index:30;background:rgba(249,250,251,.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:2px solid #f1f5f9;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin:0 -20px;padding:8px 20px;margin-bottom:8px;}
+.sub-nav::-webkit-scrollbar{display:none;}
+.subnav-link{white-space:nowrap;font-size:13px;padding:7px 14px;border-radius:999px;color:#64748b;font-weight:500;border:1px solid transparent;transition:all .18s;}
+.subnav-link:hover{color:#0f172a;background:#f1f5f9;}
+.subnav-link.active{color:#0ea5e9;background:#f0f9ff;border-color:rgba(14,165,233,.3);font-weight:700;}
+@media(max-width:800px){
+  .sub-nav{top:52px;margin:0 -13px;padding:7px 13px;margin-bottom:6px;}
+  .subnav-link{font-size:12px;padding:6px 11px;}
+  .acc-head{padding:12px 14px;min-height:58px;gap:8px;}
+  .acc-dayname{font-size:13px;}
+  .acc-chips-row{display:none;}
+}
+
 /* ===== MOBILE-FIRST OVERHAUL ===== */
 @media (max-width:800px){
   body{font-size:16px;}
@@ -253,6 +286,14 @@
   </div>
 
   <div id="content-smart" style="display:none">
+  <nav class="sub-nav" id="subnav-smart" aria-label="ניווט מהיר – מסלול קלוד">
+    <a href="#overview" class="subnav-link active">תמונת-על</a>
+    <a href="#visual-gallery" class="subnav-link">כרטיסיות</a>
+    <a href="#days" class="subnav-link">לו"ז יומי</a>
+    <a href="#hotels" class="subnav-link">מלונות</a>
+    <a href="#budget" class="subnav-link">תקציב</a>
+    <a href="#route-map" class="subnav-link">מפה 🗺️</a>
+  </nav>
   <section id="overview" class="hero">
     <div class="hero-grid">
       <div>
@@ -1206,8 +1247,15 @@
       <button onclick="switchRoute('smart',document.getElementById('tab-smart'))" style="padding:9px 16px;border-radius:14px;border:none;background:#f59e0b;color:#fff;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap;">לראות מסלול קלוד ✨</button>
     </div>
 
+  <nav class="sub-nav" id="subnav-original" aria-label="ניווט מהיר – מסלול מקורי">
+    <a href="#orig-overview" class="subnav-link active">תמונת-על</a>
+    <a href="#days-orig" class="subnav-link">לו"ז יומי</a>
+    <a href="#hotels-orig" class="subnav-link">מלונות</a>
+    <a href="#budget-orig" class="subnav-link">תקציב</a>
+  </nav>
+
     <!-- Hero original -->
-    <section class="hero" style="padding-top:0;">
+    <section id="orig-overview" class="hero" style="padding-top:0;">
       <div class="hero-grid">
         <div>
           <div class="eyebrow"><span class="dot" style="background:#f59e0b;"></span> המסלול המקורי לפי בקשתכם · ייתכן שמלונות ורכבת כבר הוזמנו</div>
@@ -1505,7 +1553,7 @@
     </section>
 
     <!-- Hotels original -->
-    <section>
+    <section id="hotels-orig">
       <h2 class="section-title">המלצות מלונות · המסלול המקורי</h2>
       <p class="section-sub" style="color:#4b5563;">לפי הלינות המקוריות: טביליסי (לילות 1 ו-4), דשבאשי (לילה 2), בורג׳ומי (לילה 3), בטומי 5★ (לילות 5–7).</p>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;">
@@ -1861,6 +1909,12 @@
           setTimeout(() => el.classList.add('visible'), i * 45);
         }
       });
+      // Reset sub-nav: first link active
+      const nav = sec.querySelector('.sub-nav');
+      if (nav) {
+        const links = nav.querySelectorAll('.subnav-link');
+        links.forEach((l,i) => l.classList.toggle('active', i===0));
+      }
     }, 80);
   }
 
@@ -2008,10 +2062,108 @@
     return div;
   }
 
+  // ===== ACCORDION =====
+  function initAccordions() {
+    [['smart','#days'],['original','#days-orig']].forEach(([rk, sel]) => {
+      const container = document.querySelector('#content-' + rk + ' ' + sel);
+      if (!container) return;
+      const articles = [...container.querySelectorAll('article.day-grid')];
+      articles.forEach((article, idx) => {
+        const label = article.querySelector('.day-label')?.textContent?.trim() || '';
+        const name  = article.querySelector('.day-name')?.textContent?.trim()  || '';
+        const chips = [...article.querySelectorAll('.chip')].slice(0,3).map(c=>c.textContent.trim());
+        const chipsHtml = chips.map(c=>`<span class="acc-chip-mini">${c}</span>`).join('');
+        const isFirst = idx === 0;
+        const bodyId  = 'acc-' + rk + '-' + idx;
+        const wrapper = document.createElement('div');
+        wrapper.className = 'acc-item';
+        wrapper.innerHTML = `
+          <button class="acc-head${isFirst?' open':''}" onclick="toggleAcc('${bodyId}',this)" aria-expanded="${isFirst}">
+            <div class="acc-left">
+              <span class="acc-daynum">${label}</span>
+              <span class="acc-dayname">${name}</span>
+            </div>
+            <div class="acc-chips-row">${chipsHtml}</div>
+            <span class="acc-arrow">${isFirst?'▼':'›'}</span>
+          </button>
+          <div class="acc-body${isFirst?' open':''}" id="${bodyId}">
+            <div class="acc-inner"></div>
+          </div>`;
+        article.parentNode.insertBefore(wrapper, article);
+        article.classList.remove('fade-in','slide-right','scale-up');
+        article.classList.add('visible');
+        wrapper.querySelector('.acc-inner').appendChild(article);
+        // Trigger hotel/budget cards inside first open accordion
+        if (isFirst) {
+          setTimeout(() => {
+            wrapper.querySelectorAll('.hotel-card,.budget-card').forEach((el,i)=>{
+              setTimeout(()=>el.classList.add('visible'),i*50);
+            });
+          }, 300);
+        }
+      });
+    });
+  }
+
+  function toggleAcc(bodyId, headerEl) {
+    const body = document.getElementById(bodyId);
+    if (!body) return;
+    const isOpen = body.classList.contains('open');
+    const routeContent = headerEl.closest('[id^="content-"]');
+    // Close all
+    if (routeContent) {
+      routeContent.querySelectorAll('.acc-body').forEach(b=>b.classList.remove('open'));
+      routeContent.querySelectorAll('.acc-head').forEach(h=>{
+        h.classList.remove('open');
+        h.setAttribute('aria-expanded','false');
+        const arr = h.querySelector('.acc-arrow');
+        if (arr) arr.textContent='›';
+      });
+    }
+    // Open clicked (unless it was already open — toggle)
+    if (!isOpen) {
+      body.classList.add('open');
+      headerEl.classList.add('open');
+      headerEl.setAttribute('aria-expanded','true');
+      const arr = headerEl.querySelector('.acc-arrow');
+      if (arr) arr.textContent='▼';
+      // Reveal hotel/budget cards inside with stagger
+      setTimeout(()=>{
+        body.querySelectorAll('.hotel-card:not(.visible),.budget-card:not(.visible)').forEach((el,i)=>{
+          setTimeout(()=>el.classList.add('visible'),i*50);
+        });
+      }, 220);
+      // Smooth scroll header into view (below sticky nav)
+      setTimeout(()=>{
+        const rect = headerEl.getBoundingClientRect();
+        if (rect.top < 110) window.scrollBy({top: rect.top - 110, behavior:'smooth'});
+      }, 60);
+    }
+  }
+
+  // ===== SCROLL SPY =====
+  function initScrollSpy() {
+    document.querySelectorAll('.sub-nav').forEach(nav => {
+      const links = [...nav.querySelectorAll('.subnav-link')];
+      const sections = links.map(l => document.querySelector(l.getAttribute('href'))).filter(Boolean);
+      const spy = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = '#' + entry.target.id;
+            links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === id));
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '-56px 0px -48% 0px' });
+      sections.forEach(s => spy.observe(s));
+    });
+  }
+
   // Init on load
   window.addEventListener('load', () => {
     initPack();
     mapShowDay('all', document.querySelector('.map-day-btn'));
+    initAccordions();
+    initScrollSpy();
   });
 </script>
 </body>
