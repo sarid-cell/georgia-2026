@@ -3,926 +3,781 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>יום 3 – בורג׳ומי | Preview</title>
+<title>יום 3 – בורג׳ומי | Preview v2</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 
-/* ── Reset & Base ─────────────────────────────── */
+/* ── Reset & variables ───────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --green:        #2d6a4f;
-  --green-mid:    #52b788;
-  --green-light:  #e8f5ee;
-  --orange:       #c2440c;
-  --orange-mid:   #e87848;
-  --orange-light: #fef0e8;
-  --bg:           #f7f5f0;
-  --card:         #ffffff;
-  --text:         #1a1a1e;
-  --muted:        #6b7280;
-  --muted-light:  #9ca3af;
-  --border:       #e4dfd6;
-  --border-light: #ede9e2;
-  --radius:       18px;
-  --radius-sm:    11px;
-  --shadow:       0 2px 14px rgba(0,0,0,0.07);
-  --shadow-md:    0 6px 28px rgba(0,0,0,0.11);
-  --t:            0.22s ease;
+  --bg:      #f5f1eb;
+  --card:    #ffffff;
+  --text:    #1a1816;
+  --muted:   #6e6459;
+  --faint:   #9c9289;
+  --border:  #e2dbd3;
+  --borderl: #ede8e2;
+
+  /* Option 1 – Classic */
+  --c1:  #3b6b50;  --c1m: #5d9a78;  --c1l: #e5f2ea;
+  /* Option 2 – Relax */
+  --c2:  #2a6389;  --c2m: #4d9ab8;  --c2l: #e2eff7;
+  /* Option 3 – Adventure */
+  --c3:  #b84c1a;  --c3m: #e07040;  --c3l: #faeae1;
+
+  --r:  16px;
+  --rs: 10px;
+  --sh:  0 2px 12px rgba(0,0,0,.06);
+  --shm: 0 6px 28px rgba(0,0,0,.11);
+  --t:   .22s ease;
 }
 
-html { font-size: 16px; scroll-behavior: smooth; }
-
+html { font-size:16px; scroll-behavior:smooth; }
 body {
-  font-family: 'Heebo', 'Arial Hebrew', Arial, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  direction: rtl;
-  line-height: 1.65;
-  -webkit-font-smoothing: antialiased;
+  font-family:'Heebo','Arial Hebrew',Arial,sans-serif;
+  background:var(--bg); color:var(--text); direction:rtl;
+  line-height:1.65; -webkit-font-smoothing:antialiased;
 }
 
-/* ── Preview Banner ──────────────────────────── */
+/* ── Preview banner ──────────────────────────── */
 .preview-bar {
-  position: sticky;
-  top: 0;
-  z-index: 200;
-  background: #18181b;
-  color: #e4e4e7;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 9px 20px;
-  font-size: 12.5px;
-  font-weight: 500;
-  letter-spacing: 0.02em;
+  position:sticky; top:0; z-index:200;
+  background:#18181b; color:#d4d4d8;
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  padding:9px 20px; font-size:12px; font-weight:500;
 }
-.preview-bar .badge {
-  background: #fbbf24;
-  color: #18181b;
-  font-weight: 800;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  border-radius: 5px;
-  padding: 2px 8px;
+.preview-bar b {
+  background:#fbbf24; color:#18181b;
+  font-size:10px; font-weight:800; letter-spacing:.1em;
+  border-radius:4px; padding:2px 8px;
 }
 
 /* ── Hero ────────────────────────────────────── */
-.hero {
-  background: var(--card);
-  border-bottom: 1px solid var(--border);
-  padding: 52px 24px 44px;
-}
-.hero-inner { max-width: 860px; margin: 0 auto; }
+.hero { background:var(--card); border-bottom:1px solid var(--border); padding:52px 24px 44px; }
+.hero-in { max-width:860px; margin:0 auto; }
 
 .eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--muted);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 18px;
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:11.5px; font-weight:700; color:var(--muted);
+  letter-spacing:.08em; text-transform:uppercase; margin-bottom:18px;
 }
 .eyebrow::before {
-  content: '';
-  width: 20px;
-  height: 2.5px;
-  background: var(--green-mid);
-  border-radius: 2px;
-  flex-shrink: 0;
+  content:''; width:20px; height:2.5px;
+  background:var(--c1m); border-radius:2px; flex-shrink:0;
 }
-
 .hero h1 {
-  font-size: clamp(2.6rem, 7vw, 4.2rem);
-  font-weight: 900;
-  letter-spacing: -0.025em;
-  line-height: 1.05;
-  color: var(--text);
-  margin-bottom: 6px;
+  font-size:clamp(2.8rem,7vw,4.4rem); font-weight:900;
+  letter-spacing:-.025em; line-height:1.05; margin-bottom:6px;
 }
-.hero-sub {
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--green);
-  margin-bottom: 16px;
-}
-.hero-desc {
-  font-size: 0.95rem;
-  color: var(--muted);
-  line-height: 1.8;
-  max-width: 600px;
-  margin-bottom: 24px;
-}
-.hero-note {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: #f0faf4;
-  border: 1px solid #c6e8d5;
-  border-radius: 999px;
-  padding: 7px 16px;
-  font-size: 13px;
-  color: var(--green);
-  font-weight: 500;
+.hero-sub { font-size:1.05rem; font-weight:600; color:var(--c1); margin-bottom:16px; }
+.hero-desc { font-size:.95rem; color:var(--muted); line-height:1.8; max-width:600px; margin-bottom:24px; }
+.hero-chips { display:flex; flex-wrap:wrap; gap:8px; }
+.chip {
+  background:var(--bg); border:1px solid var(--border);
+  border-radius:999px; padding:5px 13px;
+  font-size:12.5px; font-weight:500; color:var(--text);
 }
 
-/* ── Section Wrapper ─────────────────────────── */
-.section {
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 52px 24px;
-}
-.section + .section { padding-top: 0; }
+/* ── Section wrapper ─────────────────────────── */
+.sec { max-width:1120px; margin:0 auto; padding:52px 24px; }
+.sec + .sec { padding-top:0; }
+.sec-lbl { font-size:11px; font-weight:800; color:var(--faint); letter-spacing:.1em; text-transform:uppercase; margin-bottom:8px; }
+.sec-h   { font-size:1.4rem; font-weight:800; margin-bottom:6px; }
+.sec-p   { font-size:.9rem; color:var(--muted); margin-bottom:32px; }
 
-.sec-label {
-  font-size: 11px;
-  font-weight: 800;
-  color: var(--muted-light);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-bottom: 8px;
+/* ── Option tabs ─────────────────────────────── */
+.opt-tabs {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:24px;
 }
-.sec-title {
-  font-size: 1.45rem;
-  font-weight: 800;
-  color: var(--text);
-  margin-bottom: 6px;
+.opt-tab {
+  background:var(--card); border:1.5px solid var(--border); border-radius:var(--r);
+  padding:14px 16px; cursor:pointer; font-family:inherit;
+  display:flex; align-items:center; gap:11px; text-align:right;
+  transition:all var(--t); position:relative; overflow:hidden;
 }
-.sec-desc {
-  font-size: 0.9rem;
-  color: var(--muted);
-  margin-bottom: 36px;
+.opt-tab::after {          /* bottom accent bar */
+  content:''; position:absolute; bottom:0; right:0; left:0; height:3px;
+  background:transparent; transition:background var(--t);
+}
+.opt-tab:hover:not(.sel) { border-color:var(--faint); }
+.opt-tab.sel { border-color:transparent; box-shadow:var(--shm); }
+.t1.sel::after { background:var(--c1); }
+.t2.sel::after { background:var(--c2); }
+.t3.sel::after { background:var(--c3); }
+.tab-icon { font-size:1.5rem; flex-shrink:0; }
+.tab-lbl  { display:flex; flex-direction:column; gap:1px; }
+.tab-name { font-size:14px; font-weight:700; color:var(--text); }
+.tab-hint { font-size:11.5px; color:var(--muted); }
+@media(max-width:580px){
+  .tab-hint{display:none}
+  .opt-tab{padding:12px 10px;gap:8px}
+  .tab-name{font-size:13px}
 }
 
-/* ── Choice Grid ─────────────────────────────── */
+/* ── 2-col choice grid ───────────────────────── */
 .choice-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  align-items: start;
+  display:grid; grid-template-columns:1fr 1fr; gap:22px; align-items:start;
 }
-@media (max-width: 800px) {
-  .choice-grid { grid-template-columns: 1fr; }
-}
+@media(max-width:800px){ .choice-grid{grid-template-columns:1fr} }
 
-/* ── Map Card ────────────────────────────────── */
-/* NOTE TO DEV: Replace the SVG below with a Google Maps embed,
-   a Leaflet.js map, or an exported My Maps image when ready.
-   The card shell and header can remain as-is. */
+/* ── Map card ────────────────────────────────── */
+/* NOTE: Replace SVG with Leaflet embed or Google Maps iframe when ready */
 .map-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  overflow: hidden;
-  position: sticky;
-  top: 54px;
+  background:var(--card); border:1px solid var(--border); border-radius:var(--r);
+  box-shadow:var(--sh); overflow:hidden; position:sticky; top:52px;
 }
-.map-card-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 18px;
-  border-bottom: 1px solid var(--border-light);
+.map-head {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:13px 17px; border-bottom:1px solid var(--borderl);
 }
-.map-card-head-title {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--text);
+.map-head-t { font-size:13px; font-weight:700; }
+.map-ph-pill {
+  background:var(--bg); border:1px solid var(--border); border-radius:999px;
+  padding:3px 10px; font-size:10px; color:var(--faint); font-weight:600;
 }
-.map-placeholder-pill {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 3px 10px;
-  font-size: 10.5px;
-  color: var(--muted-light);
-  font-weight: 600;
-}
-.map-svg-area {
-  background: #dde8d4;
-  line-height: 0;
-}
-.map-svg-area svg { display: block; width: 100%; height: auto; }
-
+.map-svg { display:block; width:100%; height:auto; background:#dde8d4; }
 .map-status {
-  padding: 10px 18px;
-  font-size: 12px;
-  font-weight: 600;
-  transition: color var(--t);
-  border-top: 1px solid var(--border-light);
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  padding:10px 17px; font-size:12px; font-weight:700;
+  border-top:1px solid var(--borderl); transition:color var(--t);
+  display:flex; align-items:center; gap:6px;
 }
-.map-status.green { color: var(--green); }
-.map-status.orange { color: var(--orange); }
+.ms-1{color:var(--c1)} .ms-2{color:var(--c2)} .ms-3{color:var(--c3)}
+.map-leg {
+  display:flex; gap:16px; flex-wrap:wrap;
+  padding:11px 17px 13px; border-top:1px solid var(--borderl);
+}
+.ml-item { display:flex; align-items:center; gap:7px; font-size:11.5px; color:var(--muted); font-weight:500; }
+.ml-line  { width:24px; height:3px; border-radius:2px; }
 
-.map-legend-row {
-  padding: 12px 18px 14px;
-  display: flex;
-  gap: 18px;
-  flex-wrap: wrap;
-  border-top: 1px solid var(--border-light);
-}
-.map-legend-item {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 11.5px;
-  color: var(--muted);
-  font-weight: 500;
-}
-.legend-dash { width: 26px; height: 3px; border-radius: 2px; }
-
-/* ── Option Cards ────────────────────────────── */
-.options-col { display: flex; flex-direction: column; gap: 16px; }
-
-.opt-card {
-  background: var(--card);
-  border: 2px solid var(--border);
-  border-radius: var(--radius);
-  padding: 24px;
-  cursor: pointer;
-  transition: border-color var(--t), box-shadow var(--t), transform var(--t);
-  position: relative;
-}
-.opt-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
-
-.opt-card.sel-green {
-  border-color: var(--green);
-  border-top-width: 4px;
-}
-.opt-card.sel-orange {
-  border-color: var(--orange);
-  border-top-width: 4px;
+/* ── Option panel (right column) ────────────── */
+.opt-panel {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:var(--r); box-shadow:var(--sh); overflow:hidden;
 }
 
-.opt-badge {
-  display: inline-block;
-  padding: 4px 13px;
-  border-radius: 999px;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  margin-bottom: 14px;
+/* image placeholder */
+.opt-img {
+  width:100%; aspect-ratio:16/9; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:8px; position:relative; overflow:hidden;
 }
-.badge-g { background: var(--green-light); color: var(--green); }
-.badge-o { background: var(--orange-light); color: var(--orange); }
+.opt-img::before {          /* diagonal stripe texture */
+  content:''; position:absolute; inset:0;
+  background:repeating-linear-gradient(
+    -45deg, transparent, transparent 12px,
+    rgba(255,255,255,.12) 12px, rgba(255,255,255,.12) 24px
+  );
+}
+.opt-img .ph-icon { font-size:2rem; position:relative; z-index:1; opacity:.65; }
+.opt-img .ph-note {
+  font-size:10.5px; color:rgba(255,255,255,.7); font-weight:600;
+  position:relative; z-index:1; background:rgba(0,0,0,.18);
+  padding:3px 10px; border-radius:999px;
+}
+/* NOTE: replace .opt-img with <img> tag when real photos are available */
+.bg1{background:linear-gradient(135deg,#4a8c68,#2d6a4f)}
+.bg2{background:linear-gradient(135deg,#3d8ab0,#1e5f80)}
+.bg3{background:linear-gradient(135deg,#c86030,#8b3a12)}
 
-.opt-title {
-  font-size: 1.1rem;
-  font-weight: 800;
-  color: var(--text);
-  line-height: 1.3;
-  margin-bottom: 10px;
+.opt-body { padding:22px 24px; }
+.opt-meta { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px; }
+.opt-meta-chip {
+  font-size:11px; font-weight:700; border-radius:999px; padding:4px 12px;
+  border:1.5px solid; letter-spacing:.03em;
 }
-.opt-desc {
-  font-size: 0.875rem;
-  color: var(--muted);
-  line-height: 1.75;
-  margin-bottom: 18px;
-}
-.opt-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-  margin-bottom: 22px;
-}
-.opt-list li {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--text);
-}
-.dot-g { width: 7px; height: 7px; border-radius: 50%; background: var(--green-mid); flex-shrink: 0; }
-.dot-o { width: 7px; height: 7px; border-radius: 50%; background: var(--orange-mid); flex-shrink: 0; }
+.mc1{color:var(--c1);border-color:var(--c1l);background:var(--c1l)}
+.mc2{color:var(--c2);border-color:var(--c2l);background:var(--c2l)}
+.mc3{color:var(--c3);border-color:var(--c3l);background:var(--c3l)}
 
-.opt-btn {
-  width: 100%;
-  padding: 12px 20px;
-  border-radius: var(--radius-sm);
-  font-family: inherit;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  border: 2px solid transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  transition: all var(--t);
-}
-.btn-g-fill  { background: var(--green); color: #fff; }
-.btn-g-fill:hover { background: #245a40; }
-.btn-g-out   { background: transparent; color: var(--green); border-color: #c6e8d5; }
-.btn-g-out:hover { background: var(--green-light); }
-.btn-o-fill  { background: var(--orange); color: #fff; }
-.btn-o-fill:hover { background: #a83a0b; }
-.btn-o-out   { background: transparent; color: var(--orange); border-color: #f5cdb6; }
-.btn-o-out:hover { background: var(--orange-light); }
+.opt-title { font-size:1.15rem; font-weight:800; margin-bottom:10px; line-height:1.3; }
+.opt-desc  { font-size:.9rem; color:var(--muted); line-height:1.8; margin-bottom:18px; }
 
-/* ── Summary Card ────────────────────────────── */
-.summary-wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px 48px; }
+.hl-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:7px; margin-bottom:18px;
+}
+.hl-item {
+  display:flex; align-items:center; gap:8px;
+  padding:8px 11px; background:var(--bg); border-radius:var(--rs);
+  border:1px solid var(--borderl); font-size:13px; font-weight:600;
+}
+.hl-dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.d1{background:var(--c1m)} .d2{background:var(--c2m)} .d3{background:var(--c3m)}
 
-.summary-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 26px 32px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  border-top: 3px solid var(--green);
-  transition: border-color var(--t);
+.places-row { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:22px; }
+.place-tag {
+  background:var(--bg); border:1px solid var(--border);
+  border-radius:6px; padding:4px 11px;
+  font-size:12px; font-weight:500; color:var(--muted);
 }
-@media (max-width: 640px) {
-  .summary-card { grid-template-columns: 1fr 1fr; padding: 20px; }
+
+.opt-cta {
+  display:inline-flex; align-items:center; gap:6px;
+  padding:11px 20px; border-radius:var(--rs);
+  font-family:inherit; font-size:13.5px; font-weight:700;
+  text-decoration:none; border:none; cursor:pointer;
+  transition:all var(--t);
 }
-.sum-lbl {
-  font-size: 10.5px;
-  font-weight: 800;
-  color: var(--muted-light);
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  margin-bottom: 6px;
+.cta1{background:var(--c1);color:#fff} .cta1:hover{background:#2e5740}
+.cta2{background:var(--c2);color:#fff} .cta2:hover{background:#225070}
+.cta3{background:var(--c3);color:#fff} .cta3:hover{background:#953c16}
+
+/* ── Summary bar ─────────────────────────────── */
+.summary-bar {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:var(--r); box-shadow:var(--sh);
+  padding:20px 28px; display:flex; gap:0; flex-wrap:wrap;
+  border-top:3px solid var(--c1); transition:border-color var(--t);
 }
-.sum-val {
-  font-size: 0.93rem;
-  font-weight: 700;
-  color: var(--text);
-  line-height: 1.4;
+.sum-item {
+  flex:1; min-width:140px; padding:6px 20px 6px 0;
+  border-left:1px solid var(--borderl);
 }
+.sum-item:last-child { border-left:none; }
+.sum-lbl { font-size:10.5px; font-weight:800; color:var(--faint); letter-spacing:.09em; text-transform:uppercase; margin-bottom:4px; }
+.sum-val { font-size:.9rem; font-weight:700; }
+
+/* ── Places section ──────────────────────────── */
+.places-grid {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:18px;
+}
+@media(max-width:840px){.places-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.places-grid{grid-template-columns:1fr}}
+
+.place-card {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:var(--r); overflow:hidden;
+  box-shadow:var(--sh); transition:all var(--t);
+}
+.place-card:hover { box-shadow:var(--shm); transform:translateY(-2px); }
+
+/* NOTE: replace .place-ph with <img> tag for each place */
+.place-ph {
+  aspect-ratio:16/9; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:6px; position:relative; overflow:hidden;
+}
+.place-ph::before {
+  content:''; position:absolute; inset:0;
+  background:repeating-linear-gradient(
+    -45deg, transparent, transparent 10px,
+    rgba(255,255,255,.1) 10px, rgba(255,255,255,.1) 20px
+  );
+}
+.ph-em { font-size:1.8rem; position:relative; z-index:1; opacity:.7; }
+.ph-txt { font-size:10px; color:rgba(255,255,255,.65); font-weight:600; position:relative; z-index:1; }
+/* 6 placeholder color themes */
+.pp1{background:linear-gradient(135deg,#5d9a78,#3b6b50)}
+.pp2{background:linear-gradient(135deg,#e8b060,#c07820)}
+.pp3{background:linear-gradient(135deg,#6aabcc,#3a7a9c)}
+.pp4{background:linear-gradient(135deg,#c8a880,#9a7850)}
+.pp5{background:linear-gradient(135deg,#7aaa70,#4a7a40)}
+.pp6{background:linear-gradient(135deg,#d09070,#a06040)}
+
+.place-body { padding:16px 18px; }
+.place-num { font-size:10.5px; font-weight:800; color:var(--faint); letter-spacing:.06em; margin-bottom:4px; }
+.place-name { font-size:.95rem; font-weight:800; margin-bottom:4px; }
+.place-price { font-size:11.5px; color:var(--faint); font-weight:600; margin-bottom:6px; }
+.place-desc { font-size:.83rem; color:var(--muted); line-height:1.65; margin-bottom:12px; }
+.place-link {
+  font-size:12.5px; font-weight:700; color:var(--c1); text-decoration:none;
+  display:inline-flex; align-items:center; gap:4px;
+  transition:color var(--t);
+}
+.place-link:hover { color:#2e5740; }
 
 /* ── Timeline ────────────────────────────────── */
-.tl-wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px 48px; }
-.tl-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 32px;
-  flex-wrap: wrap;
-  gap: 12px;
+.tl-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:28px; flex-wrap:wrap; gap:12px; }
+.tl-pill {
+  display:inline-flex; align-items:center; gap:6px;
+  padding:6px 16px; border-radius:999px; font-size:12.5px; font-weight:700;
+  transition:all var(--t);
 }
-.tl-mode-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 16px;
-  border-radius: 999px;
-  font-size: 12.5px;
-  font-weight: 700;
-  transition: all var(--t);
-}
-.tl-mode-g { background: var(--green-light); color: var(--green); }
-.tl-mode-o { background: var(--orange-light); color: var(--orange); }
+.tp1{background:var(--c1l);color:var(--c1)}
+.tp2{background:var(--c2l);color:var(--c2)}
+.tp3{background:var(--c3l);color:var(--c3)}
 
-.timeline {
-  position: relative;
-  padding-right: 52px; /* space for dot column in RTL */
-}
-/* Vertical line – right side in RTL */
+.timeline { position:relative; }
 .timeline::before {
-  content: '';
-  position: absolute;
-  right: 23px;
-  top: 12px;
-  bottom: 28px;
-  width: 2px;
-  background: var(--border);
-  border-radius: 2px;
-  transition: background var(--t);
+  content:''; position:absolute; right:30px; top:10px; bottom:24px;
+  width:2px; background:var(--border); border-radius:2px; transition:background var(--t);
 }
-.timeline.mode-g::before { background: #c6e8d5; }
-.timeline.mode-o::before { background: #f5cdb6; }
+.tl-g1::before{background:#c6e8d5}
+.tl-g2::before{background:#bde0ef}
+.tl-g3::before{background:#f5cdb6}
 
-.tl-item {
-  display: flex;
-  gap: 18px;
-  margin-bottom: 28px;
-  align-items: flex-start;
-  position: relative;
-}
-.tl-item:last-child { margin-bottom: 0; }
+.tl-item { display:flex; gap:16px; padding-bottom:24px; }
+.tl-item:last-child{padding-bottom:0}
 
-.tl-node {
-  position: absolute;
-  right: -52px; /* pulls node out to the right gutter */
-  top: 14px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-  width: 46px;
+.tl-marker {          /* RTL: appears on right (first in DOM) */
+  flex-shrink:0; width:60px;
+  display:flex; flex-direction:column; align-items:center; gap:5px; z-index:1;
 }
-.tl-dot {
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  background: var(--bg);
-  border: 2px solid var(--border);
-  z-index: 1;
-  transition: all var(--t);
-}
-.timeline.mode-g .tl-dot { background: var(--green-mid); border-color: var(--green-mid); }
-.timeline.mode-o .tl-dot { background: var(--orange-mid); border-color: var(--orange-mid); }
-.tl-time {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--muted);
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-}
+.tl-dot { width:10px; height:10px; border-radius:50%; background:var(--bg); border:2px solid var(--border); transition:all var(--t); }
+.tl-g1 .tl-dot{background:var(--c1m);border-color:var(--c1m)}
+.tl-g2 .tl-dot{background:var(--c2m);border-color:var(--c2m)}
+.tl-g3 .tl-dot{background:var(--c3m);border-color:var(--c3m)}
+.tl-time { font-size:11px; font-weight:700; color:var(--muted); white-space:nowrap; }
 
-.tl-body {
-  flex: 1;
-  background: var(--card);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-sm);
-  padding: 14px 18px;
-  box-shadow: 0 1px 5px rgba(0,0,0,0.04);
+.tl-card {
+  flex:1; background:var(--card); border:1px solid var(--borderl);
+  border-radius:var(--rs); padding:13px 16px;
+  box-shadow:0 1px 5px rgba(0,0,0,.04);
 }
-.tl-act {
-  font-size: 0.93rem;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 3px;
-}
-.tl-detail {
-  font-size: 0.82rem;
-  color: var(--muted);
-  line-height: 1.5;
-}
+.tl-act    { font-size:.93rem; font-weight:700; margin-bottom:2px; }
+.tl-detail { font-size:.82rem; color:var(--muted); line-height:1.55; }
 
 /* ── CTA ─────────────────────────────────────── */
-.cta-wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px 48px; }
 .cta-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 32px 36px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  flex-wrap: wrap;
+  background:var(--card); border:1px solid var(--border); border-radius:var(--r);
+  padding:30px 34px; display:flex; align-items:center; justify-content:space-between;
+  gap:20px; flex-wrap:wrap;
 }
-.cta-text h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 4px; }
-.cta-text p  { font-size: 0.875rem; color: var(--muted); }
-.cta-btns    { display: flex; gap: 10px; flex-wrap: wrap; }
-/* NOTE TO DEV: wire these buttons to real map / PDF / save logic */
+.cta-t h3{font-size:1.1rem;font-weight:800;margin-bottom:4px}
+.cta-t p {font-size:.875rem;color:var(--muted)}
+.cta-btns{display:flex;gap:10px;flex-wrap:wrap}
+/* NOTE: connect these buttons to real map / PDF / save functionality */
 .cta-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 11px 20px;
-  border-radius: var(--radius-sm);
-  font-family: inherit;
-  font-size: 13.5px;
-  font-weight: 700;
-  cursor: pointer;
-  text-decoration: none;
-  border: none;
-  transition: all var(--t);
+  display:inline-flex; align-items:center; gap:6px;
+  padding:11px 20px; border-radius:var(--rs);
+  font-family:inherit; font-size:13.5px; font-weight:700;
+  cursor:pointer; text-decoration:none; border:none; transition:all var(--t);
 }
-.cta-primary   { background: var(--text); color: #fff; }
-.cta-primary:hover { background: #333; }
-.cta-secondary { background: var(--bg); color: var(--text); border: 1px solid var(--border); }
-.cta-secondary:hover { background: #edeade; }
+.cb-dark{background:var(--text);color:#fff} .cb-dark:hover{background:#333}
+.cb-soft{background:var(--bg);color:var(--text);border:1px solid var(--border)} .cb-soft:hover{background:#ede8de}
 
-/* ── Info Cards ──────────────────────────────── */
-.info-wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px 64px; }
-.info-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 14px;
-}
-.info-card {
-  background: var(--card);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-sm);
-  padding: 22px;
-}
-.info-icon { font-size: 1.5rem; display: block; margin-bottom: 12px; }
-.info-card h4 { font-size: 0.9rem; font-weight: 800; margin-bottom: 7px; }
-.info-card p  { font-size: 0.83rem; color: var(--muted); line-height: 1.7; }
+/* ── Dev notes ───────────────────────────────── */
+.dev-notes { background:#fef9c3; border-top:1px solid #fde68a; padding:36px 24px; }
+.dev-notes-in { max-width:860px; margin:0 auto; }
+.dev-notes h3 { font-size:.95rem; font-weight:800; color:#92400e; margin-bottom:14px; }
+.dev-notes ul { list-style:none; display:flex; flex-direction:column; gap:9px; }
+.dev-notes li { font-size:.84rem; color:#78350f; display:flex; gap:8px; }
+.dev-notes li::before { content:'→'; font-weight:800; flex-shrink:0; }
 
-/* ── Dev Notes Footer ────────────────────────── */
-.dev-footer {
-  background: #fef9c3;
-  border-top: 1px solid #fde68a;
-  padding: 36px 24px;
-}
-.dev-footer-inner { max-width: 860px; margin: 0 auto; }
-.dev-footer h3 {
-  font-size: 0.95rem;
-  font-weight: 800;
-  color: #92400e;
-  margin-bottom: 14px;
-}
-.dev-footer ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-.dev-footer li {
-  font-size: 0.85rem;
-  color: #78350f;
-  display: flex;
-  gap: 8px;
-}
-.dev-footer li::before { content: '→'; font-weight: 800; flex-shrink: 0; }
-
-/* ── Fade animation ──────────────────────────── */
-.fade-in { animation: fadeIn 0.3s ease; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+/* ── Utility ─────────────────────────────────── */
+@keyframes fadeSlide { from{opacity:0;transform:translateY(5px)} to{opacity:1;transform:none} }
+.fade-in { animation:fadeSlide .28s ease; }
+.divider { height:1px; background:var(--border); max-width:1120px; margin:0 auto; }
 
 </style>
 </head>
 <body>
 
-<!-- ═══════ PREVIEW BANNER ═══════════════════════════ -->
+<!-- PREVIEW BANNER -->
 <div class="preview-bar">
-  <span class="badge">PREVIEW</span>
-  עמוד טיוטה בלבד – לא חלק מהאתר הרשמי · לא לשיתוף
+  <b>PREVIEW v2</b>
+  עמוד טיוטה בלבד — לא חלק מהאתר הרשמי
 </div>
 
-<!-- ═══════ HERO ══════════════════════════════════════ -->
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-inner">
+  <div class="hero-in">
     <div class="eyebrow">יום 3 &nbsp;·&nbsp; ראשון 21.06.26 &nbsp;·&nbsp; דשבאשי ← בורג׳ומי</div>
     <h1>בורג׳ומי</h1>
-    <div class="hero-sub">מעיינות מינרליים, פארק ירוק ואוויר הרים</div>
+    <div class="hero-sub">מעיינות מינרליים, פארק ירוק ואוויר הרים בלב גאורגיה</div>
     <p class="hero-desc">
-      בורג׳ומי היא עיירת נופש קסומה בלב גאורגיה, ידועה בזכות המים המינרליים שלה, הפארק המרכזי הירוק על גדות הנהר, בתי ספא מפנקים — ולמי שמחפש חוויה שונה — גישה לאזורי שטח וסביבה הררית בלתי נשכחת.
+      עיירת נופש קסומה שחיה על המוניטין של המים שלה — ישירות מהברז, חינם לחלוטין. יש כאן פארק ירוק, גשרים, רכבל, בריכות גופרית, ספא, ושלל מסעדות גאורגיות. היום הזה גמיש: בחרו את הסגנון שמתאים לכן.
     </p>
-    <div class="hero-note">
-      💡 היום הזה מתאים גם לרוגע מוחלט וגם להרפתקה קלה — בחרו למטה
+    <div class="hero-chips">
+      <span class="chip">💧 מים מינרליים</span>
+      <span class="chip">🌲 פארק מרכזי</span>
+      <span class="chip">🚠 רכבל</span>
+      <span class="chip">🧖 ספא + בריכות</span>
+      <span class="chip">🚙 4×4 אופציה</span>
+      <span class="chip">🛏️ לינה: בורג׳ומי</span>
     </div>
   </div>
 </section>
 
-<!-- ═══════ CHOICE SECTION ════════════════════════════ -->
-<div class="section">
-  <div class="sec-label">בחירת מסלול</div>
-  <div class="sec-title">איזה סגנון יום מתאים לכם?</div>
-  <p class="sec-desc">לחצו על אחת האופציות — המפה, הסיכום והלו״ז יתעדכנו אוטומטית.</p>
+<!-- CHOICE SECTION -->
+<div class="sec">
+  <div class="sec-lbl">בחירת סגנון היום</div>
+  <div class="sec-h">איזה בורג׳ומי בא לכן?</div>
+  <p class="sec-p">בחרו אופציה — המפה, הסיכום והלו״ז יתעדכנו אוטומטית.</p>
 
+  <!-- 3-tab selector -->
+  <div class="opt-tabs">
+    <button class="opt-tab t1 sel" onclick="pick(1)">
+      <span class="tab-icon">🌿</span>
+      <div class="tab-lbl">
+        <span class="tab-name">קלאסי + משולב</span>
+        <span class="tab-hint">פארק, רכבל, אוכל, מזכרות</span>
+      </div>
+    </button>
+    <button class="opt-tab t2" onclick="pick(2)">
+      <span class="tab-icon">🧖</span>
+      <div class="tab-lbl">
+        <span class="tab-name">ספא ורוגע</span>
+        <span class="tab-hint">בריכות, שקט, מנוחה</span>
+      </div>
+    </button>
+    <button class="opt-tab t3" onclick="pick(3)">
+      <span class="tab-icon">🚙</span>
+      <div class="tab-lbl">
+        <span class="tab-name">ג׳יפ + אדרנלין</span>
+        <span class="tab-hint">4×4, הרים, תצפיות</span>
+      </div>
+    </button>
+  </div>
+
+  <!-- 2-col: map + option panel -->
   <div class="choice-grid">
 
-    <!-- ─── MAP CARD ───────────────────────────────── -->
+    <!-- MAP (visual placeholder) -->
     <!--
-      NOTE TO DEV: The SVG below is a visual placeholder only.
-      To replace it with a real map:
-        Option A – Google Maps embed: <iframe src="https://www.google.com/maps/embed?..." />
-        Option B – Leaflet.js with the same stop coordinates from index.html
-        Option C – Export from Google My Maps as an image and use <img>
-      Keep the .map-card shell; only swap the .map-svg-area contents.
+      NOTE TO DEV: Replace the SVG map with one of these options:
+        A) Leaflet.js embed with 3 route polylines (reuse day3BuildMap() from index.html)
+        B) Google Maps iframe with waypoints per option
+        C) Exported PNG from Google My Maps
+      The .map-card shell stays as-is; only swap .map-svg contents.
     -->
     <div class="map-card">
-      <div class="map-card-head">
-        <div class="map-card-head-title">🗺️ מפת המסלול</div>
-        <div class="map-placeholder-pill">ויזואליזציה בלבד</div>
+      <div class="map-head">
+        <div class="map-head-t">🗺️ מפת המסלול</div>
+        <div class="map-ph-pill">ויזואליזציה בלבד</div>
       </div>
 
-      <div class="map-svg-area">
-        <svg id="route-svg" viewBox="0 0 560 300" xmlns="http://www.w3.org/2000/svg" aria-label="מפה ויזואלית של מסלול יום 3">
+      <svg id="route-svg" class="map-svg" viewBox="0 0 560 300"
+           xmlns="http://www.w3.org/2000/svg" aria-label="מפה ויזואלית יום 3">
 
-          <!-- Terrain base -->
-          <rect width="560" height="300" fill="#dae6d0"/>
+        <!-- Terrain -->
+        <rect width="560" height="300" fill="#dde8d4"/>
+        <polygon points="0,0 0,130 55,102 108,122 165,80 225,110 288,68 340,94 398,56 452,88 514,50 560,72 560,0" fill="#b8cfaa"/>
+        <polygon points="0,0 0,82 60,60 130,82 200,44 278,64 352,34 428,56 502,30 560,46 560,0" fill="#a3be95"/>
 
-          <!-- Mountain silhouettes (north / top) -->
-          <polygon points="0,0 0,130 55,100 105,120 165,78 225,108 285,65 340,92 395,55 450,85 510,48 560,70 560,0"
-                   fill="#b8cfaa"/>
-          <polygon points="0,0 0,80 60,58 130,78 200,42 275,62 350,32 425,55 500,28 560,44 560,0"
-                   fill="#a3be95"/>
+        <!-- River -->
+        <path d="M 30 200 C 92 190 168 187 255 180 C 332 174 410 179 532 186"
+              fill="none" stroke="#7ab3d0" stroke-width="6" stroke-linecap="round" opacity=".75"/>
+        <path d="M 30 200 C 92 190 168 187 255 180 C 332 174 410 179 532 186"
+              fill="none" stroke="#a8cfe6" stroke-width="2" stroke-linecap="round" opacity=".85"/>
 
-          <!-- River (west→east through valley) -->
-          <path d="M 30 198 C 90 188 165 186 248 180 C 330 174 405 178 535 184"
-                fill="none" stroke="#7ab3d0" stroke-width="6" stroke-linecap="round" opacity="0.75"/>
-          <path d="M 30 198 C 90 188 165 186 248 180 C 330 174 405 178 535 184"
-                fill="none" stroke="#a8cfe6" stroke-width="2" stroke-linecap="round" opacity="0.85"/>
+        <!-- ROUTE 1: Classic – green dashed along valley with cable-car branch -->
+        <g id="map-r1" opacity="1">
+          <path d="M 430,198 Q 378,184 330,180 Q 290,176 255,175 Q 218,174 172,180"
+                fill="none" stroke="#3b6b50" stroke-width="5.5" stroke-dasharray="13 6" stroke-linecap="round"/>
+          <!-- cable car spur -->
+          <line x1="344" y1="178" x2="352" y2="155"
+                stroke="#3b6b50" stroke-width="3" stroke-dasharray="5 4" opacity=".9"/>
+        </g>
 
-          <!-- ── ROUTE 1: Relaxed (green dashes) – valley floor ── -->
-          <path id="r1"
-                d="M 432 192 Q 385 183 340 178 Q 300 174 260 172 Q 220 170 175 175"
-                fill="none" stroke="#2d6a4f" stroke-width="5.5" stroke-linecap="round"
-                stroke-dasharray="13 7" opacity="1"/>
+        <!-- ROUTE 2: Relax – blue dotted, gentle valley path -->
+        <g id="map-r2" opacity="0.18">
+          <path d="M 430,198 Q 402,196 368,194 Q 318,190 255,185 Q 216,182 172,182"
+                fill="none" stroke="#2a6389" stroke-width="5.5" stroke-dasharray="3 7" stroke-linecap="round"/>
+        </g>
 
-          <!-- ── ROUTE 2: Adventure (orange solid) – mountain loop ── -->
-          <path id="r2"
-                d="M 432 192 Q 385 183 340 178 Q 310 160 282 128 Q 258 102 228 88 Q 198 76 178 98 Q 165 118 167 142 L 175 175"
-                fill="none" stroke="#c2440c" stroke-width="5.5" stroke-linecap="round" opacity="0.35"/>
+        <!-- ROUTE 3: Adventure – orange solid, mountain loop -->
+        <g id="map-r3" opacity="0.18">
+          <path d="M 430,198 Q 378,184 330,180 Q 293,156 264,130 Q 242,108 224,92 Q 202,78 183,97 Q 169,118 170,152 L 172,180"
+                fill="none" stroke="#b84c1a" stroke-width="5.5" stroke-linecap="round"/>
+        </g>
 
-          <!-- ── LOCATION MARKERS ── -->
+        <!-- Markers — always visible -->
+        <!-- Borjomi city -->
+        <circle cx="430" cy="198" r="10" fill="#3b6b50" stroke="white" stroke-width="2.5"/>
+        <text x="418" y="185" font-family="Heebo,Arial" font-size="11" font-weight="700" fill="#1a1816" text-anchor="end">בורג׳ומי</text>
+        <text x="418" y="197" font-family="Heebo,Arial" font-size="9" fill="#6e6459" text-anchor="end">מוצא</text>
 
-          <!-- 1 · Borjomi city (departure) -->
-          <circle cx="432" cy="192" r="10" fill="#2d6a4f" stroke="white" stroke-width="2.5"/>
-          <text x="419" y="179" font-family="Heebo,Arial" font-size="11" font-weight="700"
-                fill="#1a1a1e" text-anchor="end" direction="ltr">Borjomi</text>
-          <text x="419" y="191" font-family="Heebo,Arial" font-size="9" fill="#6b7280"
-                text-anchor="end" direction="ltr">Start</text>
+        <!-- Park entrance -->
+        <circle cx="330" cy="180" r="7.5" fill="#52b788" stroke="white" stroke-width="2"/>
+        <text x="319" y="167" font-family="Heebo,Arial" font-size="10" font-weight="700" fill="#1a1816" text-anchor="end">פארק</text>
 
-          <!-- 2 · Central Park entrance -->
-          <circle cx="340" cy="178" r="7.5" fill="#52b788" stroke="white" stroke-width="2"/>
-          <text x="328" y="164" font-family="Heebo,Arial" font-size="10" font-weight="600"
-                fill="#1a1a1e" text-anchor="end" direction="ltr">Central Park</text>
+        <!-- Cable car — visible for routes 1 & 2 -->
+        <g id="map-cable" opacity="1">
+          <circle cx="352" cy="155" r="6" fill="#f59e0b" stroke="white" stroke-width="2"/>
+          <text x="363" y="152" font-family="Heebo,Arial" font-size="9.5" font-weight="700" fill="#92400e" text-anchor="start">רכבל</text>
+        </g>
 
-          <!-- 3 · Mineral Springs -->
-          <circle cx="260" cy="172" r="7" fill="#06b6d4" stroke="white" stroke-width="2"/>
-          <text x="248" y="158" font-family="Heebo,Arial" font-size="10" font-weight="600"
-                fill="#1a1a1e" text-anchor="end" direction="ltr">Springs</text>
+        <!-- Mineral springs -->
+        <circle cx="255" cy="175" r="7" fill="#06b6d4" stroke="white" stroke-width="2"/>
+        <text x="244" y="162" font-family="Heebo,Arial" font-size="10" font-weight="700" fill="#1a1816" text-anchor="end">מעיינות</text>
 
-          <!-- 4 · Likani (hotel / finish) -->
-          <circle cx="175" cy="175" r="10" fill="#8b5cf6" stroke="white" stroke-width="2.5"/>
-          <text x="163" y="162" font-family="Heebo,Arial" font-size="10.5" font-weight="700"
-                fill="#1a1a1e" text-anchor="end" direction="ltr">Likani</text>
-          <text x="163" y="173" font-family="Heebo,Arial" font-size="9" fill="#6b7280"
-                text-anchor="end" direction="ltr">Hotel</text>
+        <!-- Likani SPA -->
+        <circle cx="172" cy="180" r="10" fill="#8b5cf6" stroke="white" stroke-width="2.5"/>
+        <text x="161" y="167" font-family="Heebo,Arial" font-size="10.5" font-weight="700" fill="#1a1816" text-anchor="end">Likani</text>
+        <text x="161" y="178" font-family="Heebo,Arial" font-size="9" fill="#6e6459" text-anchor="end">SPA · לינה</text>
 
-          <!-- 5 · Jeep viewpoint (shown only for route 2) -->
-          <g id="jeep-pt" opacity="0.15" style="transition:opacity 0.3s ease">
-            <circle cx="228" cy="88" r="7" fill="#c2440c" stroke="white" stroke-width="2"/>
-            <text x="238" y="85" font-family="Heebo,Arial" font-size="10" font-weight="700"
-                  fill="#c2440c" text-anchor="start" direction="ltr">4×4 View</text>
-          </g>
+        <!-- Mountain viewpoint — route 3 only -->
+        <g id="map-view" opacity="0.15">
+          <circle cx="224" cy="92" r="7" fill="#b84c1a" stroke="white" stroke-width="2"/>
+          <text x="235" y="89" font-family="Heebo,Arial" font-size="9.5" font-weight="700" fill="#b84c1a" text-anchor="start">4×4</text>
+        </g>
 
-          <!-- Compass -->
-          <g transform="translate(524,26)">
-            <circle r="16" fill="white" opacity="0.75"/>
-            <text x="0" y="-4" text-anchor="middle" font-size="10" font-weight="800"
-                  fill="#6b7280" font-family="Arial" direction="ltr">N</text>
-            <polygon points="0,-13 2,-3 -2,-3" fill="#6b7280"/>
-          </g>
+        <!-- Compass -->
+        <g transform="translate(522,26)">
+          <circle r="16" fill="white" opacity=".75"/>
+          <text x="0" y="-4" text-anchor="middle" font-size="10" font-weight="800" fill="#6e6459" font-family="Arial">N</text>
+          <polygon points="0,-13 2,-3 -2,-3" fill="#6e6459"/>
+        </g>
 
-          <!-- Scale note -->
-          <text x="20" y="293" font-family="Heebo,Arial" font-size="9.5" fill="#9ca3af"
-                direction="rtl">מפה ויזואלית בלבד · לא בקנה מידה</text>
-        </svg>
-      </div>
+        <text x="20" y="293" font-family="Heebo,Arial" font-size="9" fill="#9c9289">מפה ויזואלית בלבד</text>
+      </svg>
 
-      <div class="map-status green" id="map-status">🌿 מסלול רגוע מסומן</div>
+      <div class="map-status ms-1" id="map-status">🌿 מסלול קלאסי מסומן</div>
 
-      <div class="map-legend-row">
-        <div class="map-legend-item">
-          <div class="legend-dash" style="background:#2d6a4f"></div>יום רגוע
-        </div>
-        <div class="map-legend-item">
-          <div class="legend-dash" style="background:#c2440c"></div>4×4 שטח
-        </div>
-        <div class="map-legend-item">
-          <div class="legend-dash" style="background:#8b5cf6"></div>לינה
-        </div>
+      <div class="map-leg">
+        <div class="ml-item"><div class="ml-line" style="background:var(--c1)"></div>קלאסי</div>
+        <div class="ml-item"><div class="ml-line" style="background:var(--c2)"></div>ספא</div>
+        <div class="ml-item"><div class="ml-line" style="background:var(--c3)"></div>אדרנלין</div>
+        <div class="ml-item"><div class="ml-line" style="background:#8b5cf6"></div>לינה</div>
       </div>
     </div><!-- /map-card -->
 
-    <!-- ─── OPTION CARDS ───────────────────────────── -->
-    <div class="options-col">
-
-      <!-- Option 1: Relaxed -->
-      <div class="opt-card option-1 sel-green" onclick="pick(1)">
-        <div class="opt-badge badge-g">🌿 יום רגוע</div>
-        <div class="opt-title">פארק מרכזי, מעיינות מינרליים וספא</div>
-        <p class="opt-desc">
-          יום נעים ומרגיע לגמרי — הליכה קלילה בפארק המרכזי על גדות הנהר, טעימת מים מינרליים ישירות מהמעיין, זמן חופשי בעיירה, ולסיום — ספא מפנק.
-        </p>
-        <ul class="opt-list">
-          <li><span class="dot-g"></span>פארק בורג׳ומי המרכזי</li>
-          <li><span class="dot-g"></span>מעיינות מינרליים טבעיים</li>
-          <li><span class="dot-g"></span>הליכה קלה לאורך הנהר</li>
-          <li><span class="dot-g"></span>ספא / בריכה מינרלית</li>
-        </ul>
-        <button class="opt-btn btn-g-fill" id="btn1" onclick="pick(1);event.stopPropagation()">✓ מסלול נבחר</button>
-      </div>
-
-      <!-- Option 2: Adventure -->
-      <div class="opt-card option-2" onclick="pick(2)">
-        <div class="opt-badge badge-o">🚙 4×4 Adventure</div>
-        <div class="opt-title">ג׳יפ ושטח — חוויית הרים</div>
-        <p class="opt-desc">
-          יום אקטיבי עם אופי שונה — נסיעה בשטח בהרי בורג׳ומי, עצירות נוף פנורמיות, צילומים מרהיבים, ואז חזרה למלון לנוח.
-        </p>
-        <ul class="opt-list">
-          <li><span class="dot-o"></span>נסיעת ג׳יפ / 4×4 באזור</li>
-          <li><span class="dot-o"></span>עצירות תצפית ונוף</li>
-          <li><span class="dot-o"></span>טבע הררי ואוויר פתוח</li>
-          <li><span class="dot-o"></span>חוויית שטח אותנטית</li>
-        </ul>
-        <button class="opt-btn btn-o-out" id="btn2" onclick="pick(2);event.stopPropagation()">בחרו מסלול זה</button>
-      </div>
-
-    </div><!-- /options-col -->
+    <!-- OPTION PANEL (injected by JS) -->
+    <div class="opt-panel" id="opt-panel"></div>
 
   </div><!-- /choice-grid -->
-</div><!-- /section -->
+</div><!-- /choice section -->
 
-<!-- ═══════ SUMMARY ════════════════════════════════════ -->
-<div class="summary-wrap">
-  <div class="summary-card" id="summary-card">
-    <div>
-      <div class="sum-lbl">סגנון היום</div>
-      <div class="sum-val" id="s-style">רגוע ומפנק</div>
-    </div>
-    <div>
-      <div class="sum-lbl">רמת מאמץ</div>
-      <div class="sum-val" id="s-effort">נמוכה</div>
-    </div>
-    <div>
-      <div class="sum-lbl">vibe</div>
-      <div class="sum-val" id="s-vibe">ספא, מים, שקט</div>
-    </div>
-    <div>
-      <div class="sum-lbl">מתאים ל</div>
-      <div class="sum-val" id="s-who">כולם, כולל ילדים</div>
-    </div>
+<!-- SUMMARY BAR -->
+<div class="sec" style="padding-top:0">
+  <div class="summary-bar" id="summary-bar">
+    <div class="sum-item"><div class="sum-lbl">סגנון</div><div class="sum-val" id="s-style">קלאסי + מגוון</div></div>
+    <div class="sum-item"><div class="sum-lbl">מאמץ</div><div class="sum-val" id="s-effort">נמוך–בינוני</div></div>
+    <div class="sum-item"><div class="sum-lbl">vibe</div><div class="sum-val" id="s-vibe">כיפי, צבעוני</div></div>
+    <div class="sum-item"><div class="sum-lbl">מתאים ל</div><div class="sum-val" id="s-who">כולם</div></div>
   </div>
 </div>
 
-<!-- ═══════ TIMELINE ═══════════════════════════════════ -->
-<div class="tl-wrap">
+<div class="divider"></div>
+
+<!-- WHAT TO DO IN BORJOMI -->
+<div class="sec">
+  <div class="sec-lbl">מקומות</div>
+  <div class="sec-h">מה אפשר לעשות בבורג׳ומי?</div>
+  <p class="sec-p">שישה יעדים עיקריים — כל אחד מהם שווה ביקור בפני עצמו.</p>
+  <!--
+    NOTE TO DEV: replace each .place-ph div with <img src="..." alt="...">
+    when real photos are available. Recommended resolution: 800×450px minimum.
+    Add loading="lazy" to all images.
+  -->
+  <div class="places-grid" id="places-grid"></div>
+</div>
+
+<div class="divider"></div>
+
+<!-- TIMELINE -->
+<div class="sec">
   <div class="tl-header">
     <div>
-      <div class="sec-label">לו״ז יומי</div>
-      <div class="sec-title">תכנית המסלול הנבחר</div>
+      <div class="sec-lbl">לו״ז יומי</div>
+      <div class="sec-h">תכנית המסלול הנבחר</div>
     </div>
-    <div class="tl-mode-pill tl-mode-g" id="tl-badge">🌿 יום רגוע</div>
+    <div class="tl-pill tp1" id="tl-pill">🌿 קלאסי + משולב</div>
   </div>
-  <div class="timeline mode-g" id="timeline"></div>
+  <div class="timeline tl-g1" id="timeline"></div>
 </div>
 
-<!-- ═══════ CTA ════════════════════════════════════════ -->
-<div class="cta-wrap">
+<div class="divider"></div>
+
+<!-- CTA -->
+<div class="sec">
   <div class="cta-card">
-    <div class="cta-text">
-      <h3>מוכנים? בואו נסגור את היום הזה</h3>
-      <p>כל הכלים לניווט ותכנון — במקום אחד</p>
+    <div class="cta-t">
+      <h3>מוכנות? בואו נסגור את היום הזה</h3>
+      <p>מפה אינטראקטיבית, PDF להדפסה, ושמירת הבחירה</p>
     </div>
     <div class="cta-btns">
-      <!-- NOTE TO DEV: Link btn1 to the Leaflet map modal (openDay3RouteMap()) -->
-      <button class="cta-btn cta-primary" onclick="alert('יחובר למפה האינטראקטיבית מהאתר הרשמי')">📍 צפייה במפה</button>
-      <!-- NOTE TO DEV: Implement PDF export (window.print or jsPDF) -->
-      <button class="cta-btn cta-secondary" onclick="alert('בקרוב: הורדת PDF')">📄 הורדת PDF</button>
-      <!-- NOTE TO DEV: Save to localStorage key 'day3-option' -->
-      <button class="cta-btn cta-secondary" onclick="alert('בקרוב: שמירת בחירה')">🔖 שמירה</button>
+      <!-- NOTE: connect to openDay3RouteMap() from index.html -->
+      <button class="cta-btn cb-dark" onclick="alert('יחובר למפה האינטראקטיבית מהאתר הרשמי')">📍 צפייה במפה</button>
+      <!-- NOTE: implement via window.print() or jsPDF -->
+      <button class="cta-btn cb-soft" onclick="alert('בקרוב: הורדת PDF')">📄 הורדת PDF</button>
+      <!-- NOTE: save chosen option to localStorage key 'day3-option' -->
+      <button class="cta-btn cb-soft" onclick="alert('בקרוב: שמירת הבחירה')">🔖 שמירה</button>
     </div>
   </div>
 </div>
 
-<!-- ═══════ INFO CARDS ════════════════════════════════ -->
-<div class="info-wrap">
-  <div class="sec-label" style="margin-bottom:18px">מה חשוב לדעת לפני</div>
-  <div class="info-grid">
-    <div class="info-card">
-      <span class="info-icon">💧</span>
-      <h4>המים המינרליים</h4>
-      <p>שותים ישירות מהברז בפארק המרכזי — חינם לחלוטין. הטעם מלוח-גזי וייחודי. לשתות במינון — לא כוסות ללא הפסקה.</p>
-    </div>
-    <div class="info-card">
-      <span class="info-icon">🌲</span>
-      <h4>פארק מרכזי vs. פארק לאומי</h4>
-      <p>הביקור הוא בפארק המרכזי של העיר (כניסה ~10₾). הפארק הלאומי הגדול (6,800 קמ"ר) הוא נפרד ומחוץ לעיר.</p>
-    </div>
-    <div class="info-card">
-      <span class="info-icon">🚙</span>
-      <h4>מסלול הג׳יפ</h4>
-      <p>רעיון קונספטואלי שיש לבצע עם ג׳יפ מקומי שכור. המסלול הספציפי ייקבע לפי העדפות הלקוח ותנאי שטח בפועל.</p>
-    </div>
-    <div class="info-card">
-      <span class="info-icon">🗺️</span>
-      <h4>כיצד מגיעים</h4>
-      <p>מדשבאשי/צלקה ~80–100 ק"מ, כ-1.5–2 שע׳ בג׳יפ. יש שלטים ברורים לבורג׳ומי מהכביש הראשי.</p>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════ DEV NOTES ══════════════════════════════════ -->
-<div class="dev-footer">
-  <div class="dev-footer-inner">
+<!-- DEV NOTES -->
+<div class="dev-notes">
+  <div class="dev-notes-in">
     <h3>📋 הערות לפיתוח (לא יופיעו בגרסה הסופית)</h3>
     <ul>
-      <li>המפה היא SVG ויזואלי בלבד — ניתן להחליף ב-Leaflet embed מהאתר הרשמי (openDay3RouteMap) או ב-Google Maps iframe</li>
-      <li>כפתורי CTA הם placeholder — יש לחבר למפה האינטראקטיבית, ל-window.print() ול-localStorage לשמירת בחירה</li>
-      <li>מסלול 4×4 הוא קונספטואלי — לוח הזמנים ועצירות יוגדרו לאחר גיבוש עם הלקוח</li>
-      <li>להטמעה בעמוד הרשמי (index.html): העתיקו את ה-CSS לבלוק הסגנונות, את ה-HTML בתוך <code>&lt;article class="day-grid"&gt;</code> של יום 3, ואת ה-JS לבלוק הסקריפטים הקיים</li>
-      <li>שיקלו לשמור את הבחירה ב-localStorage כדי שתישמר בין רענונים ולרוחב הימים</li>
+      <li>המפה — SVG ויזואלי בלבד. להחלפה: (A) Leaflet.js עם שלושה polylines לפי הבחירה — ניתן לשכפל את day3BuildMap() מ-index.html; (B) Google Maps iframe עם waypoints שונים; (C) תמונת PNG מיוצאת מ-Google My Maps</li>
+      <li>תמונת כל אופציה — .opt-img.bg1/bg2/bg3 להחליף ב-&lt;img&gt; עם תמונה אמיתית. גודל מומלץ: 900×500px. נושאים: (1) פארק ירוק עם נהר; (2) בריכת ספא/מינרלים; (3) נהיגת ג׳יפ בהרים</li>
+      <li>כרטיסי מקומות — כל .place-ph להחליף ב-&lt;img&gt;. לינקים של "קראו עוד" שמסומנים <!-- LINK --> דורשים מילוי בלינק אמיתי</li>
+      <li>מסלול הג׳יפ (אופציה 3) — הנתיב קונספטואלי. לפני שזה עולה לאתר הרשמי: לסגור עם מדריך מקומי ולהוסיף "בתיאום מוקדם + תנאי שטח"</li>
+      <li>כפתורי CTA — לחבר: (מפה) openDay3RouteMap() מ-index.html; (PDF) window.print(); (שמירה) localStorage.setItem('day3-option', currentOpt)</li>
+      <li>הטמעה בעמוד הרשמי: להעתיק CSS לבלוק הסגנונות של index.html, HTML כ-&lt;article&gt; חדש של יום 3 בתוך #content-original, ו-JS לבלוק הסקריפטים הקיים</li>
     </ul>
   </div>
 </div>
 
-<!-- ═══════ JAVASCRIPT ══════════════════════════════════ -->
 <script>
+/* ─── DATA ───────────────────────────────────── */
 
-/* ─── Data ────────────────────────────────────────── */
-const DATA = {
+const OPTS = {
   1: {
-    summary: { style: 'רגוע ומפנק', effort: 'נמוכה', vibe: 'ספא, מים, שקט', who: 'כולם, כולל ילדים' },
-    badge: ['🌿 יום רגוע', 'tl-mode-g'],
-    tlClass: 'mode-g',
-    mapStatus: ['🌿 מסלול רגוע מסומן', 'green'],
-    itinerary: [
-      { time: '09:00', act: '🚗 יציאה לבורג׳ומי', detail: 'מדשבאשי / צלקה · ~80 ק"מ · ~1.5–2 שע׳' },
-      { time: '10:30', act: '🌲 כניסה לפארק המרכזי', detail: 'כניסה ~10₾ לנפש · פתוח 09:00–20:00' },
-      { time: '12:30', act: '💧 מעיינות מינרליים', detail: 'שתייה ישירה מהברז — חינם לחלוטין!' },
-      { time: '14:00', act: '🚶 הליכה רגועה וזמן חופשי', detail: 'לאורך הנהר, גשרים, בתי קפה מקומיים' },
-      { time: '16:30', act: '🧖 ספא / בריכה מינרלית', detail: 'Borjomi Likani Hotel & Spa · מים מינרליים חמים' },
-      { time: '19:30', act: '🍽️ ארוחת ערב', detail: 'מסעדת המלון או מסעדה מקומית בכיכר העיר' }
-    ]
+    color:'c1', clsBtn:'cta1', dot:'d1', mc:'mc1', badge:'🌿 קלאסי + משולב',
+    tlClass:'tl-g1', tlPill:'tp1',
+    bgCls:'bg1', bgIcon:'🏞️', bgNote:'תמונה: פארק המרכזי · נהר הבורג׳ומי',
+    meta:['קלאסי + משולב','יום מלא · 9:00–18:00','כיפי, מגוון'],
+    title:'בורג׳ומי הקלאסית — פארק, מים, רכבל ואוכל',
+    desc:'החוויה המלאה של בורג׳ומי בלי לוותר על כלום: הליכה בפארק הירוק לאורך הנהר, מים מינרליים ישר מהברז, רכבל לגבעה עם נוף מרהיב, ארוחת צהריים גאורגית אמיתית, ועצירה קטנה במזכרות. היום שנכנס לאלבום.',
+    hl:['פארק בורג׳ומי המרכזי','מים מינרליים חינמיים','רכבל + נוף פנורמי','מסעדה גאורגית + מזכרות'],
+    tags:['Central Park','Mineral Springs','Cable Car','Georgian Restaurant','Souvenir Market','Likani Hotel'],
+    link:'https://georgia.to/en/places-to-go/samtskhe-javakheti/borjomi/borjomi-central-park/',
+    linkTxt:'מידע על הפארק המרכזי',
+    mapStatus:'🌿 מסלול קלאסי מסומן', mapStatusCls:'ms-1',
+    sum:{ style:'קלאסי + מגוון', effort:'נמוך–בינוני', vibe:'כיפי, צבעוני', who:'כולם' }
   },
   2: {
-    summary: { style: 'אקטיבי ואדרנלין', effort: 'בינונית', vibe: 'הרים, שטח, נוף', who: 'מחפשי הרפתקאות' },
-    badge: ['🚙 4×4 Adventure', 'tl-mode-o'],
-    tlClass: 'mode-o',
-    mapStatus: ['🚙 מסלול שטח מסומן', 'orange'],
-    itinerary: [
-      { time: '09:00', act: '🚗 יציאה לבורג׳ומי', detail: 'מדשבאשי / צלקה · ~80 ק"מ · ~1.5–2 שע׳' },
-      { time: '10:30', act: '📍 הגעה לאזור בורג׳ומי', detail: 'מצטיידים, בוחרים מסלול שטח עם מדריך מקומי' },
-      { time: '12:00', act: '🚙 מסלול 4×4 בהרים', detail: 'נסיעת שטח · עצירות צילום · תצפיות' },
-      { time: '14:00', act: '🏔️ עצירת נוף פנורמית', detail: 'תצפית על עמק בורג׳ומי מגובה' },
-      { time: '16:30', act: '🏨 חזרה + מנוחה', detail: 'Borjomi Likani Hotel — מגיעים רעבים!' },
-      { time: '19:30', act: '🍽️ ארוחת ערב', detail: 'ארוחה נאה אחרי יום שטח' }
-    ]
+    color:'c2', clsBtn:'cta2', dot:'d2', mc:'mc2', badge:'🧖 ספא ורוגע',
+    tlClass:'tl-g2', tlPill:'tp2',
+    bgCls:'bg2', bgIcon:'💆', bgNote:'תמונה: בריכות מינרליות · Likani SPA',
+    meta:['ספא ורוגע','יום שקט · 10:00–19:00','מרגיע, מחלים'],
+    title:'יום שלם של מנוחה — ספא, בריכות ובורג׳ומי בקצב שלכן',
+    desc:'לא כל יום מיועד לרוץ — יש ימים שמיועדים לנשום. הליכה קצרה בפארק, כוס מים מינרליים, ואז שלוש שעות בבריכות המינרליות החמות והסאונה. הגוף מאזין, הנשמה נחה.',
+    hl:['הליכה קצרה בפארק','מים מינרליים טבעיים','Borjomi Likani SPA','בריכות מינרליות חמות'],
+    tags:['Central Park (קצר)','Mineral Springs','Likani SPA','Sulfur Pools'],
+    link:'https://borjomilikaniresort.com/en/',
+    linkTxt:'Borjomi Likani Resort',
+    mapStatus:'🧖 מסלול ספא מסומן', mapStatusCls:'ms-2',
+    sum:{ style:'שקט + מפנק', effort:'נמוכה', vibe:'רגוע, מחלים', who:'מי שצריכה לנשום' }
+  },
+  3: {
+    color:'c3', clsBtn:'cta3', dot:'d3', mc:'mc3', badge:'🚙 ג׳יפ + אדרנלין',
+    tlClass:'tl-g3', tlPill:'tp3',
+    bgCls:'bg3', bgIcon:'🏔️', bgNote:'תמונה: הרי בורג׳ומי · נסיעת 4×4',
+    meta:['ג׳יפ + שטח','יום אינטנסיבי · 9:00–18:00','אדרנלין, נוף'],
+    title:'בורג׳ומי מהצד השני — הרים, ג׳יפ ותצפיות שלא תשכחו',
+    desc:'בורג׳ומי לא רק למי שרוצה לנוח. יוצאים לנסיעת 4×4 בהרים, עוצרים בתצפית על העמק הירוק, ומגיעים למקומות שרגל תיירת לא דרכה בהם. חוזרות עם בוץ על הנעליים ורוח על הפנים.',
+    hl:['נסיעת ג׳יפ 4×4 בהרים','תצפיות ונוף פנורמי','טבע הררי פראי','הורדה לנהר'],
+    tags:['Jeep Route (4×4)','Mountain Viewpoint','Borjomi River','Likani Hotel'],
+    // NOTE: replace '#' with real jeep-tour link when route is confirmed with local guide
+    link:'#',
+    linkTxt:'על מסלולי הג׳יפ באזור',
+    mapStatus:'🚙 מסלול שטח מסומן', mapStatusCls:'ms-3',
+    sum:{ style:'אדרנלין + חוויה', effort:'בינונית', vibe:'פראי, מרגש', who:'חובבי שטח + טבע' }
   }
 };
 
-let active = 1;
+const TL = {
+  1:[
+    {time:'09:00',act:'🚗 יציאה לבורג׳ומי',detail:'מדשבאשי · ~80 ק"מ · ~1.5–2 שע׳'},
+    {time:'10:30',act:'🌲 פארק המרכזי',detail:'כניסה ~10₾ לנפש · שביל נהר, גשרים, עצים ענקיים'},
+    {time:'11:30',act:'💧 מים מינרליים',detail:'ישירות מהברז — חינם לחלוטין! טעם מלוח-גזי ייחודי'},
+    {time:'12:15',act:'🚠 רכבל',detail:'עד הגבעה ובחזרה · ~16₾ · נוף פנורמי על העיר'},
+    {time:'13:30',act:'🍽️ ארוחת צהריים גאורגית',detail:'חינקאלי + קצפלי + חצ׳אפורי · מסעדה מקומית'},
+    {time:'15:30',act:'🛍️ אזור מזכרות + מים',detail:'בקבוקי מינרלים, דבש, גבינות, מלאכת יד מקומית'},
+    {time:'16:30',act:'🏨 צ׳ק-אין + בריכה',detail:'Borjomi Likani Hotel — בריכות מינרליות חמות'},
+    {time:'19:30',act:'🍽️ ארוחת ערב',detail:'מסעדת המלון / מסעדה מקומית'}
+  ],
+  2:[
+    {time:'10:00',act:'🚗 יציאה לבורג׳ומי',detail:'מדשבאשי · ~80 ק"מ · ~1.5–2 שע׳ (יציאה מאוחרת)'},
+    {time:'11:30',act:'🌲 הליכה קצרה בפארק',detail:'שעה ורבע · בלי לחץ · קפה ביד · מי שרוצה'},
+    {time:'12:30',act:'💧 מים מינרליים',detail:'שתייה, תמונות, ויב של מקום'},
+    {time:'13:15',act:'🍽️ ארוחת צהריים קלה',detail:'לא ארוחה כבדה — מרק, לחמג׳ו, קפה מקומי'},
+    {time:'14:30',act:'🏨 צ׳ק-אין מוקדם',detail:'Borjomi Likani Hotel — להתארגן לספא'},
+    {time:'15:30',act:'🧖 ספא + בריכות מינרליות',detail:'3 שעות · בריכה חמה · סאונה · עיסוי אופציה'},
+    {time:'18:30',act:'🌅 זמן חופשי',detail:'קריאה, בריכה, נוף — כל מה שהגוף מבקש'},
+    {time:'20:00',act:'🍽️ ארוחת ערב',detail:'מסעדת המלון — לאחר הספא האוכל טעים פי שניים'}
+  ],
+  3:[
+    {time:'09:00',act:'🚗 יציאה לבורג׳ומי',detail:'מדשבאשי · ~80 ק"מ · ~1.5–2 שע׳'},
+    {time:'10:30',act:'📍 הגעה + ציוד',detail:'בתיאום עם מדריך מקומי · ג׳יפ שכור · מים ואוכל לשטח'},
+    {time:'11:30',act:'🚙 מסלול 4×4 בהרים',detail:'נסיעת שטח · עצירות באמצע · ~2–2.5 שע׳'},
+    {time:'14:00',act:'🏔️ תצפית פנורמית',detail:'עמק בורג׳ומי מגובה · תמונות שחברות יקנאו'},
+    {time:'15:00',act:'🌊 הורדה לנהר',detail:'טבילה קצרה / פיקניק על הסלעים'},
+    {time:'16:30',act:'🏨 צ׳ק-אין + מנוחה',detail:'Borjomi Likani Hotel — מגיעות עם תיאבון'},
+    {time:'19:30',act:'🍽️ ארוחת ערב',detail:'מסעדת המלון — מגיעות עם תיאבון ועם סיפורים'}
+  ]
+};
 
-/* ─── pick() ──────────────────────────────────────── */
-function pick(n) {
-  if (active === n) return;
-  active = n;
-  const d = DATA[n];
-
-  /* option cards */
-  document.querySelector('.option-1').className = 'opt-card option-1' + (n===1 ? ' sel-green' : '');
-  document.querySelector('.option-2').className = 'opt-card option-2' + (n===2 ? ' sel-orange' : '');
-
-  /* buttons */
-  const b1 = document.getElementById('btn1');
-  const b2 = document.getElementById('btn2');
-  b1.className = 'opt-btn ' + (n===1 ? 'btn-g-fill' : 'btn-g-out');
-  b1.textContent = n===1 ? '✓ מסלול נבחר' : 'בחרו מסלול זה';
-  b2.className = 'opt-btn ' + (n===2 ? 'btn-o-fill' : 'btn-o-out');
-  b2.textContent = n===2 ? '✓ מסלול נבחר' : 'בחרו מסלול זה';
-
-  /* map SVG routes */
-  const r1 = document.getElementById('r1');
-  const r2 = document.getElementById('r2');
-  const jp = document.getElementById('jeep-pt');
-  if (n === 1) {
-    r1.setAttribute('stroke-width', '5.5'); r1.setAttribute('opacity', '1');
-    r2.setAttribute('stroke-width', '3');   r2.setAttribute('opacity', '0.3');
-    jp.style.opacity = '0.15';
-  } else {
-    r1.setAttribute('stroke-width', '3');   r1.setAttribute('opacity', '0.3');
-    r2.setAttribute('stroke-width', '5.5'); r2.setAttribute('opacity', '1');
-    jp.style.opacity = '1';
+const PLACES = [
+  {
+    ph:'pp1', em:'🌲', phNote:'פארק המרכזי',
+    num:'01', name:'Borjomi Central Park · פארק מרכזי',
+    price:'~10₾ כניסה · פתוח 09:00–20:00',
+    desc:'פארק עירוני קסום לאורך גדות הנהר עם שבילים, גשרים עתיקים ואוויר צח. נקודת המוצא לכל מה שבורג׳ומי יש להציע.',
+    // NOTE: real link for Central Park
+    link:'https://georgia.to/en/places-to-go/samtskhe-javakheti/borjomi/borjomi-central-park/'
+  },
+  {
+    ph:'pp2', em:'💧', phNote:'מעיינות מינרליים',
+    num:'02', name:'Mineral Springs · מעיינות מינרליים',
+    price:'חינם לחלוטין — ישר מהברז',
+    desc:'המפורסמים ביותר בגאורגיה. הטעם מלוח, גזי וייחודי לחלוטין. שווה לשתות כוס בצנוע — לא ליטר שלם.',
+    // NOTE: replace with official spring info link
+    link:'https://en.wikipedia.org/wiki/Borjomi_mineral_water'
+  },
+  {
+    ph:'pp3', em:'🚠', phNote:'רכבל',
+    num:'03', name:'Cable Car · רכבל',
+    price:'~16₾ הלוך-שוב · ~10 דקות',
+    desc:'עולים מהפארק לגבעה עם נוף פנורמי של בורג׳ומי, הנהר ואזור הנופש. קצר אבל שווה כל רגע.',
+    // NOTE: add real cable car link when available
+    link:'#'
+  },
+  {
+    ph:'pp4', em:'🏛️', phNote:'מוזיאון',
+    num:'04', name:'Local History Museum · מוזיאון ההיסטוריה',
+    price:'~5₾ · פתוח ימים א׳–ו׳',
+    desc:'מוזיאון קטן שמספר את סיפור בורג׳ומי — ממעיינות המינרלים ועד לעידן הסובייטי שעיצב את הקורט הזה.',
+    // NOTE: add museum link
+    link:'#'
+  },
+  {
+    ph:'pp5', em:'⛪', phNote:'המנזר הירוק',
+    num:'05', name:'Green Monastery · המנזר הירוק',
+    price:'כניסה חינם · ~5 דקות מהמרכז',
+    desc:'מנזר עתיק בלב יער ירוק, שקט ומסתורי. ברקע קול הנהר, בפנים קור נעים. מקום שאנשים שוכחים לבקר בו ומצטערים.',
+    // NOTE: add monastery link
+    link:'#'
+  },
+  {
+    ph:'pp6', em:'🍽️', phNote:'מסעדות ומזכרות',
+    num:'06', name:'Restaurants & Souvenirs · מסעדות ומזכרות',
+    price:'~30–60₾ לארוחה · שוק פתוח',
+    desc:'אזור הפדסטריאן עם מסעדות גאורגיות מקומיות, בסטות מים מינרליים, דבש מהאזור וגבינות. לא לפספס את החינקאלי.',
+    // NOTE: add restaurant guide link
+    link:'#'
   }
+];
 
-  /* map status line */
-  const ms = document.getElementById('map-status');
-  ms.textContent = d.mapStatus[0];
-  ms.className = 'map-status ' + d.mapStatus[1];
+/* ─── STATE ──────────────────────────────────── */
+let cur = 1;
 
-  /* summary */
-  document.getElementById('s-style').textContent  = d.summary.style;
-  document.getElementById('s-effort').textContent = d.summary.effort;
-  document.getElementById('s-vibe').textContent   = d.summary.vibe;
-  document.getElementById('s-who').textContent    = d.summary.who;
+/* ─── RENDER FUNCTIONS ───────────────────────── */
 
-  /* summary card top border */
-  document.getElementById('summary-card').style.borderTopColor = n===1 ? 'var(--green)' : 'var(--orange)';
+function renderPanel(n) {
+  const o = OPTS[n];
+  const metaHtml = o.meta.map(m =>
+    `<span class="opt-meta-chip ${o.mc}">${m}</span>`
+  ).join('');
+  const hlHtml = o.hl.map(h =>
+    `<div class="hl-item"><span class="hl-dot ${o.dot}"></span>${h}</div>`
+  ).join('');
+  const tagsHtml = o.tags.map(t =>
+    `<span class="place-tag">${t}</span>`
+  ).join('');
 
-  /* badge */
-  const badge = document.getElementById('tl-badge');
-  badge.textContent = d.badge[0];
-  badge.className = 'tl-mode-pill ' + d.badge[1];
-
-  /* timeline */
-  const tl = document.getElementById('timeline');
-  tl.style.opacity = '0';
-  setTimeout(() => {
-    tl.className = 'timeline ' + d.tlClass;
-    tl.innerHTML = renderTl(d.itinerary);
-    tl.style.transition = 'opacity 0.28s ease';
-    tl.style.opacity = '1';
-  }, 180);
+  return `
+    <div class="opt-img ${o.bgCls}">
+      <span class="ph-icon">${o.bgIcon}</span>
+      <span class="ph-note">${o.bgNote}</span>
+    </div>
+    <div class="opt-body">
+      <div class="opt-meta">${metaHtml}</div>
+      <div class="opt-title">${o.title}</div>
+      <p class="opt-desc">${o.desc}</p>
+      <div class="hl-grid">${hlHtml}</div>
+      <div class="places-row">${tagsHtml}</div>
+      <a href="${o.link}" target="_blank" rel="noopener" class="opt-cta ${o.clsBtn}">
+        ${o.linkTxt} ↗
+      </a>
+    </div>
+  `;
 }
 
-/* ─── renderTl() ──────────────────────────────────── */
-function renderTl(items) {
+function renderTimeline(items) {
   return items.map(it => `
     <div class="tl-item">
-      <div class="tl-node">
+      <div class="tl-marker">
         <div class="tl-dot"></div>
         <div class="tl-time">${it.time}</div>
       </div>
-      <div class="tl-body">
+      <div class="tl-card">
         <div class="tl-act">${it.act}</div>
         <div class="tl-detail">${it.detail}</div>
       </div>
@@ -930,8 +785,89 @@ function renderTl(items) {
   `).join('');
 }
 
-/* ─── Init ────────────────────────────────────────── */
-document.getElementById('timeline').innerHTML = renderTl(DATA[1].itinerary);
+function renderPlaces() {
+  return PLACES.map(p => `
+    <div class="place-card">
+      <div class="place-ph ${p.ph}">
+        <span class="ph-em">${p.em}</span>
+        <span class="ph-txt">${p.phNote}</span>
+      </div>
+      <div class="place-body">
+        <div class="place-num">${p.num}</div>
+        <div class="place-name">${p.name}</div>
+        <div class="place-price">${p.price}</div>
+        <p class="place-desc">${p.desc}</p>
+        <a href="${p.link}" target="_blank" rel="noopener" class="place-link">קראו עוד ↗</a>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ─── MAIN INTERACTION ───────────────────────── */
+
+function pick(n) {
+  if (cur === n) return;
+  cur = n;
+  const o = OPTS[n];
+
+  // tabs
+  document.querySelectorAll('.opt-tab').forEach((el, i) => {
+    el.classList.toggle('sel', i + 1 === n);
+  });
+
+  // map
+  ['r1','r2','r3'].forEach((id, i) => {
+    document.getElementById('map-' + id)
+      .setAttribute('opacity', i + 1 === n ? '1' : '0.18');
+  });
+  document.getElementById('map-cable')
+    .setAttribute('opacity', n <= 2 ? '1' : '0.2');
+  document.getElementById('map-view')
+    .setAttribute('opacity', n === 3 ? '1' : '0.15');
+
+  // map status
+  const ms = document.getElementById('map-status');
+  ms.textContent = o.mapStatus;
+  ms.className = 'map-status ' + o.mapStatusCls;
+
+  // option panel
+  const panel = document.getElementById('opt-panel');
+  panel.style.opacity = '0';
+  setTimeout(() => {
+    panel.innerHTML = renderPanel(n);
+    panel.classList.add('fade-in');
+    panel.style.opacity = '1';
+    panel.style.transition = 'opacity .25s ease';
+  }, 160);
+
+  // summary
+  document.getElementById('summary-bar').style.borderTopColor =
+    getComputedStyle(document.documentElement).getPropertyValue('--' + o.color);
+  document.getElementById('s-style').textContent  = o.sum.style;
+  document.getElementById('s-effort').textContent = o.sum.effort;
+  document.getElementById('s-vibe').textContent   = o.sum.vibe;
+  document.getElementById('s-who').textContent    = o.sum.who;
+
+  // timeline
+  const tl = document.getElementById('timeline');
+  tl.style.opacity = '0';
+  setTimeout(() => {
+    tl.className = 'timeline ' + o.tlClass;
+    tl.innerHTML = renderTimeline(TL[n]);
+    tl.style.transition = 'opacity .28s ease';
+    tl.style.opacity = '1';
+  }, 180);
+
+  // timeline pill
+  const pill = document.getElementById('tl-pill');
+  pill.textContent = o.badge;
+  pill.className = 'tl-pill ' + o.tlPill;
+}
+
+/* ─── INIT ───────────────────────────────────── */
+document.getElementById('opt-panel').innerHTML = renderPanel(1);
+document.getElementById('timeline').innerHTML  = renderTimeline(TL[1]);
+document.getElementById('places-grid').innerHTML = renderPlaces();
 
 </script>
 </body>
