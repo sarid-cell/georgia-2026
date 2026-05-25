@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>יום 3 – בורג׳ומי | Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+
+/* ── Reset & Base ─────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --green:        #2d6a4f;
+  --green-mid:    #52b788;
+  --green-light:  #e8f5ee;
+  --orange:       #c2440c;
+  --orange-mid:   #e87848;
+  --orange-light: #fef0e8;
+  --bg:           #f7f5f0;
+  --card:         #ffffff;
+  --text:         #1a1a1e;
+  --muted:        #6b7280;
+  --muted-light:  #9ca3af;
+  --border:       #e4dfd6;
+  --border-light: #ede9e2;
+  --radius:       18px;
+  --radius-sm:    11px;
+  --shadow:       0 2px 14px rgba(0,0,0,0.07);
+  --shadow-md:    0 6px 28px rgba(0,0,0,0.11);
+  --t:            0.22s ease;
+}
+
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  font-family: 'Heebo', 'Arial Hebrew', Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  direction: rtl;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Preview Banner ──────────────────────────── */
+.preview-bar {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: #18181b;
+  color: #e4e4e7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 9px 20px;
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.preview-bar .badge {
+  background: #fbbf24;
+  color: #18181b;
+  font-weight: 800;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  border-radius: 5px;
+  padding: 2px 8px;
+}
+
+/* ── Hero ────────────────────────────────────── */
+.hero {
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  padding: 52px 24px 44px;
+}
+.hero-inner { max-width: 860px; margin: 0 auto; }
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.eyebrow::before {
+  content: '';
+  width: 20px;
+  height: 2.5px;
+  background: var(--green-mid);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.hero h1 {
+  font-size: clamp(2.6rem, 7vw, 4.2rem);
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.hero-sub {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--green);
+  margin-bottom: 16px;
+}
+.hero-desc {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 600px;
+  margin-bottom: 24px;
+}
+.hero-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #f0faf4;
+  border: 1px solid #c6e8d5;
+  border-radius: 999px;
+  padding: 7px 16px;
+  font-size: 13px;
+  color: var(--green);
+  font-weight: 500;
+}
+
+/* ── Section Wrapper ─────────────────────────── */
+.section {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 52px 24px;
+}
+.section + .section { padding-top: 0; }
+
+.sec-label {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--muted-light);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.sec-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.sec-desc {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 36px;
+}
+
+/* ── Choice Grid ─────────────────────────────── */
+.choice-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+@media (max-width: 800px) {
+  .choice-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Map Card ────────────────────────────────── */
+/* NOTE TO DEV: Replace the SVG below with a Google Maps embed,
+   a Leaflet.js map, or an exported My Maps image when ready.
+   The card shell and header can remain as-is. */
+.map-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  position: sticky;
+  top: 54px;
+}
+.map-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border-light);
+}
+.map-card-head-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+}
+.map-placeholder-pill {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-size: 10.5px;
+  color: var(--muted-light);
+  font-weight: 600;
+}
+.map-svg-area {
+  background: #dde8d4;
+  line-height: 0;
+}
+.map-svg-area svg { display: block; width: 100%; height: auto; }
+
+.map-status {
+  padding: 10px 18px;
+  font-size: 12px;
+  font-weight: 600;
+  transition: color var(--t);
+  border-top: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.map-status.green { color: var(--green); }
+.map-status.orange { color: var(--orange); }
+
+.map-legend-row {
+  padding: 12px 18px 14px;
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--border-light);
+}
+.map-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11.5px;
+  color: var(--muted);
+  font-weight: 500;
+}
+.legend-dash { width: 26px; height: 3px; border-radius: 2px; }
+
+/* ── Option Cards ────────────────────────────── */
+.options-col { display: flex; flex-direction: column; gap: 16px; }
+
+.opt-card {
+  background: var(--card);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  cursor: pointer;
+  transition: border-color var(--t), box-shadow var(--t), transform var(--t);
+  position: relative;
+}
+.opt-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+
+.opt-card.sel-green {
+  border-color: var(--green);
+  border-top-width: 4px;
+}
+.opt-card.sel-orange {
+  border-color: var(--orange);
+  border-top-width: 4px;
+}
+
+.opt-badge {
+  display: inline-block;
+  padding: 4px 13px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  margin-bottom: 14px;
+}
+.badge-g { background: var(--green-light); color: var(--green); }
+.badge-o { background: var(--orange-light); color: var(--orange); }
+
+.opt-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.3;
+  margin-bottom: 10px;
+}
+.opt-desc {
+  font-size: 0.875rem;
+  color: var(--muted);
+  line-height: 1.75;
+  margin-bottom: 18px;
+}
+.opt-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 22px;
+}
+.opt-list li {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text);
+}
+.dot-g { width: 7px; height: 7px; border-radius: 50%; background: var(--green-mid); flex-shrink: 0; }
+.dot-o { width: 7px; height: 7px; border-radius: 50%; background: var(--orange-mid); flex-shrink: 0; }
+
+.opt-btn {
+  width: 100%;
+  padding: 12px 20px;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  border: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all var(--t);
+}
+.btn-g-fill  { background: var(--green); color: #fff; }
+.btn-g-fill:hover { background: #245a40; }
+.btn-g-out   { background: transparent; color: var(--green); border-color: #c6e8d5; }
+.btn-g-out:hover { background: var(--green-light); }
+.btn-o-fill  { background: var(--orange); color: #fff; }
+.btn-o-fill:hover { background: #a83a0b; }
+.btn-o-out   { background: transparent; color: var(--orange); border-color: #f5cdb6; }
+.btn-o-out:hover { background: var(--orange-light); }
+
+/* ── Summary Card ────────────────────────────── */
+.summary-wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px 48px; }
+
+.summary-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 26px 32px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  border-top: 3px solid var(--green);
+  transition: border-color var(--t);
+}
+@media (max-width: 640px) {
+  .summary-card { grid-template-columns: 1fr 1fr; padding: 20px; }
+}
+.sum-lbl {
+  font-size: 10.5px;
+  font-weight: 800;
+  color: var(--muted-light);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.sum-val {
+  font-size: 0.93rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+/* ── Timeline ────────────────────────────────── */
+.tl-wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px 48px; }
+.tl-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.tl-mode-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 700;
+  transition: all var(--t);
+}
+.tl-mode-g { background: var(--green-light); color: var(--green); }
+.tl-mode-o { background: var(--orange-light); color: var(--orange); }
+
+.timeline {
+  position: relative;
+  padding-right: 52px; /* space for dot column in RTL */
+}
+/* Vertical line – right side in RTL */
+.timeline::before {
+  content: '';
+  position: absolute;
+  right: 23px;
+  top: 12px;
+  bottom: 28px;
+  width: 2px;
+  background: var(--border);
+  border-radius: 2px;
+  transition: background var(--t);
+}
+.timeline.mode-g::before { background: #c6e8d5; }
+.timeline.mode-o::before { background: #f5cdb6; }
+
+.tl-item {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 28px;
+  align-items: flex-start;
+  position: relative;
+}
+.tl-item:last-child { margin-bottom: 0; }
+
+.tl-node {
+  position: absolute;
+  right: -52px; /* pulls node out to the right gutter */
+  top: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  width: 46px;
+}
+.tl-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--border);
+  z-index: 1;
+  transition: all var(--t);
+}
+.timeline.mode-g .tl-dot { background: var(--green-mid); border-color: var(--green-mid); }
+.timeline.mode-o .tl-dot { background: var(--orange-mid); border-color: var(--orange-mid); }
+.tl-time {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.tl-body {
+  flex: 1;
+  background: var(--card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.04);
+}
+.tl-act {
+  font-size: 0.93rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+.tl-detail {
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* ── CTA ─────────────────────────────────────── */
+.cta-wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px 48px; }
+.cta-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.cta-text h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 4px; }
+.cta-text p  { font-size: 0.875rem; color: var(--muted); }
+.cta-btns    { display: flex; gap: 10px; flex-wrap: wrap; }
+/* NOTE TO DEV: wire these buttons to real map / PDF / save logic */
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 11px 20px;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  transition: all var(--t);
+}
+.cta-primary   { background: var(--text); color: #fff; }
+.cta-primary:hover { background: #333; }
+.cta-secondary { background: var(--bg); color: var(--text); border: 1px solid var(--border); }
+.cta-secondary:hover { background: #edeade; }
+
+/* ── Info Cards ──────────────────────────────── */
+.info-wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px 64px; }
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 14px;
+}
+.info-card {
+  background: var(--card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 22px;
+}
+.info-icon { font-size: 1.5rem; display: block; margin-bottom: 12px; }
+.info-card h4 { font-size: 0.9rem; font-weight: 800; margin-bottom: 7px; }
+.info-card p  { font-size: 0.83rem; color: var(--muted); line-height: 1.7; }
+
+/* ── Dev Notes Footer ────────────────────────── */
+.dev-footer {
+  background: #fef9c3;
+  border-top: 1px solid #fde68a;
+  padding: 36px 24px;
+}
+.dev-footer-inner { max-width: 860px; margin: 0 auto; }
+.dev-footer h3 {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #92400e;
+  margin-bottom: 14px;
+}
+.dev-footer ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.dev-footer li {
+  font-size: 0.85rem;
+  color: #78350f;
+  display: flex;
+  gap: 8px;
+}
+.dev-footer li::before { content: '→'; font-weight: 800; flex-shrink: 0; }
+
+/* ── Fade animation ──────────────────────────── */
+.fade-in { animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+</style>
+</head>
+<body>
+
+<!-- ═══════ PREVIEW BANNER ═══════════════════════════ -->
+<div class="preview-bar">
+  <span class="badge">PREVIEW</span>
+  עמוד טיוטה בלבד – לא חלק מהאתר הרשמי · לא לשיתוף
+</div>
+
+<!-- ═══════ HERO ══════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">יום 3 &nbsp;·&nbsp; ראשון 21.06.26 &nbsp;·&nbsp; דשבאשי ← בורג׳ומי</div>
+    <h1>בורג׳ומי</h1>
+    <div class="hero-sub">מעיינות מינרליים, פארק ירוק ואוויר הרים</div>
+    <p class="hero-desc">
+      בורג׳ומי היא עיירת נופש קסומה בלב גאורגיה, ידועה בזכות המים המינרליים שלה, הפארק המרכזי הירוק על גדות הנהר, בתי ספא מפנקים — ולמי שמחפש חוויה שונה — גישה לאזורי שטח וסביבה הררית בלתי נשכחת.
+    </p>
+    <div class="hero-note">
+      💡 היום הזה מתאים גם לרוגע מוחלט וגם להרפתקה קלה — בחרו למטה
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CHOICE SECTION ════════════════════════════ -->
+<div class="section">
+  <div class="sec-label">בחירת מסלול</div>
+  <div class="sec-title">איזה סגנון יום מתאים לכם?</div>
+  <p class="sec-desc">לחצו על אחת האופציות — המפה, הסיכום והלו״ז יתעדכנו אוטומטית.</p>
+
+  <div class="choice-grid">
+
+    <!-- ─── MAP CARD ───────────────────────────────── -->
+    <!--
+      NOTE TO DEV: The SVG below is a visual placeholder only.
+      To replace it with a real map:
+        Option A – Google Maps embed: <iframe src="https://www.google.com/maps/embed?..." />
+        Option B – Leaflet.js with the same stop coordinates from index.html
+        Option C – Export from Google My Maps as an image and use <img>
+      Keep the .map-card shell; only swap the .map-svg-area contents.
+    -->
+    <div class="map-card">
+      <div class="map-card-head">
+        <div class="map-card-head-title">🗺️ מפת המסלול</div>
+        <div class="map-placeholder-pill">ויזואליזציה בלבד</div>
+      </div>
+
+      <div class="map-svg-area">
+        <svg id="route-svg" viewBox="0 0 560 300" xmlns="http://www.w3.org/2000/svg" aria-label="מפה ויזואלית של מסלול יום 3">
+
+          <!-- Terrain base -->
+          <rect width="560" height="300" fill="#dae6d0"/>
+
+          <!-- Mountain silhouettes (north / top) -->
+          <polygon points="0,0 0,130 55,100 105,120 165,78 225,108 285,65 340,92 395,55 450,85 510,48 560,70 560,0"
+                   fill="#b8cfaa"/>
+          <polygon points="0,0 0,80 60,58 130,78 200,42 275,62 350,32 425,55 500,28 560,44 560,0"
+                   fill="#a3be95"/>
+
+          <!-- River (west→east through valley) -->
+          <path d="M 30 198 C 90 188 165 186 248 180 C 330 174 405 178 535 184"
+                fill="none" stroke="#7ab3d0" stroke-width="6" stroke-linecap="round" opacity="0.75"/>
+          <path d="M 30 198 C 90 188 165 186 248 180 C 330 174 405 178 535 184"
+                fill="none" stroke="#a8cfe6" stroke-width="2" stroke-linecap="round" opacity="0.85"/>
+
+          <!-- ── ROUTE 1: Relaxed (green dashes) – valley floor ── -->
+          <path id="r1"
+                d="M 432 192 Q 385 183 340 178 Q 300 174 260 172 Q 220 170 175 175"
+                fill="none" stroke="#2d6a4f" stroke-width="5.5" stroke-linecap="round"
+                stroke-dasharray="13 7" opacity="1"/>
+
+          <!-- ── ROUTE 2: Adventure (orange solid) – mountain loop ── -->
+          <path id="r2"
+                d="M 432 192 Q 385 183 340 178 Q 310 160 282 128 Q 258 102 228 88 Q 198 76 178 98 Q 165 118 167 142 L 175 175"
+                fill="none" stroke="#c2440c" stroke-width="5.5" stroke-linecap="round" opacity="0.35"/>
+
+          <!-- ── LOCATION MARKERS ── -->
+
+          <!-- 1 · Borjomi city (departure) -->
+          <circle cx="432" cy="192" r="10" fill="#2d6a4f" stroke="white" stroke-width="2.5"/>
+          <text x="419" y="179" font-family="Heebo,Arial" font-size="11" font-weight="700"
+                fill="#1a1a1e" text-anchor="end" direction="ltr">Borjomi</text>
+          <text x="419" y="191" font-family="Heebo,Arial" font-size="9" fill="#6b7280"
+                text-anchor="end" direction="ltr">Start</text>
+
+          <!-- 2 · Central Park entrance -->
+          <circle cx="340" cy="178" r="7.5" fill="#52b788" stroke="white" stroke-width="2"/>
+          <text x="328" y="164" font-family="Heebo,Arial" font-size="10" font-weight="600"
+                fill="#1a1a1e" text-anchor="end" direction="ltr">Central Park</text>
+
+          <!-- 3 · Mineral Springs -->
+          <circle cx="260" cy="172" r="7" fill="#06b6d4" stroke="white" stroke-width="2"/>
+          <text x="248" y="158" font-family="Heebo,Arial" font-size="10" font-weight="600"
+                fill="#1a1a1e" text-anchor="end" direction="ltr">Springs</text>
+
+          <!-- 4 · Likani (hotel / finish) -->
+          <circle cx="175" cy="175" r="10" fill="#8b5cf6" stroke="white" stroke-width="2.5"/>
+          <text x="163" y="162" font-family="Heebo,Arial" font-size="10.5" font-weight="700"
+                fill="#1a1a1e" text-anchor="end" direction="ltr">Likani</text>
+          <text x="163" y="173" font-family="Heebo,Arial" font-size="9" fill="#6b7280"
+                text-anchor="end" direction="ltr">Hotel</text>
+
+          <!-- 5 · Jeep viewpoint (shown only for route 2) -->
+          <g id="jeep-pt" opacity="0.15" style="transition:opacity 0.3s ease">
+            <circle cx="228" cy="88" r="7" fill="#c2440c" stroke="white" stroke-width="2"/>
+            <text x="238" y="85" font-family="Heebo,Arial" font-size="10" font-weight="700"
+                  fill="#c2440c" text-anchor="start" direction="ltr">4×4 View</text>
+          </g>
+
+          <!-- Compass -->
+          <g transform="translate(524,26)">
+            <circle r="16" fill="white" opacity="0.75"/>
+            <text x="0" y="-4" text-anchor="middle" font-size="10" font-weight="800"
+                  fill="#6b7280" font-family="Arial" direction="ltr">N</text>
+            <polygon points="0,-13 2,-3 -2,-3" fill="#6b7280"/>
+          </g>
+
+          <!-- Scale note -->
+          <text x="20" y="293" font-family="Heebo,Arial" font-size="9.5" fill="#9ca3af"
+                direction="rtl">מפה ויזואלית בלבד · לא בקנה מידה</text>
+        </svg>
+      </div>
+
+      <div class="map-status green" id="map-status">🌿 מסלול רגוע מסומן</div>
+
+      <div class="map-legend-row">
+        <div class="map-legend-item">
+          <div class="legend-dash" style="background:#2d6a4f"></div>יום רגוע
+        </div>
+        <div class="map-legend-item">
+          <div class="legend-dash" style="background:#c2440c"></div>4×4 שטח
+        </div>
+        <div class="map-legend-item">
+          <div class="legend-dash" style="background:#8b5cf6"></div>לינה
+        </div>
+      </div>
+    </div><!-- /map-card -->
+
+    <!-- ─── OPTION CARDS ───────────────────────────── -->
+    <div class="options-col">
+
+      <!-- Option 1: Relaxed -->
+      <div class="opt-card option-1 sel-green" onclick="pick(1)">
+        <div class="opt-badge badge-g">🌿 יום רגוע</div>
+        <div class="opt-title">פארק מרכזי, מעיינות מינרליים וספא</div>
+        <p class="opt-desc">
+          יום נעים ומרגיע לגמרי — הליכה קלילה בפארק המרכזי על גדות הנהר, טעימת מים מינרליים ישירות מהמעיין, זמן חופשי בעיירה, ולסיום — ספא מפנק.
+        </p>
+        <ul class="opt-list">
+          <li><span class="dot-g"></span>פארק בורג׳ומי המרכזי</li>
+          <li><span class="dot-g"></span>מעיינות מינרליים טבעיים</li>
+          <li><span class="dot-g"></span>הליכה קלה לאורך הנהר</li>
+          <li><span class="dot-g"></span>ספא / בריכה מינרלית</li>
+        </ul>
+        <button class="opt-btn btn-g-fill" id="btn1" onclick="pick(1);event.stopPropagation()">✓ מסלול נבחר</button>
+      </div>
+
+      <!-- Option 2: Adventure -->
+      <div class="opt-card option-2" onclick="pick(2)">
+        <div class="opt-badge badge-o">🚙 4×4 Adventure</div>
+        <div class="opt-title">ג׳יפ ושטח — חוויית הרים</div>
+        <p class="opt-desc">
+          יום אקטיבי עם אופי שונה — נסיעה בשטח בהרי בורג׳ומי, עצירות נוף פנורמיות, צילומים מרהיבים, ואז חזרה למלון לנוח.
+        </p>
+        <ul class="opt-list">
+          <li><span class="dot-o"></span>נסיעת ג׳יפ / 4×4 באזור</li>
+          <li><span class="dot-o"></span>עצירות תצפית ונוף</li>
+          <li><span class="dot-o"></span>טבע הררי ואוויר פתוח</li>
+          <li><span class="dot-o"></span>חוויית שטח אותנטית</li>
+        </ul>
+        <button class="opt-btn btn-o-out" id="btn2" onclick="pick(2);event.stopPropagation()">בחרו מסלול זה</button>
+      </div>
+
+    </div><!-- /options-col -->
+
+  </div><!-- /choice-grid -->
+</div><!-- /section -->
+
+<!-- ═══════ SUMMARY ════════════════════════════════════ -->
+<div class="summary-wrap">
+  <div class="summary-card" id="summary-card">
+    <div>
+      <div class="sum-lbl">סגנון היום</div>
+      <div class="sum-val" id="s-style">רגוע ומפנק</div>
+    </div>
+    <div>
+      <div class="sum-lbl">רמת מאמץ</div>
+      <div class="sum-val" id="s-effort">נמוכה</div>
+    </div>
+    <div>
+      <div class="sum-lbl">vibe</div>
+      <div class="sum-val" id="s-vibe">ספא, מים, שקט</div>
+    </div>
+    <div>
+      <div class="sum-lbl">מתאים ל</div>
+      <div class="sum-val" id="s-who">כולם, כולל ילדים</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ TIMELINE ═══════════════════════════════════ -->
+<div class="tl-wrap">
+  <div class="tl-header">
+    <div>
+      <div class="sec-label">לו״ז יומי</div>
+      <div class="sec-title">תכנית המסלול הנבחר</div>
+    </div>
+    <div class="tl-mode-pill tl-mode-g" id="tl-badge">🌿 יום רגוע</div>
+  </div>
+  <div class="timeline mode-g" id="timeline"></div>
+</div>
+
+<!-- ═══════ CTA ════════════════════════════════════════ -->
+<div class="cta-wrap">
+  <div class="cta-card">
+    <div class="cta-text">
+      <h3>מוכנים? בואו נסגור את היום הזה</h3>
+      <p>כל הכלים לניווט ותכנון — במקום אחד</p>
+    </div>
+    <div class="cta-btns">
+      <!-- NOTE TO DEV: Link btn1 to the Leaflet map modal (openDay3RouteMap()) -->
+      <button class="cta-btn cta-primary" onclick="alert('יחובר למפה האינטראקטיבית מהאתר הרשמי')">📍 צפייה במפה</button>
+      <!-- NOTE TO DEV: Implement PDF export (window.print or jsPDF) -->
+      <button class="cta-btn cta-secondary" onclick="alert('בקרוב: הורדת PDF')">📄 הורדת PDF</button>
+      <!-- NOTE TO DEV: Save to localStorage key 'day3-option' -->
+      <button class="cta-btn cta-secondary" onclick="alert('בקרוב: שמירת בחירה')">🔖 שמירה</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ INFO CARDS ════════════════════════════════ -->
+<div class="info-wrap">
+  <div class="sec-label" style="margin-bottom:18px">מה חשוב לדעת לפני</div>
+  <div class="info-grid">
+    <div class="info-card">
+      <span class="info-icon">💧</span>
+      <h4>המים המינרליים</h4>
+      <p>שותים ישירות מהברז בפארק המרכזי — חינם לחלוטין. הטעם מלוח-גזי וייחודי. לשתות במינון — לא כוסות ללא הפסקה.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-icon">🌲</span>
+      <h4>פארק מרכזי vs. פארק לאומי</h4>
+      <p>הביקור הוא בפארק המרכזי של העיר (כניסה ~10₾). הפארק הלאומי הגדול (6,800 קמ"ר) הוא נפרד ומחוץ לעיר.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-icon">🚙</span>
+      <h4>מסלול הג׳יפ</h4>
+      <p>רעיון קונספטואלי שיש לבצע עם ג׳יפ מקומי שכור. המסלול הספציפי ייקבע לפי העדפות הלקוח ותנאי שטח בפועל.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-icon">🗺️</span>
+      <h4>כיצד מגיעים</h4>
+      <p>מדשבאשי/צלקה ~80–100 ק"מ, כ-1.5–2 שע׳ בג׳יפ. יש שלטים ברורים לבורג׳ומי מהכביש הראשי.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ DEV NOTES ══════════════════════════════════ -->
+<div class="dev-footer">
+  <div class="dev-footer-inner">
+    <h3>📋 הערות לפיתוח (לא יופיעו בגרסה הסופית)</h3>
+    <ul>
+      <li>המפה היא SVG ויזואלי בלבד — ניתן להחליף ב-Leaflet embed מהאתר הרשמי (openDay3RouteMap) או ב-Google Maps iframe</li>
+      <li>כפתורי CTA הם placeholder — יש לחבר למפה האינטראקטיבית, ל-window.print() ול-localStorage לשמירת בחירה</li>
+      <li>מסלול 4×4 הוא קונספטואלי — לוח הזמנים ועצירות יוגדרו לאחר גיבוש עם הלקוח</li>
+      <li>להטמעה בעמוד הרשמי (index.html): העתיקו את ה-CSS לבלוק הסגנונות, את ה-HTML בתוך <code>&lt;article class="day-grid"&gt;</code> של יום 3, ואת ה-JS לבלוק הסקריפטים הקיים</li>
+      <li>שיקלו לשמור את הבחירה ב-localStorage כדי שתישמר בין רענונים ולרוחב הימים</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════ JAVASCRIPT ══════════════════════════════════ -->
+<script>
+
+/* ─── Data ────────────────────────────────────────── */
+const DATA = {
+  1: {
+    summary: { style: 'רגוע ומפנק', effort: 'נמוכה', vibe: 'ספא, מים, שקט', who: 'כולם, כולל ילדים' },
+    badge: ['🌿 יום רגוע', 'tl-mode-g'],
+    tlClass: 'mode-g',
+    mapStatus: ['🌿 מסלול רגוע מסומן', 'green'],
+    itinerary: [
+      { time: '09:00', act: '🚗 יציאה לבורג׳ומי', detail: 'מדשבאשי / צלקה · ~80 ק"מ · ~1.5–2 שע׳' },
+      { time: '10:30', act: '🌲 כניסה לפארק המרכזי', detail: 'כניסה ~10₾ לנפש · פתוח 09:00–20:00' },
+      { time: '12:30', act: '💧 מעיינות מינרליים', detail: 'שתייה ישירה מהברז — חינם לחלוטין!' },
+      { time: '14:00', act: '🚶 הליכה רגועה וזמן חופשי', detail: 'לאורך הנהר, גשרים, בתי קפה מקומיים' },
+      { time: '16:30', act: '🧖 ספא / בריכה מינרלית', detail: 'Borjomi Likani Hotel & Spa · מים מינרליים חמים' },
+      { time: '19:30', act: '🍽️ ארוחת ערב', detail: 'מסעדת המלון או מסעדה מקומית בכיכר העיר' }
+    ]
+  },
+  2: {
+    summary: { style: 'אקטיבי ואדרנלין', effort: 'בינונית', vibe: 'הרים, שטח, נוף', who: 'מחפשי הרפתקאות' },
+    badge: ['🚙 4×4 Adventure', 'tl-mode-o'],
+    tlClass: 'mode-o',
+    mapStatus: ['🚙 מסלול שטח מסומן', 'orange'],
+    itinerary: [
+      { time: '09:00', act: '🚗 יציאה לבורג׳ומי', detail: 'מדשבאשי / צלקה · ~80 ק"מ · ~1.5–2 שע׳' },
+      { time: '10:30', act: '📍 הגעה לאזור בורג׳ומי', detail: 'מצטיידים, בוחרים מסלול שטח עם מדריך מקומי' },
+      { time: '12:00', act: '🚙 מסלול 4×4 בהרים', detail: 'נסיעת שטח · עצירות צילום · תצפיות' },
+      { time: '14:00', act: '🏔️ עצירת נוף פנורמית', detail: 'תצפית על עמק בורג׳ומי מגובה' },
+      { time: '16:30', act: '🏨 חזרה + מנוחה', detail: 'Borjomi Likani Hotel — מגיעים רעבים!' },
+      { time: '19:30', act: '🍽️ ארוחת ערב', detail: 'ארוחה נאה אחרי יום שטח' }
+    ]
+  }
+};
+
+let active = 1;
+
+/* ─── pick() ──────────────────────────────────────── */
+function pick(n) {
+  if (active === n) return;
+  active = n;
+  const d = DATA[n];
+
+  /* option cards */
+  document.querySelector('.option-1').className = 'opt-card option-1' + (n===1 ? ' sel-green' : '');
+  document.querySelector('.option-2').className = 'opt-card option-2' + (n===2 ? ' sel-orange' : '');
+
+  /* buttons */
+  const b1 = document.getElementById('btn1');
+  const b2 = document.getElementById('btn2');
+  b1.className = 'opt-btn ' + (n===1 ? 'btn-g-fill' : 'btn-g-out');
+  b1.textContent = n===1 ? '✓ מסלול נבחר' : 'בחרו מסלול זה';
+  b2.className = 'opt-btn ' + (n===2 ? 'btn-o-fill' : 'btn-o-out');
+  b2.textContent = n===2 ? '✓ מסלול נבחר' : 'בחרו מסלול זה';
+
+  /* map SVG routes */
+  const r1 = document.getElementById('r1');
+  const r2 = document.getElementById('r2');
+  const jp = document.getElementById('jeep-pt');
+  if (n === 1) {
+    r1.setAttribute('stroke-width', '5.5'); r1.setAttribute('opacity', '1');
+    r2.setAttribute('stroke-width', '3');   r2.setAttribute('opacity', '0.3');
+    jp.style.opacity = '0.15';
+  } else {
+    r1.setAttribute('stroke-width', '3');   r1.setAttribute('opacity', '0.3');
+    r2.setAttribute('stroke-width', '5.5'); r2.setAttribute('opacity', '1');
+    jp.style.opacity = '1';
+  }
+
+  /* map status line */
+  const ms = document.getElementById('map-status');
+  ms.textContent = d.mapStatus[0];
+  ms.className = 'map-status ' + d.mapStatus[1];
+
+  /* summary */
+  document.getElementById('s-style').textContent  = d.summary.style;
+  document.getElementById('s-effort').textContent = d.summary.effort;
+  document.getElementById('s-vibe').textContent   = d.summary.vibe;
+  document.getElementById('s-who').textContent    = d.summary.who;
+
+  /* summary card top border */
+  document.getElementById('summary-card').style.borderTopColor = n===1 ? 'var(--green)' : 'var(--orange)';
+
+  /* badge */
+  const badge = document.getElementById('tl-badge');
+  badge.textContent = d.badge[0];
+  badge.className = 'tl-mode-pill ' + d.badge[1];
+
+  /* timeline */
+  const tl = document.getElementById('timeline');
+  tl.style.opacity = '0';
+  setTimeout(() => {
+    tl.className = 'timeline ' + d.tlClass;
+    tl.innerHTML = renderTl(d.itinerary);
+    tl.style.transition = 'opacity 0.28s ease';
+    tl.style.opacity = '1';
+  }, 180);
+}
+
+/* ─── renderTl() ──────────────────────────────────── */
+function renderTl(items) {
+  return items.map(it => `
+    <div class="tl-item">
+      <div class="tl-node">
+        <div class="tl-dot"></div>
+        <div class="tl-time">${it.time}</div>
+      </div>
+      <div class="tl-body">
+        <div class="tl-act">${it.act}</div>
+        <div class="tl-detail">${it.detail}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ─── Init ────────────────────────────────────────── */
+document.getElementById('timeline').innerHTML = renderTl(DATA[1].itinerary);
+
+</script>
+</body>
+</html>
