@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
     :root {
       --bg:#f9fafb;
@@ -237,6 +238,27 @@
 .chat-msg.bot{background:#f1f5f9;color:#1e293b;align-self:flex-start;border-radius:4px 14px 14px 14px;}
 .chat-msg.user{background:linear-gradient(135deg,#0ea5e9,#22c55e);color:#fff;align-self:flex-end;border-radius:14px 14px 4px 14px;text-align:right;}
 .chat-msg.thinking{background:#f1f5f9;color:#94a3b8;font-style:italic;}
+/* Day 3 Route Map */
+.btn-view-route{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;border-radius:999px;font-size:13px;font-weight:700;border:none;cursor:pointer;margin-top:10px;transition:opacity .15s,transform .15s;}
+.btn-view-route:hover{opacity:.88;transform:translateY(-1px);}
+.route-map-modal{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:9998;display:none;align-items:center;justify-content:center;padding:16px;}
+.route-map-modal.open{display:flex;}
+.route-map-box{background:#fff;border-radius:20px;width:min(920px,98vw);max-height:92vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 28px 72px rgba(0,0,0,.55);}
+.route-map-header{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid #e5e7eb;gap:10px;flex-wrap:wrap;}
+.route-map-title{font-weight:800;font-size:16px;color:#111827;flex:1;}
+.route-map-actions{display:flex;align-items:center;gap:7px;flex-shrink:0;}
+.route-map-actions a,.route-map-actions button{padding:7px 13px;border-radius:999px;font-size:12px;font-weight:700;cursor:pointer;border:none;text-decoration:none;display:inline-flex;align-items:center;gap:4px;transition:opacity .15s;}
+.btn-open-gmap{background:#4f46e5;color:#fff;}
+.btn-open-gmap:hover{opacity:.85;}
+.btn-print-map{background:#f3f4f6;color:#374151;}
+.btn-print-map:hover{background:#e5e7eb;}
+.btn-close-map{background:transparent;color:#6b7280;font-size:18px;padding:5px 10px;line-height:1;}
+.btn-close-map:hover{background:#f3f4f6;border-radius:8px;}
+.route-map-legend{display:flex;gap:10px;padding:10px 20px;border-top:1px solid #f3f4f6;flex-wrap:wrap;background:#fafafa;}
+.legend-stop{display:flex;align-items:center;gap:6px;font-size:12px;color:#374151;}
+.legend-dot{width:18px;height:18px;border-radius:50%;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:10px;flex-shrink:0;}
+#day3-map-el{flex:1;min-height:420px;}
+@media print{body>*:not(#day3-route-modal){display:none!important}#day3-route-modal{position:relative!important;background:none!important}.route-map-box{box-shadow:none!important;max-height:none!important}.route-map-header{display:none!important}.route-map-legend{display:none!important}#day3-map-el{min-height:100vh!important}}
 </style>
 </head>
 <body>
@@ -362,6 +384,28 @@
     </div>
     <p style="font-size:11px;color:#9ca3af;text-align:center;margin-top:4px;">← גלילה אופקית · 8 ימים</p>
   </section>
+
+  <!-- Day 3 Route Map Modal -->
+  <div id="day3-route-modal" class="route-map-modal" onclick="if(event.target===this)closeDay3RouteMap()">
+    <div class="route-map-box">
+      <div class="route-map-header">
+        <span class="route-map-title">📍 מסלול יום 3 · דשבאשי → בורג׳ומי</span>
+        <div class="route-map-actions">
+          <a href="https://www.google.com/maps/dir/41.4572,44.0889/41.6415,43.0003/41.8379,43.3785/41.8406,43.4011" target="_blank" rel="noopener" class="btn-open-gmap">🗺️ פתח ב-Google Maps</a>
+          <button onclick="printDay3Map()" class="btn-print-map">🖨️ הדפס</button>
+          <button onclick="closeDay3RouteMap()" class="btn-close-map" aria-label="סגור">✕</button>
+        </div>
+      </div>
+      <div id="day3-map-el"></div>
+      <div class="route-map-legend">
+        <div class="legend-stop"><div class="legend-dot" style="background:#3b82f6">1</div>קניון דשבאשי – מוצא</div>
+        <div class="legend-stop"><div class="legend-dot" style="background:#f59e0b">2</div>טירת ראבאתי – אופציה</div>
+        <div class="legend-stop"><div class="legend-dot" style="background:#10b981">3</div>פארק בורג׳ומי-חראגאולי</div>
+        <div class="legend-stop"><div class="legend-dot" style="background:#06b6d4">4</div>מעיינות מינרליים</div>
+        <div class="legend-stop"><div class="legend-dot" style="background:#8b5cf6">5</div>Grand Hotel Borjomi – לינה</div>
+      </div>
+    </div>
+  </div>
 
   <!-- Lightbox overlay -->
   <div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9999;align-items:center;justify-content:center;flex-direction:column;gap:12px;" onclick="this.style.display='none'">
@@ -1396,6 +1440,7 @@
             <span class="chip">🌲 פארק לאומי</span>
             <span class="chip">🏨 לינה: בורג׳ומי</span>
           </div>
+          <button class="btn-view-route" onclick="openDay3RouteMap()">📍 צפה במסלול על מפה</button>
           <p class="day-note">💧 מקור מים: מעיינות מינרליים טבעיים שותים ישירות מהברז בפארק – חינם ומדהים!</p>
           <div class="hotel-card">
             <h3>איפה ישנים ואוכלים?</h3>
@@ -2220,6 +2265,73 @@
       }, { threshold: 0.08, rootMargin: '-56px 0px -48% 0px' });
       sections.forEach(s => spy.observe(s));
     });
+  }
+
+  // Day 3 Route Map
+  var day3MapInst = null;
+  var day3MapReady = false;
+
+  function openDay3RouteMap() {
+    var modal = document.getElementById('day3-route-modal');
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', day3EscHandler);
+    if (day3MapReady && day3MapInst) { setTimeout(function(){ day3MapInst.invalidateSize(); }, 50); return; }
+    if (!window.L) {
+      var js = document.createElement('script');
+      js.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+      js.onload = function() { day3BuildMap(); };
+      document.head.appendChild(js);
+    } else {
+      day3BuildMap();
+    }
+  }
+
+  function closeDay3RouteMap() {
+    document.getElementById('day3-route-modal').classList.remove('open');
+    document.body.style.overflow = '';
+    document.removeEventListener('keydown', day3EscHandler);
+  }
+
+  function day3EscHandler(e) { if (e.key === 'Escape') closeDay3RouteMap(); }
+
+  function printDay3Map() {
+    var modal = document.getElementById('day3-route-modal');
+    modal.classList.add('open');
+    window.print();
+  }
+
+  function day3BuildMap() {
+    if (day3MapReady) return;
+    day3MapReady = true;
+    var stops = [
+      { lat:41.4572, lng:44.0889, num:1, color:'#3b82f6', title:'קניון דשבאשי', time:'09:00', sub:'נקודת מוצא – יציאה עם ג׳יפ' },
+      { lat:41.6415, lng:43.0003, num:2, color:'#f59e0b', title:'טירת ראבאתי – אקלצחה', time:'10:30 (אופציה)', sub:'כניסה חינם · ~30 דק׳' },
+      { lat:41.8379, lng:43.3785, num:3, color:'#10b981', title:'פארק בורג׳ומי-חראגאולי', time:'12:30', sub:'כניסה לפארק הלאומי · ~10₾/נפש' },
+      { lat:41.8386, lng:43.3795, num:4, color:'#06b6d4', title:'מעיינות מינרליים', time:'13:00', sub:'שתייה ישירה מהברז – חינם!' },
+      { lat:41.8406, lng:43.4011, num:5, color:'#8b5cf6', title:'Grand Hotel Borjomi', time:'16:30', sub:'לינה · SPA · ארוחת ערב' }
+    ];
+    day3MapInst = L.map('day3-map-el', { zoomControl:true }).setView([41.65, 43.55], 9);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution:'© <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>',
+      maxZoom:18
+    }).addTo(day3MapInst);
+    var pts = stops.map(function(s){ return [s.lat, s.lng]; });
+    L.polyline(pts, { color:'#7c3aed', weight:4.5, opacity:0.7, dashArray:'14,7' }).addTo(day3MapInst);
+    stops.forEach(function(s) {
+      var icon = L.divIcon({
+        className:'',
+        html:'<div style="width:34px;height:34px;border-radius:50%;background:'+s.color+';color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.4);">'+s.num+'</div>',
+        iconSize:[34,34], iconAnchor:[17,17], popupAnchor:[0,-20]
+      });
+      var popup = '<div dir="rtl" style="font-family:Heebo,sans-serif;min-width:170px;padding:2px 0">'
+        +'<strong style="font-size:14px;display:block;margin-bottom:3px">'+s.title+'</strong>'
+        +'<span style="color:#6b7280;font-size:12px;display:block">'+s.time+'</span>'
+        +'<span style="font-size:12px;display:block;margin-top:2px">'+s.sub+'</span>'
+        +'</div>';
+      L.marker([s.lat, s.lng], { icon:icon }).addTo(day3MapInst).bindPopup(popup);
+    });
+    day3MapInst.fitBounds(L.latLngBounds(pts).pad(0.12));
   }
 
   // Init on load
